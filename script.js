@@ -2,27 +2,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('main-header');
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
     const navLinksContainer = document.getElementById('nav-links');
     const currentYearSpan = document.getElementById('current-year');
-    const sections = document.querySelectorAll('main > section[id]');
+    const sections = document.querySelectorAll('main > section[id]'); // Seleciona seções com ID dentro do main
     const navLinks = navLinksContainer ? Array.from(navLinksContainer.querySelectorAll('a.nav-link')) : [];
+    let intersectionObserver; // Guardar referência ao observer
 
     // --- Menu Mobile ---
-    if (menuBtn && mobileMenu) {
+    if (menuBtn && mobileMenu && iconOpen && iconClose) {
         menuBtn.addEventListener('click', () => {
             const isExpanded = menuBtn.getAttribute('aria-expanded') === 'true';
-            menuBtn.setAttribute('aria-expanded', !isExpanded);
+            menuBtn.setAttribute('aria-expanded', String(!isExpanded));
             mobileMenu.classList.toggle('hidden');
-            // Aqui você pode adicionar lógica para trocar o ícone do botão se desejar
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
         });
 
+        // Fecha o menu ao clicar em um link
         const mobileMenuLinks = mobileMenu.querySelectorAll('a');
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
                 menuBtn.setAttribute('aria-expanded', 'false');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
             });
         });
+    } else {
+        console.warn("Mobile menu elements not found.");
     }
 
     // --- Atualizar Ano no Footer ---
@@ -31,64 +40,89 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Active State na Navegação Desktop ao Rolar ---
-    if (sections.length > 0 && navLinks.length > 0 && window.IntersectionObserver) {
-        let observer; // Declare observer aqui para poder desconectar se necessário
-
+    // Verifica se a API está disponível e se há elementos para observar
+    if ('IntersectionObserver' in window && sections.length > 0 && navLinks.length > 0) {
         const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -70% 0px', // Ativa quando a seção entra nos 30% superiores da tela
-            threshold: 0
+            root: null, // Observa em relação ao viewport
+            rootMargin: '0px 0px -65% 0px', // Ativa quando 35% da seção está visível na parte superior
+            threshold: 0 // Qualquer pixel visível dispara
         };
 
         const observerCallback = (entries) => {
-            let activeSectionId = null;
+            let currentActiveSectionId = null;
+            // Encontra a seção mais visível no topo
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    activeSectionId = entry.target.getAttribute('id');
+                    currentActiveSectionId = entry.target.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
                 const linkHref = link.getAttribute('href');
-                if (linkHref === `#${activeSectionId}`) {
+                // Tira a classe de todos primeiro
+                link.classList.remove('active');
+                // Adiciona a classe se o href corresponder à seção ativa
+                if (linkHref === `#${currentActiveSectionId}`) {
                     link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
                 }
             });
-             // Caso especial: se estiver no topo, nenhum link deve estar ativo
-            if (window.scrollY < 200) { // Ajuste este valor conforme necessário
-                 navLinks.forEach(link => link.classList.remove('active'));
-            }
+
+            // Se o usuário rolou para o topo da página (acima da primeira seção observável), desativa todos
+             if (window.scrollY < sections[0].offsetTop / 2 && currentActiveSectionId === null) {
+                  navLinks.forEach(link => link.classList.remove('active'));
+             }
         };
 
         try {
-             observer = new IntersectionObserver(observerCallback, observerOptions);
-             sections.forEach(section => {
-                 if(section) observer.observe(section); // Verifica se a seção existe
-             });
-         } catch (e) {
+            intersectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+            sections.forEach(section => {
+                if(section) intersectionObserver.observe(section);
+            });
+        } catch (e) {
             console.error("Intersection Observer setup failed:", e);
-            // Implementar fallback ou simplesmente não ter a funcionalidade ativa
+            // A funcionalidade de link ativo na rolagem não funcionará
         }
 
     } else {
-        console.log("Intersection Observer not supported or no sections/navlinks found.");
+        console.log("Intersection Observer not supported or no sections/navlinks found for active state highlighting.");
     }
+
+    // --- Smooth Scroll para links internos ---
+    // Adiciona listeners a TODOS os links que começam com #
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const hrefAttribute = this.getAttribute('href');
+            // Garante que não é apenas um '#' vazio
+            if (hrefAttribute.length > 1) {
+                const targetElement = document.querySelector(hrefAttribute);
+                if (targetElement) {
+                    e.preventDefault(); // Previne o salto padrão
+                    // Calcula a posição do elemento de destino
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    // Considera a altura do header fixo (ajuste o valor se o header mudar de altura)
+                    const headerOffset = document.getElementById('main-header')?.offsetHeight || 70; // Pega altura ou usa fallback
+                    const offsetPosition = window.pageYOffset + elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth" // Rolagem suave
+                    });
+                }
+            }
+        });
+    });
 
 
     // --- Tratamento de Erros (Observação) ---
-    // Os erros `net::ERR_NAME_NOT_RESOLVED`, `connect to service worker error`,
-    // e `runtime.lastError: ...message channel closed` são quase certamente
-    // causados por extensões do navegador, problemas de rede/DNS, ou
-    // Service Workers/código de extensões interferindo. O código da página em si
-    // (HTML/CSS/JS fornecido) não causa esses erros específicos.
-    // Recomendações:
-    // 1. Teste em uma janela anônima/privada (desabilita a maioria das extensões).
-    // 2. Verifique sua conexão de rede e DNS.
-    // 3. Limpe o cache e os Service Workers do navegador para este domínio (nas Ferramentas de Desenvolvedor > Application > Service Workers).
-    // 4. Verifique se alguma extensão está bloqueando recursos ou injetando scripts.
+    // Console logs para ajudar a depurar os erros externos, se persistirem.
+    window.addEventListener('error', function(event) {
+        console.error('Global Error Caught:', event.error, event.message, event.filename, event.lineno, event.colno);
+    });
+    window.addEventListener('unhandledrejection', function(event) {
+        console.error('Unhandled Promise Rejection Caught:', event.reason);
+    });
 
-    console.log("Brasil Sustenta LP Script Initialized (v3)");
+
+    console.log("Brasil Sustenta LP Script Initialized");
 
 }); // Fim do DOMContentLoaded
