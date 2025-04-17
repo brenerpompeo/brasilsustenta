@@ -1,5 +1,5 @@
 /* Importa a fonte Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap'); /* Adicionado 900 */
 
 /* Aplica antialiasing e fonte padrão */
 body {
@@ -12,13 +12,13 @@ body {
 
 /* Padrão de fundo sutil para a Hero Section */
 .pattern-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(40, 40, 40, 0.05) 1px, transparent 0); /* Mais sutil */
-  background-size: 25px 25px; /* Ajuste o tamanho */
+  background-image: radial-gradient(circle at 1px 1px, rgba(40, 40, 40, 0.04) 1px, transparent 0); /* Mais sutil ainda */
+  background-size: 30px 30px; /* Tamanho um pouco maior */
 }
 
 /* Estilos base para links de navegação desktop */
 .nav-link {
-    @apply text-brand-gray-text hover:text-brand-green font-medium transition-colors duration-300 relative py-1;
+    @apply text-brand-gray-text hover:text-brand-green font-medium transition-colors duration-300 relative py-1 text-sm; /* Tamanho de fonte ajustado */
 }
 
 /* Efeito de sublinhado sutil no hover/active para links de navegação */
@@ -27,45 +27,47 @@ body {
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -2px; /* Posição abaixo do texto */
+    bottom: -4px; /* Posição um pouco mais abaixo */
     left: 50%;
     transform: translateX(-50%);
     background-color: #0ACB8B; /* brand-green */
     transition: width 0.3s ease-out;
+    border-radius: 1px; /* Suaviza as pontas */
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
-    width: 60%; /* Largura do sublinhado */
+    width: 70%; /* Largura aumentada */
 }
 
 /* Cor do link ativo */
 .nav-link.active {
   color: #0ACB8B; /* brand-green */
+  font-weight: 600; /* Um pouco mais de destaque */
 }
 
 /* Estilos para links de navegação mobile */
 .mobile-nav-link {
-    @apply block px-6 py-3 text-brand-gray-text hover:bg-brand-gray-light hover:text-brand-green font-medium transition-colors duration-200;
+    @apply block px-6 py-4 text-brand-gray-text hover:bg-brand-gray-light hover:text-brand-green font-medium transition-colors duration-200 border-b border-brand-gray-light last:border-b-0;
 }
 
 /* Estilo para cards de programas */
 .program-card {
-    @apply bg-brand-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 ease-out;
+    @apply bg-brand-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 ease-out flex flex-col; /* Adicionado flex */
 }
 .program-card:hover {
-    @apply shadow-lg transform -translate-y-1;
+    @apply shadow-lg transform -translate-y-1 border-transparent;
 }
 
 /* Wrapper para ícones dentro dos cards (melhora alinhamento e consistência) */
 .icon-wrapper {
-    @apply inline-flex items-center justify-center w-12 h-12 rounded-full mb-4; /* Tamanho padrão */
+    @apply inline-flex items-center justify-center rounded-full mb-4; /* Removido tamanho fixo */
 }
 .program-card .icon-wrapper {
-    @apply bg-brand-green-light text-brand-green w-14 h-14; /* Tamanho maior para programas */
+    @apply bg-brand-green-light text-brand-green w-14 h-14; /* Tamanho específico para programas */
 }
 .benefit-item .icon-wrapper {
-     @apply bg-brand-green-light text-brand-green w-16 h-16; /* Tamanho maior para benefícios */
+     @apply bg-brand-green-light text-brand-green w-16 h-16; /* Tamanho específico para benefícios */
 }
 
 /* Estilo para cards da seção Ecossistema (Eventos/Blog) */
@@ -76,29 +78,47 @@ body {
      @apply shadow-md;
 }
 .eco-link {
-    @apply inline-flex items-center bg-brand-dark text-brand-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 text-sm;
+    @apply inline-flex items-center bg-brand-dark text-brand-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2;
 }
 
 /* Estilos para inputs e select do formulário */
 .contact-input {
-    @apply block w-full px-4 py-2.5 border border-brand-gray-medium rounded-md bg-brand-white focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-transparent transition duration-200 ease-in-out text-sm;
+    @apply block w-full px-4 py-2.5 border border-brand-gray-medium rounded-md bg-brand-white focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-transparent transition duration-200 ease-in-out text-sm shadow-sm; /* Adicionado shadow-sm */
 }
 .contact-input::placeholder {
     @apply text-brand-gray-text opacity-70;
 }
 /* Estiliza a seta do select */
 select.contact-input {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e"); /* Cor cinza */
     background-position: right 0.75rem center;
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
     padding-right: 2.5rem;
+    -webkit-appearance: none; /* Remove aparência padrão */
+    -moz-appearance: none;
+    appearance: none;
+}
+/* Garante fundo branco no select em alguns navegadores */
+select.contact-input {
+    background-color: #FFFFFF;
 }
 
 /* Estilos para links no footer */
 .footer-link {
-    @apply hover:text-brand-green hover:underline transition-colors duration-200;
+    @apply hover:text-brand-green hover:underline transition-colors duration-200 mx-1;
 }
 .social-link {
-    @apply text-brand-gray-text hover:text-brand-green transition-colors duration-300;
+    @apply text-brand-gray-text hover:text-brand-green transition-colors duration-300 p-1 rounded-full hover:bg-gray-200; /* Fundo sutil no hover */
+}
+
+/* Estilos de Foco Visível (Tailwind padrão é bom, mas podemos reforçar) */
+*:focus-visible {
+  outline: 2px solid #0ACB8B; /* brand-green */
+  outline-offset: 2px;
+  border-radius: 2px; /* Leve arredondamento */
+}
+/* Remove outline padrão em elementos que já têm ring */
+input:focus-visible, select:focus-visible, textarea:focus-visible, button.nav-link-cta:focus-visible, button#menu-btn:focus-visible, .eco-link:focus-visible {
+    outline: none;
 }
