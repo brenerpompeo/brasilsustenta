@@ -15,16 +15,29 @@ document.addEventListener("DOMContentLoaded", function() {
     if (menuToggle && mobileMenu && menuIcon && closeIcon) {
         menuToggle.addEventListener("click", function() {
             const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-            mobileMenu.classList.toggle("hidden"); // Controla visibilidade inicial/final
-            mobileMenu.classList.toggle("flex"); // Controla layout flexível quando visível
-            // Força reflow para a transição funcionar corretamente ao adicionar a classe
-            void mobileMenu.offsetWidth;
-            mobileMenu.classList.toggle("translate-y-0"); // Anima a entrada/saída
-            mobileMenu.classList.toggle("opacity-100"); // Anima opacidade
+
+            if (mobileMenu.classList.contains('hidden')) {
+                // Abrindo
+                mobileMenu.classList.remove('hidden');
+                // Força reflow para garantir que a transição inicial funcione
+                void mobileMenu.offsetWidth;
+                mobileMenu.classList.add('flex', 'opacity-100', 'translate-y-0');
+                mobileMenu.classList.remove('opacity-0', '-translate-y-full'); // Garante estado inicial correto para animação
+                document.body.classList.add("overflow-hidden");
+            } else {
+                // Fechando
+                mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                 mobileMenu.classList.add('opacity-0', '-translate-y-full');
+                // Espera a transição terminar para adicionar 'hidden' e remover 'flex'
+                 setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                 }, 300); // Deve corresponder à duração da transição CSS
+                document.body.classList.remove("overflow-hidden");
+            }
 
             menuIcon.classList.toggle("hidden");
             closeIcon.classList.toggle("hidden");
-            document.body.classList.toggle("overflow-hidden"); // Evita scroll do body com menu aberto
             menuToggle.setAttribute("aria-expanded", !isExpanded);
         });
 
@@ -48,8 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
         window.addEventListener("scroll", function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             if (scrollTop > 50) {
-                header.classList.add("py-2"); // Tailwind class for less padding
-                header.classList.remove("py-3"); // Tailwind class for more padding
+                header.classList.add("py-2"); // Menos padding
+                header.classList.remove("py-3"); // Mais padding
             } else {
                 header.classList.remove("py-2");
                 header.classList.add("py-3");
@@ -58,43 +71,58 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Active navigation based on scroll position
-    const sections = document.querySelectorAll("main section[id]"); // Seleciona seções dentro do main com ID
+   // Active navigation based on scroll position
+    const sections = document.querySelectorAll("main section[id]");
     const navLinks = document.querySelectorAll("nav a.nav-link"); // Seleciona links de navegação com a classe
 
     if ('IntersectionObserver' in window && sections.length > 0 && navLinks.length > 0) {
         const observerOptions = {
             root: null,
-            rootMargin: "-20% 0px -50% 0px", // Ajuste para ativar um pouco antes de chegar no topo e desativar mais tarde
-            threshold: 0 // Pode ser 0 se rootMargin for suficiente
+            rootMargin: "-20% 0px -50% 0px", // Ativa um pouco antes do topo, desativa mais tarde
+            threshold: 0 // Dispara assim que entra/sai da margem
         };
 
-        const observerCallback = (entries) => {
-            let currentActiveSectionId = null;
-             // Verifica qual seção está mais visível perto do topo
-            entries.forEach(entry => {
-                 if (entry.isIntersecting) {
-                    // Dá prioridade para a seção que está entrando pelo topo
-                     if (entry.boundingClientRect.top >= 0 && entry.boundingClientRect.top < window.innerHeight * 0.5) {
-                         currentActiveSectionId = entry.target.getAttribute('id');
-                     } else if (!currentActiveSectionId) { // Se nenhuma está no topo, pega a primeira que intersecta
-                          currentActiveSectionId = entry.target.getAttribute('id');
-                     }
-                 }
-            });
+        let lastActiveSectionId = 'home'; // Inicia com home
 
-            // Caso especial para o topo da página
-            if (window.scrollY < window.innerHeight * 0.3) {
-                currentActiveSectionId = 'home';
+        const observerCallback = (entries) => {
+            let currentVisibleSections = [];
+             entries.forEach(entry => {
+                 if (entry.isIntersecting) {
+                     currentVisibleSections.push({id: entry.target.getAttribute('id'), ratio: entry.intersectionRatio, top: entry.boundingClientRect.top});
+                 }
+             });
+
+            let bestMatchId = lastActiveSectionId; // Mantém o último ativo se nada for encontrado
+
+            if (currentVisibleSections.length > 0) {
+                // Ordena por proximidade ao topo (menor 'top' positivo) ou maior visibilidade
+                currentVisibleSections.sort((a, b) => {
+                    // Prioriza o que está mais perto do topo da viewport (mas ainda visível nela)
+                    const topA = Math.max(0, a.top);
+                    const topB = Math.max(0, b.top);
+                    if (topA < window.innerHeight * 0.5 || topB < window.innerHeight * 0.5) {
+                         return topA - topB;
+                    }
+                    // Se ambos estão abaixo do meio, prioriza o mais visível
+                    return b.ratio - a.ratio;
+                });
+                bestMatchId = currentVisibleSections[0].id;
             }
 
+            // Caso especial para o topo da página
+             if (window.scrollY < window.innerHeight * 0.3) {
+                 bestMatchId = 'home';
+             }
 
-            navLinks.forEach(link => {
-                link.classList.remove("active"); // Classe definida no style.css
-                if (link.getAttribute("href") === `#${currentActiveSectionId}`) {
-                    link.classList.add("active");
-                }
-            });
+            if(bestMatchId !== lastActiveSectionId) {
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === `#${bestMatchId}`) {
+                        link.classList.add("active");
+                    }
+                });
+                lastActiveSectionId = bestMatchId;
+            }
         };
 
          try {
@@ -118,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const targetElement = document.querySelector(hrefAttribute);
                 if (targetElement) {
                     e.preventDefault();
-                    const headerHeight = document.getElementById('main-header')?.offsetHeight || 70; // Pega altura do header ou usa fallback
+                    const headerHeight = document.getElementById('main-header')?.offsetHeight || 70;
                     const elementPosition = targetElement.getBoundingClientRect().top;
                     const offsetPosition = window.pageYOffset + elementPosition - headerHeight - 15; // Offset extra
 
@@ -126,6 +154,11 @@ document.addEventListener("DOMContentLoaded", function() {
                         top: offsetPosition,
                         behavior: 'smooth'
                     });
+
+                    // Fecha menu mobile se estiver aberto
+                    if (menuToggle?.getAttribute('aria-expanded') === 'true') {
+                        menuToggle.click();
+                    }
                 }
             }
         });
@@ -137,14 +170,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const animationObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in'); // Usa a classe CSS para animação
+                    // Adiciona a classe que dispara a animação definida no CSS
+                    entry.target.classList.add('animate-fade-in');
                     observer.unobserve(entry.target); // Anima apenas uma vez
                 }
             });
         }, {
             root: null,
-            rootMargin: "0px 0px -10% 0px", // Trigger quando 10% da parte inferior entra na viewport
-            threshold: 0.1
+            rootMargin: "0px 0px -10% 0px", // Trigger 10% antes do fundo
+            threshold: 0.1 // Pelo menos 10% visível
         });
 
         animatedElements.forEach(element => {
@@ -152,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Formspree Contact Form Submission (Melhorado)
+    // Formspree Contact Form Submission
     const contactForm = document.getElementById("contact-form");
     const formMessage = document.getElementById("form-message");
     const submitButton = document.getElementById("submit-button");
@@ -162,18 +196,17 @@ document.addEventListener("DOMContentLoaded", function() {
             e.preventDefault();
 
             const formData = new FormData(contactForm);
-            const originalButtonText = submitButton.innerHTML; // Guarda o HTML original
+            const originalButtonHTML = submitButton.innerHTML;
 
-            // Mostra estado de loading no botão
             submitButton.disabled = true;
             submitButton.innerHTML = `
-                <svg class="animate-spin h-5 w-5 mr-2 inline-block" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="animate-spin h-5 w-5 mr-2 inline-block align-middle" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 Enviando...`;
             formMessage.textContent = '';
-            formMessage.className = 'mb-4 hidden'; // Reseta classes e esconde
+            formMessage.className = 'mb-4 hidden'; // Reseta
 
             fetch(contactForm.action, {
                 method: 'POST',
@@ -182,50 +215,56 @@ document.addEventListener("DOMContentLoaded", function() {
                     'Accept': 'application/json'
                 }
             }).then(response => {
-                formMessage.classList.remove('hidden'); // Mostra a div de mensagem
+                formMessage.classList.remove('hidden');
                 if (response.ok) {
                     formMessage.textContent = "Mensagem enviada com sucesso! Entraremos em contato em breve.";
-                    formMessage.className = "mb-4 success"; // Usa a classe CSS para sucesso
+                    formMessage.className = "mb-4 success"; // Classe CSS para sucesso
                     contactForm.reset();
-                    submitButton.innerHTML = 'Enviado!'; // Feedback visual
-                    // Opcional: Reabilitar botão após um tempo
-                    setTimeout(() => {
+                    submitButton.innerHTML = 'Enviado!';
+                    setTimeout(() => { // Volta ao normal após um tempo
                          submitButton.disabled = false;
-                         submitButton.innerHTML = originalButtonText;
-                    }, 4000);
+                         submitButton.innerHTML = originalButtonHTML;
+                         formMessage.classList.add('hidden');
+                         formMessage.textContent = '';
+                    }, 5000);
                 } else {
                      response.json().then(data => {
                          const errorMsg = data?.errors?.map(err => err.message).join(', ') || "Ocorreu um erro.";
-                         formMessage.textContent = `Erro: ${errorMsg} Por favor, tente novamente.`;
-                         formMessage.className = "mb-4 error"; // Usa a classe CSS para erro
-                         submitButton.disabled = false; // Reabilita botão no erro
-                         submitButton.innerHTML = originalButtonText;
+                         formMessage.textContent = `Erro: ${errorMsg}. Por favor, tente novamente.`;
+                         formMessage.className = "mb-4 error"; // Classe CSS para erro
+                         submitButton.disabled = false;
+                         submitButton.innerHTML = originalButtonHTML;
                      }).catch(() => {
-                         // Erro ao parsear JSON da resposta de erro
                          formMessage.textContent = "Ocorreu um erro ao enviar. Verifique os campos e tente novamente.";
                          formMessage.className = "mb-4 error";
                          submitButton.disabled = false;
-                         submitButton.innerHTML = originalButtonText;
+                         submitButton.innerHTML = originalButtonHTML;
                      });
                 }
             }).catch(error => {
                 console.error('Erro no Fetch:', error);
                 formMessage.classList.remove('hidden');
-                formMessage.textContent = "Erro de conexão. Por favor, verifique sua internet e tente novamente.";
+                formMessage.textContent = "Erro de conexão. Verifique sua internet e tente novamente.";
                 formMessage.className = "mb-4 error";
                 submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
+                submitButton.innerHTML = originalButtonHTML;
             });
         });
     } else {
         console.warn("Formulário de contato ou elementos relacionados não encontrados.");
     }
 
-    // Prevent pinch zoom (mantido do seu exemplo)
+    // Prevent pinch zoom
     window.addEventListener("wheel", (e) => {
-        const isPinching = e.ctrlKey;
-        if (isPinching) e.preventDefault();
+        if (e.ctrlKey && e.deltaY !== 0) e.preventDefault();
     }, { passive: false });
+     window.addEventListener("touchstart", (e) => {
+        if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+     window.addEventListener("touchmove", (e) => {
+         if (e.touches.length > 1) e.preventDefault();
+     }, { passive: false });
 
-    console.log("Brasil Sustenta - Script Inicializado (v. Play CDN)");
+
+    console.log("Brasil Sustenta - Script Inicializado (v. Play CDN Simplificada)");
 });
