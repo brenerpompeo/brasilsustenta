@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brasil Sustenta | Juventude Criativa para Impacto Positivo</title>
+    <meta name="description" content="Engajamos a juventude criativa (18-35 anos) para gerar impacto positivo alinhado aos ODS da ONU. Somos uma Impact Venture Builder. Junte-se a nós!">
+
+    <!-- Tailwind CSS via Play CDN (Para não precisar instalar nada) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuração Opcional do Tailwind (Exemplo: Cores personalizadas) -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'bs-green': '#10B981', // Verde Esmeralda (Exemplo)
+              'bs-blue': '#2563EB',  // Azul Forte (Exemplo)
+              'bs-dark': '#1F2937', // Cinza Escuro (Exemplo)
+            },
+            fontFamily: {
+              // Adicione fontes customizadas se desejar (requer importação via CSS ou <link>)
+              // sans: ['Inter', 'sans-serif'], // Exemplo
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Favicon (Exemplo - substitua pelos seus) -->
+    <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
+    <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
+
+    <!-- Link para CSS customizado (se necessário) -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <style>
+      /* Estilo adicional mínimo, se necessário. Ex: Animações sutis */
+      /* Exemplo: Fade-in suave para seções */
+      /* .fade-in-section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      } */
+    </style>
+</head>
+<body class="bg-gray-50 text-bs-dark font-sans">
+
+    <!-- ===== Header ===== -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#home" class="text-xl font-bold text-bs-blue hover:text-bs-green transition duration-300">
+                Brasil Sustenta
+                <!-- Ou substitua por: <img src="seu-logo.png" alt="Brasil Sustenta Logo" class="h-8"> -->
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#sobre" class="text-gray-600 hover:text-bs-blue transition duration-300">Sobre</a>
+                <a href="#programas" class="text-gray-600 hover:text-bs-blue transition duration-300">Programas</a>
+                <a href="#eventos" class="text-gray-600 hover:text-bs-blue transition duration-300">Eventos</a>
+                <a href="#blog" class="text-gray-600 hover:text-bs-blue transition duration-300">Blog</a>
+                <a href="#faca-parte" class="bg-bs-blue text-white px-4 py-2 rounded hover:bg-bs-green transition duration-300 text-sm font-medium">Faça Parte</a>
+            </div>
+
+            <!-- Botão Menu Mobile -->
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Menu Mobile (Dropdown) -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white py-2 absolute w-full shadow-lg">
+            <a href="#sobre" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-bs-blue">Sobre</a>
+            <a href="#programas" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-bs-blue">Programas</a>
+            <a href="#eventos" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-bs-blue">Eventos</a>
+            <a href="#blog" class="block px-6 py-2 text-gray-600 hover:bg-gray-100 hover:text-bs-blue">Blog</a>
+            <a href="#faca-parte" class="block px-6 py-2 bg-bs-blue text-white text-center font-medium hover:bg-bs-green transition duration-300 mx-4 my-2 rounded">Faça Parte</a>
+        </div>
+    </header>
+
+    <!-- ===== Main Content ===== -->
+    <main>
+
+        <!-- Hero Section -->
+        <section id="home" class="bg-gradient-to-r from-blue-50 to-green-50 pt-24 pb-16 md:pt-32 md:pb-24 text-center">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-bs-dark mb-4 leading-tight">
+                    Sua <span class="text-bs-blue">Criatividade</span>,<br class="hidden md:block"> Nosso <span class="text-bs-green">Impacto</span> Sustentável.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Engajamos jovens de 18 a 35 anos para desenvolver soluções inovadoras alinhadas aos ODS da ONU. Junte-se à nossa comunidade!
+                </p>
+                <a href="#faca-parte" class="bg-bs-green text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                    Quero Criar Impacto!
+                </a>
+                 <div class="mt-12 text-center">
+                    <p class="text-sm text-gray-500 mb-2">Apoiado nos Objetivos de Desenvolvimento Sustentável</p>
+                    {<!-- Adicione aqui logos dos ODS ou uma imagem representativa, se desejar --> }
+                    <span class="inline-block bg-yellow-400 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">ODS</span>
+                     {<!-- Exemplo de como poderia mostrar alguns icones/logos ODS --> }
+                </div>
+            </div>
+        </section>
+
+        <!-- Oportunidade / Números -->
+         <section id="oportunidade" class="py-16 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-bs-dark mb-10">O Potencial da Juventude Brasileira</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
+                        <p class="text-4xl font-bold text-bs-blue mb-2">53,2 mi</p>
+                        <p class="text-gray-600">Jovens (18-35 anos) no Brasil (IBGE 2025)</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
+                        <p class="text-4xl font-bold text-bs-green mb-2">+88%</p>
+                        <p class="text-gray-600">Preferem trabalhar em empresas sustentáveis (Accenture 2022)</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
+                        <p class="text-4xl font-bold text-bs-blue mb-2">+98%</p>
+                        <p class="text-gray-600">Aumento de vagas ESG no último ano (GlobalData 2023)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Nós -->
+        <section id="sobre" class="py-16">
+            <div class="container mx-auto px-6 md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                     {<!-- Imagem ou ilustração representativa --> }
+                     <img src="https://via.placeholder.com/500x350/EBF4FF/2563EB?text=Ilustra%C3%A7%C3%A3o+Colabora%C3%A7%C3%A3o" alt="Jovens colaborando em projetos sustentáveis" class="rounded-lg shadow-lg mx-auto">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-bs-dark mb-4">Somos a Brasil Sustenta</h2>
+                    <p class="text-lg text-gray-700 mb-4">
+                        Uma <span class="font-semibold text-bs-blue">Impact Venture Builder</span> dedicada a impulsionar o talento jovem na criação de um futuro mais sustentável e justo para todos, alinhados aos ODS.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Investimos em você <span class="font-semibold">antes mesmo da ideia ou da equipe</span>. Oferecemos conhecimento, metodologia, conexões e infraestrutura para transformar seu potencial em impacto real.
+                    </p>
+                     <a href="#programas" class="text-bs-green font-medium hover:underline">Conheça nossas frentes de atuação →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programas / Como Funciona -->
+        <section id="programas" class="py-16 bg-blue-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-bs-dark text-center mb-12">Nossas Frentes de Atuação</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Card Programa 1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        {<!-- Ícone --> }
+                        <div class="text-bs-blue text-4xl mb-4">💡</div>
+                        <h3 class="text-xl font-semibold mb-2">Laboratório de Criação</h3>
+                        <p class="text-gray-600 text-sm">Desenvolva projetos de impacto com acompanhamento especializado, da ideia à implementação.</p>
+                    </div>
+                    <!-- Card Programa 2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                         {<!-- Ícone --> }
+                         <div class="text-bs-green text-4xl mb-4">🎓</div>
+                        <h3 class="text-xl font-semibold mb-2">Brasil Sustenta Lideres</h3>
+                        <p class="text-gray-600 text-sm">Capacite-se, certifique-se e conecte-se ao mercado de trabalho de impacto e ESG.</p>
+                    </div>
+                     <!-- Card Programa 3 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                         {<!-- Ícone --> }
+                         <div class="text-bs-blue text-4xl mb-4">🌐</div>
+                        <h3 class="text-xl font-semibold mb-2">Rede de Contatos</h3>
+                        <p class="text-gray-600 text-sm">Conecte-se a mentores, empresas, universidades e investidores para impulsionar seu projeto.</p>
+                    </div>
+                    <!-- Card Programa 4 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                         {<!-- Ícone --> }
+                         <div class="text-bs-green text-4xl mb-4">📅</div>
+                        <h3 class="text-xl font-semibold mb-2">Brasil Sustenta Campus</h3>
+                        <p class="text-gray-600 text-sm">Participe de eventos, workshops e encontros que promovem criatividade e networking.</p>
+                         {/* Link para Sympla será na seção Eventos */}
+                    </div>
+                     <!-- Card Programa 5 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                         {<!-- Ícone --> }
+                         <div class="text-bs-blue text-4xl mb-4">▶️</div>
+                        <h3 class="text-xl font-semibold mb-2">Brasil Sustenta Play</h3>
+                        <p class="text-gray-600 text-sm">Acesse conteúdos exclusivos (masterclasses, docs) sobre sustentabilidade e inovação.</p>
+                         {/* Pode linkar externamente se o Play for uma plataforma separada */}
+                    </div>
+                    <!-- Card Benefício Extra -->
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
+                        {<!-- Ícone --> }
+                        <div class="text-bs-green text-4xl mb-4">🤝</div>
+                        <h3 class="text-xl font-semibold mb-2">Seja Co-fundador(a)</h3>
+                        <p class="text-gray-600 text-sm">Lidere projetos com propósito contando com nosso suporte integral.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eventos (Link Externo) -->
+        <section id="eventos" class="py-16 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-bs-dark mb-6">Participe de Nossos Eventos</h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
+                    Conecte-se, aprenda e inspire-se em nossos workshops, seminários e encontros (online e presenciais).
+                </p>
+                <a href="https://www.sympla.com.br/produtor/SEU_PERFIL_SYMPLA" target="_blank" rel="noopener noreferrer" class="bg-bs-blue text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                    Ver Agenda de Eventos (Sympla)
+                </a>
+                 <p class="text-sm text-gray-500 mt-4">Você será redirecionado para nossa página no Sympla.</p>
+            </div>
+        </section>
+
+         <!-- Blog (Link Externo) -->
+        <section id="blog" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-bs-dark mb-6">Explore Nossas Ideias</h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto">
+                    Acompanhe artigos, entrevistas e insights sobre sustentabilidade, inovação e o futuro do trabalho no nosso blog.
+                </p>
+                <a href="https://medium.com/@SEU_PERFIL_MEDIUM" target="_blank" rel="noopener noreferrer" class="bg-bs-green text-white px-8 py-3 rounded-full font-bold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                    Acessar Blog (Medium)
+                </a>
+                <p class="text-sm text-gray-500 mt-4">Você será redirecionado para nossa publicação no Medium.</p>
+            </div>
+        </section>
+
+
+        <!-- Call to Action / Faça Parte -->
+        <section id="faca-parte" class="py-16 bg-gradient-to-r from-blue-600 to-green-600 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Pronto para Transformar o Futuro?</h2>
+                <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                    Seja você um jovem com uma ideia ou uma organização buscando impacto, queremos conectar você.
+                </p>
+
+                <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-xl text-left text-bs-dark">
+                    <h3 class="text-2xl font-semibold mb-6 text-center">Deixe seu contato:</h3>
+                    {/* IMPORTANTE: Substitua a URL no 'action' pela URL do seu formulário Formspree */}
+                    <form action="https://formspree.io/f/SUA_CHAVE_AQUI" method="POST">
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" name="name" id="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bs-blue" placeholder="Seu nome">
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Melhor Email</label>
+                            <input type="email" name="email" id="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bs-blue" placeholder="seu.email@exemplo.com">
+                        </div>
+                         <div class="mb-6">
+                            <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Tenho interesse como:</label>
+                            <select name="interest" id="interest" required class="w-full px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-bs-blue">
+                                <option value="" disabled selected>Selecione uma opção...</option>
+                                <option value="Jovem Criador/Participante">Jovem Criador/Participante</option>
+                                <option value="Organização Parceira">Organização Parceira</option>
+                                <option value="Mentor/Voluntário">Mentor/Voluntário</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensagem (Opcional)</label>
+                            <textarea name="message" id="message" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-bs-blue" placeholder="Conte-nos um pouco mais..."></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="w-full md:w-auto bg-bs-green text-white px-8 py-3 rounded-md font-bold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105">
+                                Enviar Mensagem
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+         <!-- Parceiros (Opcional - Adicionar Logos) -->
+        <!--
+        <section id="parceiros" class="py-12 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-2xl font-semibold text-gray-500 mb-6">Quem Confia na Gente</h2>
+                <div class="flex flex-wrap justify-center items-center gap-8">
+                    <img src="https://via.placeholder.com/150x50/cccccc/969696?text=Logo+Parceiro+1" alt="Logo Parceiro 1" class="h-10">
+                    <img src="https://via.placeholder.com/150x50/cccccc/969696?text=Logo+Parceiro+2" alt="Logo Parceiro 2" class="h-10">
+                    <img src="https://via.placeholder.com/150x50/cccccc/969696?text=Logo+Parceiro+3" alt="Logo Parceiro 3" class="h-10">
+                </div>
+            </div>
+        </section>
+        -->
+
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-bs-dark text-gray-300 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-4">
+                {/* Links Redes Sociais (Exemplo) - Substitua '#' pelos seus links */}
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white mx-2 transition duration-300">LinkedIn</a> |
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white mx-2 transition duration-300">Instagram</a> |
+                <a href="#" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white mx-2 transition duration-300">Medium</a>
+            </div>
+            <p class="text-sm">© <span id="current-year"></span> Brasil Sustenta. Todos os direitos reservados.</p>
+            <p class="text-xs mt-2">
+                 {/* Links Opcionais */}
+                 <a href="#" class="hover:underline">Política de Privacidade</a> |
+                 <a href="#" class="hover:underline">Termos de Uso</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
