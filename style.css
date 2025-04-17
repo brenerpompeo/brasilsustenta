@@ -1,124 +1,188 @@
 /* Importa a fonte Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap'); /* Adicionado 900 */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 /* Aplica antialiasing e fonte padrão */
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #282828; /* brand-dark */
-  background-color: #FFFFFF; /* brand-white */
+  color: #282828; /* Corresponde a brand-dark */
+  background-color: #FFFFFF; /* Corresponde a brand-white */
 }
 
-/* Padrão de fundo sutil para a Hero Section */
+/* Padrão de fundo sutil */
 .pattern-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(40, 40, 40, 0.04) 1px, transparent 0); /* Mais sutil ainda */
-  background-size: 30px 30px; /* Tamanho um pouco maior */
+  background-image: radial-gradient(circle at 1px 1px, rgba(40, 40, 40, 0.06) 1px, transparent 0);
+  background-size: 25px 25px;
 }
 
-/* Estilos base para links de navegação desktop */
+/* Estilos base para links de navegação desktop (o hover/active é feito com ::after) */
 .nav-link {
-    @apply text-brand-gray-text hover:text-brand-green font-medium transition-colors duration-300 relative py-1 text-sm; /* Tamanho de fonte ajustado */
+    position: relative;
+    padding-bottom: 6px; /* Espaço para o ::after */
 }
 
-/* Efeito de sublinhado sutil no hover/active para links de navegação */
+/* Efeito de sublinhado sutil no hover/active */
 .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -4px; /* Posição um pouco mais abaixo */
+    bottom: 0; /* Alinhado abaixo do texto */
     left: 50%;
     transform: translateX(-50%);
     background-color: #0ACB8B; /* brand-green */
     transition: width 0.3s ease-out;
-    border-radius: 1px; /* Suaviza as pontas */
+    border-radius: 1px;
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
-    width: 70%; /* Largura aumentada */
+    width: 70%;
 }
 
-/* Cor do link ativo */
+/* Cor do link ativo (a classe .active é adicionada via JS) */
 .nav-link.active {
   color: #0ACB8B; /* brand-green */
-  font-weight: 600; /* Um pouco mais de destaque */
+  font-weight: 600;
 }
 
 /* Estilos para links de navegação mobile */
 .mobile-nav-link {
-    @apply block px-6 py-4 text-brand-gray-text hover:bg-brand-gray-light hover:text-brand-green font-medium transition-colors duration-200 border-b border-brand-gray-light last:border-b-0;
+    /* Tailwind já controla hover:bg, hover:text, etc. */
+    display: block;
+    padding: 1rem 1.5rem; /* px-6 py-4 */
+    font-weight: 500; /* medium */
+    transition: background-color 0.2s, color 0.2s;
+    border-bottom: 1px solid #F3F4F6; /* brand-gray-light */
+}
+.mobile-nav-link:last-child {
+    border-bottom: 0;
 }
 
-/* Estilo para cards de programas */
-.program-card {
-    @apply bg-brand-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 transition-all duration-300 ease-out flex flex-col; /* Adicionado flex */
+/* Transição para o menu mobile (JS adiciona/remove .open) */
+.mobile-menu {
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
 }
-.program-card:hover {
-    @apply shadow-lg transform -translate-y-1 border-transparent;
+.mobile-menu.open {
+    max-height: 500px; /* Ou um valor suficiente para o conteúdo */
+    opacity: 1;
 }
 
-/* Wrapper para ícones dentro dos cards (melhora alinhamento e consistência) */
+/* Classes de Botões Genéricas (Combinadas com classes Tailwind no HTML) */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem; /* px-8 py-3 */
+  border-radius: 9999px; /* rounded-full */
+  font-weight: 700; /* bold */
+  font-size: 1.125rem; /* text-lg */
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-md */
+  transform-origin: center;
+}
+.btn:hover {
+   transform: scale(1.03); /* hover:scale-[1.03] */
+}
+/* Efeito de gradiente aplicado via classes Tailwind no HTML */
+.btn-gradient {
+    /* bg-gradient-to-r from-brand-green to-green-400 text-brand-white hover:from-brand-green-darker hover:to-brand-green hover:shadow-lg */
+    color: #FFFFFF; /* Garante texto branco */
+}
+.btn-small {
+    padding: 0.5rem 1.25rem; /* px-5 py-2 */
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* semibold */
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05); /* shadow-sm */
+}
+
+/* Estilo para cards */
+.program-card, .eco-card, .benefit-item {
+    transition: all 0.3s ease-out;
+}
+.program-card:hover, .eco-card:hover, .benefit-item:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-lifted */
+    transform: translateY(-0.25rem); /* -translate-y-1 */
+}
+
+/* Wrapper para ícones */
 .icon-wrapper {
-    @apply inline-flex items-center justify-center rounded-full mb-4; /* Removido tamanho fixo */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px; /* rounded-full */
+    background-color: rgba(10, 203, 139, 0.1); /* brand-green-light */
+    color: #0ACB8B; /* brand-green */
 }
-.program-card .icon-wrapper {
-    @apply bg-brand-green-light text-brand-green w-14 h-14; /* Tamanho específico para programas */
-}
-.benefit-item .icon-wrapper {
-     @apply bg-brand-green-light text-brand-green w-16 h-16; /* Tamanho específico para benefícios */
-}
+.program-card .icon-wrapper { width: 3.5rem; height: 3.5rem; margin-bottom: 1rem; } /* w-14 h-14 mb-4 */
+.benefit-item .icon-wrapper { width: 4rem; height: 4rem; margin-bottom: 1.25rem; } /* w-16 h-16 mb-5 */
+.icon-wrapper svg { width: 1.75rem; height: 1.75rem; } /* w-7 h-7 */
+.benefit-item .icon-wrapper svg { width: 2rem; height: 2rem; } /* w-8 h-8 */
 
-/* Estilo para cards da seção Ecossistema (Eventos/Blog) */
-.eco-card {
-    @apply flex flex-col justify-between bg-brand-white p-8 rounded-lg shadow-sm border border-brand-gray-light transition-shadow duration-300 h-full; /* h-full para mesma altura */
-}
-.eco-card:hover {
-     @apply shadow-md;
-}
-.eco-link {
-    @apply inline-flex items-center bg-brand-dark text-brand-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2;
-}
-
-/* Estilos para inputs e select do formulário */
+/* Estilo para inputs e select */
 .contact-input {
-    @apply block w-full px-4 py-2.5 border border-brand-gray-medium rounded-md bg-brand-white focus:outline-none focus:ring-2 focus:ring-brand-green focus:border-transparent transition duration-200 ease-in-out text-sm shadow-sm; /* Adicionado shadow-sm */
+    appearance: none; /* Remove aparência padrão */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #FFFFFF; /* Garante fundo branco */
 }
-.contact-input::placeholder {
-    @apply text-brand-gray-text opacity-70;
-}
-/* Estiliza a seta do select */
+/* Estiliza a seta do select (Tailwind não faz isso por padrão) */
 select.contact-input {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e"); /* Cor cinza */
     background-position: right 0.75rem center;
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
     padding-right: 2.5rem;
-    -webkit-appearance: none; /* Remove aparência padrão */
-    -moz-appearance: none;
-    appearance: none;
-}
-/* Garante fundo branco no select em alguns navegadores */
-select.contact-input {
-    background-color: #FFFFFF;
 }
 
-/* Estilos para links no footer */
-.footer-link {
-    @apply hover:text-brand-green hover:underline transition-colors duration-200 mx-1;
+/* Divisor de Seção */
+.section-divider {
+   width: 6rem; /* w-24 */
+   height: 0.25rem; /* h-1 */
+   background-color: #0ACB8B; /* bg-brand-green */
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 3rem; /* Ajuste conforme necessário */
+   margin-bottom: 3rem; /* Ajuste conforme necessário */
+   border-radius: 9999px; /* rounded-full */
 }
-.social-link {
-    @apply text-brand-gray-text hover:text-brand-green transition-colors duration-300 p-1 rounded-full hover:bg-gray-200; /* Fundo sutil no hover */
+@media (min-width: 768px) { /* md: */
+    .section-divider {
+        margin-top: 4rem; /* my-16 */
+        margin-bottom: 4rem;
+    }
 }
 
-/* Estilos de Foco Visível (Tailwind padrão é bom, mas podemos reforçar) */
+/* Estilos de Foco Visível (reforço) */
 *:focus-visible {
-  outline: 2px solid #0ACB8B; /* brand-green */
+  outline: 2px solid #0ACB8B;
   outline-offset: 2px;
-  border-radius: 2px; /* Leve arredondamento */
+  border-radius: 2px;
 }
-/* Remove outline padrão em elementos que já têm ring */
-input:focus-visible, select:focus-visible, textarea:focus-visible, button.nav-link-cta:focus-visible, button#menu-btn:focus-visible, .eco-link:focus-visible {
+/* Remove outline padrão em elementos que já têm ring via Tailwind */
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
     outline: none;
+}
+
+/* Animações Simples de Scroll */
+.animate-on-scroll {
+   opacity: 0;
+   transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.animate-on-scroll.fade-in-up {
+      transform: translateY(2rem); /* translate-y-8 */
+}
+.animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+}
+
+/* Placeholder para mensagens do formulário */
+.form-message {
+    /* Estilos adicionados via JS (text-green-600 ou text-red-600) */
 }
