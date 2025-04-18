@@ -3,164 +3,158 @@
     --primary: #059669; /* Emerald-600 */
     --primary-dark: #047857; /* Emerald-700 */
     --primary-light: #d1fae5; /* Emerald-100 */
-    --gray-text: #4b5563; /* Gray-600 - Para texto secundário */
-    --gray-light: #f3f4f6; /* Gray-100 */
-    --gray-border: #e5e7eb; /* Gray-200 */
+    --secondary: #06b6d4; /* Cyan-500 - Exemplo se precisar de cor secundária */
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Ajustado para altura do header (~h-20) */
+    scroll-padding-top: 70px; /* Ajusta o scroll para compensar o header fixo */
 }
 
 body {
+    /* Fonte Poppins como principal, com fallbacks */
     font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #374151; /* Gray-700 - Cor base do texto */
-    background-color: #fafafa; /* Fundo principal */
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Tipografia Base */
-h1, h2, h3, h4, h5, h6 {
+/* H1 com peso maior */
+h1 {
+    font-weight: 700; /* Bold */
+}
+/* Outros Headers */
+h2, h3 {
+    font-weight: 600; /* Semibold */
     color: #111827; /* Gray-900 */
-    font-weight: 600; /* Semibold por padrão */
 }
-
-h1 { font-weight: 800; letter-spacing: -0.02em; } /* Extrabold para H1 */
-h2 { font-weight: 700; letter-spacing: -0.01em; } /* Bold para H2 */
-h3 { font-weight: 600; } /* Semibold H3 */
-
-p {
-    line-height: 1.65; /* Espaçamento entre linhas padrão */
-}
-
-strong, b {
-    font-weight: 600; /* Semibold para destaque */
+h4 {
+    font-weight: 500; /* Medium */
+     color: #1f2937; /* Gray-800 */
 }
 
 
-/* Button Styles - Refinados */
-.btn-base { /* Classe base para botões */
+/* Button Styles */
+.btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-weight: 500; /* Medium */
-    border-radius: 0.5rem; /* 8px - Mais arredondado */
-    transition: all 0.25s ease-in-out;
-    cursor: pointer;
-    text-decoration: none; /* Remove underline de links com classe de botão */
-    border: 1px solid transparent; /* Base para alinhamento */
-    white-space: nowrap; /* Evita quebra de linha */
-}
-
-.btn-primary {
-    @apply btn-base; /* Aplica estilos base */
     background-color: var(--primary);
     color: white;
-    border-color: var(--primary);
-    box-shadow: 0 4px 12px -1px rgba(5, 150, 105, 0.2), 0 2px 8px -1px rgba(5, 150, 105, 0.1);
+    font-weight: 500; /* Medium */
+    padding: 0.75rem 1.5rem; /* Ajustar padding conforme necessidade */
+    border-radius: 0.375rem; /* 6px */
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
+
 .btn-primary:hover {
     background-color: var(--primary-dark);
-    border-color: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px -3px rgba(5, 150, 105, 0.25), 0 4px 10px -2px rgba(5, 150, 105, 0.15);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
 .btn-primary:active {
     transform: translateY(0);
-    box-shadow: 0 4px 12px -1px rgba(5, 150, 105, 0.2), 0 2px 8px -1px rgba(5, 150, 105, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .btn-secondary {
-    @apply btn-base;
-    background-color: transparent;
-    color: var(--gray-text); /* Ajustar se necessário */
-    border-color: var(--gray-border);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent; /* Ajustar se necessário */
+    color: #374151; /* Cor base, ajustar conforme contexto */
+    font-weight: 500; /* Medium */
+    padding: 0.75rem 1.5rem; /* Ajustar padding */
+    border-radius: 0.375rem; /* 6px */
+    border: 1px solid #d1d5db; /* Gray-300 */
+    transition: all 0.2s ease-in-out;
 }
+/* Exemplo de hover para botão secundário, ajustar cor */
 .btn-secondary:hover {
-    background-color: var(--gray-light);
-    border-color: #d1d5db; /* Gray-300 */
-    color: #1f2937; /* Gray-800 */
+    background-color: #f9fafb; /* Gray-50 */
+    border-color: #9ca3af; /* Gray-400 */
     transform: translateY(-1px);
 }
 
-/* Tamanhos de Botão */
-.btn-sm {
-    padding: 0.5rem 1rem; /* 8px 16px */
-    font-size: 0.875rem; /* 14px */
-}
-.btn-md { /* Tamanho padrão */
-    padding: 0.65rem 1.25rem; /* ~10px 20px */
-    font-size: 0.875rem; /* 14px */
-}
-.btn-lg {
-    padding: 0.8rem 1.75rem; /* ~13px 28px */
-    font-size: 1rem; /* 16px */
-}
 
-/* Ajustes para botões com ícones */
-.btn-base > i {
-    transition: transform 0.2s ease-in-out;
-}
-
-
-/* Form Element Styles - Refinados */
+/* Form Element Styles */
 .form-input, .form-select, .form-textarea {
     width: 100%;
-    padding: 0.75rem 1rem; /* Mais padding interno */
-    border: 1px solid var(--gray-border);
-    border-radius: 0.5rem; /* 8px */
+    padding: 0.6rem 0.8rem; /* Ajuste no padding */
+    border: 1px solid #d1d5db; /* Gray-300 */
+    border-radius: 0.375rem; /* 6px */
     transition: all 0.2s ease-in-out;
     font-size: 0.875rem; /* 14px */
     background-color: white;
-    color: #1f2937; /* Gray-800 */
 }
+
 .form-input:focus, .form-select:focus, .form-textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15); /* Sombra de foco mais sutil */
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); /* Sombra mais suave */
 }
+
 .form-input::placeholder, .form-textarea::placeholder {
     color: #9ca3af; /* Gray-400 */
-    font-size: 0.875rem;
-}
-.form-select {
-    appearance: none; /* Remove estilo padrão do select */
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 0.75rem center;
-    background-repeat: no-repeat;
-    background-size: 1.25em 1.25em;
-    padding-right: 2.5rem; /* Espaço para a seta */
-}
-/* Checkbox customizado (opcional, mas melhora visual) */
-input[type='checkbox'] {
-    border-radius: 0.25rem;
-}
-input[type='checkbox']:focus {
-    ring-offset: 0;
-    --tw-ring-color: rgba(5, 150, 105, 0.2);
 }
 
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    html { scroll-padding-top: 64px; } /* Ajuste para header h-16 */
-    .container { padding-left: 1rem; padding-right: 1rem; }
-    h1 { font-size: 2.5rem; } /* Exemplo: Ajustar tamanhos de fonte no mobile */
-    h2 { font-size: 1.875rem; }
-    .btn-lg { font-size: 0.875rem; padding: 0.7rem 1.5rem; }
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    /* Ajustar tamanho dos botões no mobile se necessário */
+    /* .btn-primary, .btn-secondary {
+        font-size: 0.875rem;
+        padding: 0.6rem 1.2rem;
+    } */
 }
 
-/* Modal Styles */
-#success-modal .transition-opacity { transition-property: opacity; }
-#success-modal .transition-all { transition-property: all; }
-#success-modal:not(.hidden) #success-modal-content {
-    opacity: 1;
-    transform: scale(1);
+/* Animation effects (mantidos) */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Pequenos Helpers */
-.tracking-tight { letter-spacing: -0.025em; }
-.tracking-wider { letter-spacing: 0.05em; }
+@keyframes countUp {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animated-count {
+    animation: countUp 0.5s ease-out forwards;
+}
+
+/* Ajustes finos em tabelas (se usadas) */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px 16px; /* Ajuste no padding */
+    vertical-align: top;
+}
+
+th {
+    background-color: #f9fafb; /* Gray-50 */
+    font-weight: 500; /* Medium */
+    color: #4b5563; /* Gray-600 */
+    font-size: 0.75rem; /* 12px */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Remove hover de linha para evitar distração */
+/* tr:hover { background-color: #f9fafb; } */
+
+/* Espaçamento interno de listas em células */
+td ul { margin-bottom: 0; }
+td li { margin-bottom: 0.25rem; }
+td li:last-child { margin-bottom: 0; }
