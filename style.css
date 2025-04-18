@@ -16,11 +16,12 @@ body {
   background-color: #FFFFFF; /* brand-white */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Added to prevent horizontal scroll issues */
 }
 
-:focus { outline: none; }
-:focus-visible {
+/* Improve focus visibility consistency */
+*:focus { outline: none; }
+*:focus-visible {
   outline: 2px solid #27AE60; /* brand-green */
   outline-offset: 2px;
   border-radius: 2px;
@@ -30,14 +31,14 @@ body {
    Header & Navigation Styles
    ========================================================================== */
 .nav-link {
-    @apply text-sm text-brand-gray-text hover:text-brand-green font-medium transition-colors duration-300 py-1;
+    @apply text-sm text-brand-gray-text hover:text-brand-green font-medium transition-colors duration-300 py-1 relative; /* Added relative here */
 }
 .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -2px;
+    bottom: -2px; /* Adjust position if needed */
     left: 50%;
     transform: translateX(-50%);
     background-color: #27AE60; /* brand-green */
@@ -50,10 +51,11 @@ body {
 }
 .nav-link.active {
   color: #27AE60; /* brand-green */
-  font-weight: 600;
+  font-weight: 600; /* Consider increasing weight for active state */
 }
 
 .mobile-menu {
+    /* Ensure transitions apply correctly */
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 .mobile-nav-link {
@@ -64,10 +66,12 @@ body {
    Reusable Component Styles & Utilities
    ========================================================================== */
 .hero-button-primary {
-    @apply inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-3 px-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow;
+    @apply inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-3 px-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+    /* Added focus-visible styles */
 }
 .hero-button-secondary {
-    @apply inline-block bg-white text-brand-dark font-medium py-3 px-6 rounded-md border border-brand-gray-medium transition-all duration-300 hover:bg-brand-gray-light hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-block bg-white text-brand-dark font-medium py-3 px-6 rounded-md border border-brand-gray-medium transition-all duration-300 hover:bg-brand-gray-light hover:-translate-y-0.5 active:translate-y-0 active:shadow focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-1 focus-visible:ring-offset-white;
+     /* Added focus-visible styles */
 }
 
 .stats-card {
@@ -81,14 +85,14 @@ body {
     @apply text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-brand-dark leading-snug md:leading-snug;
 }
 .section-subheading {
-     @apply text-lg text-brand-gray-text leading-relaxed mb-8 md:mb-10;
+     @apply text-lg text-brand-gray-text leading-relaxed mb-8 md:mb-10 max-w-prose mx-auto md:mx-0; /* Added max-width for readability in some contexts */
 }
 
 .program-card {
-    @apply bg-brand-white p-6 md:p-8 rounded-xl shadow-sm transition-all duration-300 border border-gray-100 hover:shadow-lg hover:border-transparent hover:transform hover:-translate-y-1;
+    @apply bg-brand-white p-6 md:p-8 rounded-xl shadow-sm transition-all duration-300 border border-gray-100 hover:shadow-lg hover:border-transparent hover:transform hover:-translate-y-1 flex flex-col; /* Added flex flex-col */
 }
 .program-icon {
-    @apply inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-green-light text-brand-green mb-5;
+    @apply inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-green-light text-brand-green mb-5 flex-shrink-0; /* Added flex-shrink-0 */
 }
 .program-icon svg {
     @apply w-7 h-7;
@@ -97,7 +101,7 @@ body {
     @apply text-xl font-semibold text-brand-dark mb-2;
 }
 .program-description {
-    @apply text-brand-gray-text text-sm leading-relaxed;
+    @apply text-brand-gray-text text-sm leading-relaxed flex-grow; /* Added flex-grow */
 }
 
 .benefit-item {
@@ -117,16 +121,18 @@ body {
 }
 
 .eco-card {
+    /* h-full already applied */
     @apply flex flex-col justify-between bg-white p-6 md:p-8 rounded-lg shadow-sm transition-all duration-300 border border-gray-100 hover:shadow-lg hover:border-transparent hover:transform hover:-translate-y-1 h-full;
 }
 .eco-card-title {
     @apply text-xl md:text-2xl font-bold text-brand-dark mb-3;
 }
 .eco-card-description {
-    @apply text-brand-gray-text mb-6 text-sm leading-relaxed;
+    @apply text-brand-gray-text mb-6 text-sm leading-relaxed flex-grow; /* Added flex-grow */
 }
 .eco-link {
-    @apply inline-flex items-center bg-brand-dark text-brand-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 text-sm;
+    @apply inline-flex items-center bg-brand-dark text-brand-white px-5 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 text-sm focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+     /* Added focus-visible styles */
 }
 .eco-link svg {
     @apply w-4 h-4 ml-1.5;
@@ -136,9 +142,11 @@ body {
     @apply block text-brand-gray-text mb-1 text-sm font-medium;
 }
 .form-input, select.form-input, textarea.form-input {
-    @apply block w-full px-4 py-2.5 border border-brand-gray-medium rounded-md bg-brand-white transition-all duration-200 ease-in-out text-sm focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/20;
+    /* Removed focus:outline-none as focus-visible handles it better */
+    @apply block w-full px-4 py-2.5 border border-brand-gray-medium rounded-md bg-brand-white transition-all duration-200 ease-in-out text-sm focus:border-brand-green focus:ring-2 focus:ring-brand-green/20;
 }
 select.form-input {
+    /* Keep existing select styles */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
     background-position: right 0.75rem center;
     background-repeat: no-repeat;
@@ -152,30 +160,36 @@ select.form-input {
     @apply text-brand-gray-medium opacity-90;
 }
 .form-submit-button {
-     @apply w-full inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-3 px-5 rounded-md transition-all duration-300 shadow-md shadow-brand-green/20 hover:shadow-lg hover:shadow-brand-green/30 hover:-translate-y-0.5 active:translate-y-0 active:shadow;
+     @apply w-full inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-3 px-5 rounded-md transition-all duration-300 shadow-md shadow-brand-green/20 hover:shadow-lg hover:shadow-brand-green/30 hover:-translate-y-0.5 active:translate-y-0 active:shadow focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+     /* Added focus-visible styles */
 }
 .form-submit-button:disabled {
-    @apply opacity-70 cursor-not-allowed hover:shadow-md hover:-translate-y-0 bg-none bg-gray-400; /* Estilo desabilitado */
+    @apply opacity-70 cursor-not-allowed hover:shadow-md hover:-translate-y-0 bg-none bg-gray-400; /* Style for disabled state */
 }
 
 #form-message {
     transition: all 0.3s ease-out;
+    /* display: block/none managed by JS adding/removing hidden class */
 }
 #form-message.success {
-    @apply bg-green-50 text-green-700 p-3 rounded-md block mt-1 mb-4 text-sm border border-green-200;
+    /* Adjusted Tailwind classes for better consistency */
+    @apply bg-green-100 text-green-800 p-3 rounded-md block mt-1 mb-4 text-sm border border-green-300;
 }
 #form-message.error {
-     @apply bg-red-50 text-red-700 p-3 rounded-md block mt-1 mb-4 text-sm border border-red-200;
+     /* Adjusted Tailwind classes for better consistency */
+     @apply bg-red-100 text-red-800 p-3 rounded-md block mt-1 mb-4 text-sm border border-red-300;
 }
 
 .footer-heading {
     @apply text-base font-semibold mb-4 text-brand-dark;
 }
 .footer-link {
-    @apply text-brand-gray-text hover:text-brand-green transition-colors duration-200 block pb-1; /* Block e padding */
+    /* Improved consistency and added focus style */
+    @apply text-brand-gray-text hover:text-brand-green transition-colors duration-200 block pb-1 rounded focus-visible:text-brand-green focus-visible:bg-brand-green-light;
 }
 .social-link {
-    @apply text-brand-gray-text hover:text-brand-green transition-colors duration-300;
+    @apply text-brand-gray-text hover:text-brand-green transition-colors duration-300 rounded-full p-1 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-1 focus-visible:ring-offset-brand-gray-light;
+    /* Added focus-visible styles */
 }
 .social-link svg {
     @apply h-5 w-5;
@@ -188,9 +202,14 @@ select.form-input {
    opacity: 0;
    transform: translateY(25px);
    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-   will-change: opacity, transform;
+   will-change: opacity, transform; /* Use with caution, seems okay here */
 }
 .section-animate.animate-fade-in {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* --- Tailwind Play CDN Note ---
+   Using @apply with the Play CDN works but can be less performant than a compiled CSS file.
+   For production, consider setting up a build process (e.g., with Node.js and Tailwind CLI).
+*/
