@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Brasil Sustenta | Impact Venture Builder</title>
-    <meta name="description" content="Brasil Sustenta - Potencializando jovens talentos para desenvolver projetos alinhados aos ODS da ONU">
+    <title>Brasil Sustenta | Conectando Juventude, Construindo Futuro Sustentável</title>
+    <meta name="description" content="Somos uma Impact Venture Builder alinhada aos ODS. Potencializamos jovens (18-35) para criar impacto positivo com conhecimento, rede e estrutura.">
 
-    <!-- Tailwind CSS via Play CDN -->
+    {/* <!-- Tailwind CSS via Play CDN --> */}
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Configuração Tailwind (Necessária com Play CDN) -->
+    {/* <!-- Configuração Tailwind --> */}
     <script>
       tailwind.config = {
         theme: {
@@ -20,335 +20,334 @@
             colors: {
                 'brand-dark': '#0D4A42',
                 'brand-green': '#27AE60',
-                'brand-green-darker': '#1F814A', // Para hover gradiente
+                'brand-green-darker': '#1F814A',
                 'brand-white': '#FFFFFF',
-                'brand-gray-light': '#F3F4F6', // bg-gray-100
-                'brand-gray-medium': '#D1D5DB', // border-gray-300
-                'brand-gray-text': '#4B5563',  // text-gray-600
-                'brand-green-light': 'rgba(39, 174, 96, 0.1)', // bg-brand-green/10
+                'brand-gray-light': '#F3F4F6',
+                'brand-gray-medium': '#D1D5DB',
+                'brand-gray-text': '#4B5563',
+                'brand-text-default': '#374151',
+                'brand-green-light': 'rgba(39, 174, 96, 0.1)',
             },
           }
         }
       }
     </script>
 
-    <!-- Google Fonts -->
+    {/* <!-- Google Fonts (Poppins) --> */}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- CSS Customizado (Mínimo) -->
+    {/* <!-- CSS Customizado --> */}
     <link rel="stylesheet" href="style.css">
 
-</head>
-<body class="font-poppins text-gray-700 bg-white antialiased"> {/* Ajuste cor base texto */}
-    {/* Padrão de fundo removido */}
+    {/* <!-- Favicons (Adicione os seus aqui) --> */}
 
-    <!-- Header -->
-    <header class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="main-header">
-        <div class="container mx-auto px-4 py-3">
+</head>
+<body class="font-poppins text-brand-text-default bg-brand-white antialiased">
+
+    {/* <!-- ===== Header ===== --> */}
+    <header id="main-header" class="fixed w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300 py-3">
+        <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
-                {/* Logo como Texto Simples */}
-                <a href="#home" class="relative z-10 text-xl md:text-2xl font-bold text-brand-dark hover:text-brand-green transition-colors duration-300">
+                <a href="#home" aria-label="Brasil Sustenta - Início" class="relative z-10 text-xl md:text-2xl font-bold text-brand-dark hover:text-brand-green transition-colors duration-300">
                     Brasil Sustenta
                 </a>
-
-                {/* Desktop Navigation */}
-                <nav class="hidden md:flex items-center space-x-6 lg:space-x-8"> {/* Reduzido space-x */}
-                    <a href="#home" class="text-sm text-gray-700 hover:text-brand-green transition-colors duration-300 nav-link">Home</a>
-                    <a href="#sobre" class="text-sm text-gray-700 hover:text-brand-green transition-colors duration-300 nav-link">Sobre</a>
-                    <a href="#programas" class="text-sm text-gray-700 hover:text-brand-green transition-colors duration-300 nav-link">Programas</a>
-                    <a href="#beneficios" class="text-sm text-gray-700 hover:text-brand-green transition-colors duration-300 nav-link">Benefícios</a>
-                    <a href="#ecossistema" class="text-sm text-gray-700 hover:text-brand-green transition-colors duration-300 nav-link">Ecossistema</a>
-                    {/* Botão Primário com classes Tailwind */}
-                    <a href="#contato" class="inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white text-sm font-medium py-2 px-4 rounded-md transition-all duration-300 shadow hover:shadow-md hover:-translate-y-px active:translate-y-0 active:shadow-sm">Contato</a>
+                {/* <!-- Desktop Navigation --> */}
+                <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#home" class="nav-link relative">Home</a>
+                    <a href="#sobre" class="nav-link relative">Sobre</a>
+                    <a href="#programas" class="nav-link relative">Programas</a>
+                    <a href="#beneficios" class="nav-link relative">Benefícios</a>
+                    <a href="#ecossistema" class="nav-link relative">Ecossistema</a>
+                    <a href="#contato" class="inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white text-sm font-medium py-2 px-5 rounded-md transition-all duration-300 shadow hover:shadow-md hover:-translate-y-px active:translate-y-0 active:shadow-sm">Contato</a>
                 </nav>
-
-                {/* Mobile Menu Button */}
+                {/* <!-- Mobile Menu Button --> */}
                 <button class="md:hidden relative z-10 text-brand-dark focus:outline-none p-1" id="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
-                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                 </button>
             </div>
         </div>
-
-        {/* Mobile Navigation */}
+        {/* <!-- Mobile Navigation Menu --> */}
         <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white/95 backdrop-blur-lg z-40 flex-col items-center justify-center hidden opacity-0 -translate-y-full">
-            <nav class="flex flex-col items-center space-y-6 py-8"> {/* Reduzido space-y */}
-                <a href="#home" class="text-lg font-medium text-brand-dark hover:text-brand-green transition-colors duration-300 nav-link mobile-link">Home</a>
-                <a href="#sobre" class="text-lg font-medium text-brand-dark hover:text-brand-green transition-colors duration-300 nav-link mobile-link">Sobre</a>
-                <a href="#programas" class="text-lg font-medium text-brand-dark hover:text-brand-green transition-colors duration-300 nav-link mobile-link">Programas</a>
-                <a href="#beneficios" class="text-lg font-medium text-brand-dark hover:text-brand-green transition-colors duration-300 nav-link mobile-link">Benefícios</a>
-                <a href="#ecossistema" class="text-lg font-medium text-brand-dark hover:text-brand-green transition-colors duration-300 nav-link mobile-link">Ecossistema</a>
-                <a href="#contato" class="inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-2.5 px-6 rounded-md transition-all duration-300 shadow-md mt-6 mobile-link">Contato</a>
+            <nav class="flex flex-col items-center space-y-6 py-8">
+                <a href="#home" class="mobile-nav-link">Home</a>
+                <a href="#sobre" class="mobile-nav-link">Sobre</a>
+                <a href="#programas" class="mobile-nav-link">Programas</a>
+                <a href="#beneficios" class="mobile-nav-link">Benefícios</a>
+                <a href="#ecossistema" class="mobile-nav-link">Ecossistema</a>
+                <a href="#contato" class="inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-2.5 px-6 rounded-md transition-all duration-300 shadow-md mt-6 mobile-nav-link">Contato</a>
             </nav>
         </div>
     </header>
 
+    {/* <!-- ===== Main Content ===== --> */}
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="min-h-[90vh] md:min-h-screen flex items-center pt-24 md:pt-28 pb-16 md:pb-20 overflow-hidden relative"> {/* Ajuste altura/padding */}
+        {/* <!-- Hero Section --> */}
+        <section id="home" class="min-h-[90vh] md:min-h-screen flex items-center pt-28 md:pt-32 pb-16 md:pb-20 overflow-hidden relative bg-white">
             <div class="container mx-auto px-4">
                 <div class="max-w-4xl mx-auto text-center">
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5 text-brand-dark leading-tight section-animate animate-fade-in">
                         Potencializando jovens talentos para um <span class="text-brand-green">futuro sustentável</span>
                     </h1>
-                    <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto section-animate animate-fade-in animation-delay-200"> {/* Atraso ajustado */}
+                    <p class="text-lg md:text-xl text-brand-gray-text mb-8 max-w-3xl mx-auto section-animate animate-fade-in" style="transition-delay: 0.15s;">
                         Somos uma Impact Venture Builder que conecta talento, propósito e recursos para criar negócios alinhados aos ODS da ONU.
                     </p>
-                    <div class="flex flex-wrap justify-center gap-4 section-animate animate-fade-in animation-delay-400"> {/* Atraso ajustado */}
-                        <a href="#contato" class="inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-3 px-6 rounded-md transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow">Comece sua jornada</a>
-                        <a href="#programas" class="inline-block bg-white text-brand-dark font-medium py-3 px-6 rounded-md border border-brand-dark transition-all duration-300 hover:bg-gray-50 hover:-translate-y-0.5 active:translate-y-0">Conheça os programas</a>
+                    <div class="flex flex-wrap justify-center gap-4 section-animate animate-fade-in" style="transition-delay: 0.3s;">
+                        <a href="#contato" class="hero-button-primary">Comece sua jornada</a>
+                        <a href="#programas" class="hero-button-secondary">Conheça os programas</a>
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div> {/* Gradiente base */}
+            <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
         </section>
 
-        <!-- Stats Section -->
-        <section id="stats" class="py-16 md:py-20 bg-gray-50">
+        {/* <!-- Stats Section --> */}
+        <section id="stats" class="py-16 md:py-20 bg-brand-gray-light border-t border-b border-gray-200">
              <div class="container mx-auto px-4">
                 <h2 class="sr-only">Nosso impacto em números</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-lg shadow-subtle text-center section-animate hover:shadow-md transition-shadow duration-300">
-                        <div class="text-brand-green font-bold text-4xl md:text-5xl mb-2">25+</div>
-                        <p class="text-gray-700 font-semibold">Projetos Lançados</p>
-                        <p class="text-sm text-gray-500 mt-1">Impactando ODS diversos</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <div class="stats-card section-animate">
+                        <div class="text-brand-green font-bold text-4xl md:text-5xl mb-2">53,2 mi+</div>
+                        <p class="text-brand-text-default font-semibold">Jovens (18-35)</p>
+                        <p class="text-xs text-gray-500 mt-1">Potencial no Brasil (IBGE)</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-subtle text-center section-animate hover:shadow-md transition-shadow duration-300" style="transition-delay: 0.1s;">
-                        <div class="text-brand-green font-bold text-4xl md:text-5xl mb-2">300+</div>
-                        <p class="text-gray-700 font-semibold">Jovens Capacitados</p>
-                         <p class="text-sm text-gray-500 mt-1">Comunidade ativa e engajada</p>
+                    <div class="stats-card section-animate" style="transition-delay: 0.1s;">
+                        <div class="text-brand-green font-bold text-4xl md:text-5xl mb-2">88%</div>
+                        <p class="text-brand-text-default font-semibold">Preferem Empresas Sustentáveis</p>
+                         <p class="text-xs text-gray-500 mt-1">Engajamento Crescente (Accenture)</p>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-subtle text-center section-animate hover:shadow-md transition-shadow duration-300" style="transition-delay: 0.2s;">
-                        <div class="text-brand-green font-bold text-4xl md:text-5xl mb-2">12</div>
-                        <p class="text-gray-700 font-semibold">ODS Impactados</p>
-                         <p class="text-sm text-gray-500 mt-1">Foco em metas globais</p>
+                    <div class="stats-card section-animate" style="transition-delay: 0.2s;">
+                        <div class="text-brand-green font-bold text-4xl md:text-5xl mb-2">98%</div>
+                        <p class="text-brand-text-default font-semibold">Aumento Vagas ESG</p>
+                         <p class="text-xs text-gray-500 mt-1">Mercado em Expansão (GlobalData)</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        {/* Divisor */}
-        <div class="h-px bg-gray-100 my-16 md:my-20 container mx-auto max-w-6xl"></div>
-
-        <!-- Sobre Section (Sem Imagem) -->
-        <section id="sobre" class="py-16 md:py-20">
+        {/* <!-- Sobre Section --> */}
+        <section id="sobre" class="py-20 md:py-28 bg-white">
             <div class="container mx-auto px-4">
-                <div class="max-w-3xl mx-auto text-center section-animate">
-                    <span class="inline-block bg-brand-green/10 text-brand-green text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wider">Nosso Modelo</span>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-dark">Impact Venture Builder: <br class="md:hidden"> Foco no <span class="text-brand-green">Talento</span>, Antes da Ideia</h2>
-                     <p class="text-gray-600 mb-6 text-lg leading-relaxed">
-                        Diferente das aceleradoras tradicionais, focamos em <strong class="font-semibold text-gray-900">você</strong>, jovem talento criativo (18-35 anos), <strong class="font-semibold text-gray-900">antes mesmo da ideia ou da equipe</strong>. Oferecemos conhecimento prático, metodologia validada, conexões valiosas e a infraestrutura necessária para transformar seu potencial em projetos de impacto alinhados aos ODS.
-                    </p>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">
-                       Montamos <strong class="font-semibold text-gray-900">Squads de Impacto</strong> multidisciplinares e conectamos você a um ecossistema vibrante para construir, juntos, um Brasil mais justo e sustentável.
-                    </p>
-                     <div class="flex flex-wrap justify-center gap-4">
-                        <a href="#programas" class="inline-block bg-white text-brand-dark font-medium py-2.5 px-5 rounded-md border border-brand-dark transition-all duration-300 hover:bg-gray-50 hover:-translate-y-0.5 active:translate-y-0">Nossos programas</a>
-                        <a href="#contato" class="inline-block text-brand-green font-medium transition-all duration-300 hover:text-brand-dark">Fale conosco <span class="ml-1">→</span></a>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                    <div class="section-animate text-center md:text-left">
+                        <span class="section-tag">Nosso Modelo</span>
+                        <h2 class="section-heading">Impact Venture Builder: <br> Foco no <span class="text-brand-green">Talento</span>, Antes da Ideia</h2>
+                         <p class="section-subheading">
+                            Investimos em você, jovem talento criativo (18-35 anos), <strong class="font-semibold text-brand-dark">na fase pré-equipe e pré-ideia.</strong> Oferecemos conhecimento, metodologia, conexões e infraestrutura para transformar seu potencial em projetos de impacto alinhados aos ODS.
+                        </p>
+                        <p class="text-brand-gray-text leading-relaxed">
+                           Montamos <strong class="font-semibold text-brand-dark">Squads de Impacto</strong> e conectamos você a um ecossistema vibrante para construir, juntos, um Brasil mais justo e sustentável.
+                        </p>
+                    </div>
+                    <div class="section-animate" style="transition-delay: 0.1s;">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Jovens colaborando em projetos inovadores" class="rounded-lg shadow-lg mx-auto w-full">
                     </div>
                 </div>
             </div>
         </section>
 
-        {/* Divisor */}
-        <div class="h-px bg-gray-100 my-16 md:my-20 container mx-auto max-w-6xl"></div>
-
-        <!-- Programas Section -->
-        <section id="programas" class="py-16 md:py-20 bg-gray-50">
+        {/* <!-- Programas Section --> */}
+        <section id="programas" class="py-20 md:py-28 bg-brand-gray-light border-t border-gray-200">
              <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-dark section-animate">Nossos Programas</h2>
-                    <p class="text-gray-600 text-lg section-animate">Iniciativas desenhadas para apoiar sua jornada de impacto, da ideia à escala.</p>
+                    <h2 class="section-heading section-animate">Nossos Programas</h2>
+                    <p class="section-subheading section-animate" style="transition-delay: 0.1s;">Iniciativas desenhadas para apoiar sua jornada de impacto, da ideia à escala.</p>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {/* Card Programa */}
-                    <div class="bg-white rounded-lg p-6 shadow-sm transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-md section-animate">
-                         <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-green/10 text-brand-green mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
+                    {/* <!-- Card Programa: Laboratório de Criação --> */}
+                    <div class="program-card section-animate">
+                         <div class="program-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
                          </div>
-                        <h3 class="text-xl font-semibold mb-2 text-brand-dark">Laboratório de Criação</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Estruture e valide sua ideia de impacto com mentoria e workshops focados.</p>
+                        <h3 class="program-title">Laboratório de Criação</h3>
+                        <p class="program-description">Estruture e valide sua ideia de impacto com mentoria e workshops focados.</p>
                     </div>
-                    {/* ... Repetir cards para outros programas com delays ... */}
-                     <div class="bg-white rounded-lg p-6 shadow-sm transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-md section-animate" style="transition-delay: 0.1s;">
-                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-green/10 text-brand-green mb-4">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" /></svg>
+                    {/* <!-- Card Programa: Planejamento e Execução --> */}
+                     <div class="program-card section-animate" style="transition-delay: 0.1s;">
+                        <div class="program-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" /></svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2 text-brand-dark">Planejamento e Execução</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Apoio especializado para transformar seu protótipo em um negócio sustentável.</p>
+                        <h3 class="program-title">Planejamento e Execução</h3>
+                        <p class="program-description">Apoio especializado para transformar seu protótipo em um negócio sustentável.</p>
                     </div>
-                     <div class="bg-white rounded-lg p-6 shadow-sm transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-md section-animate" style="transition-delay: 0.2s;">
-                         <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-green/10 text-brand-green mb-4">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
+                    {/* <!-- Card Programa: Acesso à Rede --> */}
+                     <div class="program-card section-animate" style="transition-delay: 0.2s;">
+                         <div class="program-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2 text-brand-dark">Acesso à Rede</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Conexões com mentores, investidores, parceiros e especialistas do ecossistema.</p>
+                        <h3 class="program-title">Acesso à Rede</h3>
+                        <p class="program-description">Conexões com mentores, investidores, parceiros e especialistas do ecossistema.</p>
                     </div>
-                     {/* Adicionar os outros 3 cards aqui, seguindo o padrão */}
+                    {/* <!-- Card Programa: Lideres --> */}
+                     <div class="program-card section-animate" style="transition-delay: 0.05s;">
+                         <div class="program-icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" /></svg>
+                         </div>
+                        <h3 class="program-title">Brasil Sustenta Lideres</h3>
+                        <p class="program-description">Capacitação e certificação em habilidades técnicas e comportamentais para o mercado de impacto.</p>
+                    </div>
+                     {/* <!-- Card Programa: Campus --> */}
+                    <div class="program-card section-animate" style="transition-delay: 0.15s;">
+                         <div class="program-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z" /></svg>
+                         </div>
+                        <h3 class="program-title">Brasil Sustenta Campus</h3>
+                        <p class="program-description">Eventos e grupos de afinidade em empresas e universidades para networking e desenvolvimento.</p>
+                    </div>
+                    {/* <!-- Card Programa: Play --> */}
+                    <div class="program-card section-animate" style="transition-delay: 0.25s;">
+                         <div class="program-icon">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z" /></svg>
+                         </div>
+                        <h3 class="program-title">Brasil Sustenta Play</h3>
+                        <p class="program-description">Acesso a masterclasses, documentários e podcasts sobre sustentabilidade e inovação.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        {/* Divisor */}
-        <div class="h-px bg-gray-100 my-16 md:my-20 container mx-auto max-w-6xl"></div>
-
-        <!-- Benefícios Section -->
-        <section id="beneficios" class="py-16 md:py-20">
+        {/* <!-- Benefícios Section --> */}
+        <section id="beneficios" class="py-20 md:py-28 bg-white">
              <div class="container mx-auto px-4">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-dark section-animate">Por que participar?</h2>
-                    <p class="text-gray-600 text-lg section-animate">Junte-se a uma comunidade que impulsiona o desenvolvimento sustentável através do empreendedorismo jovem.</p>
+                    <h2 class="section-heading section-animate">Vantagens de Ser Membro</h2>
+                    <p class="section-subheading section-animate" style="transition-delay: 0.1s;">Junte-se a uma comunidade que impulsiona o desenvolvimento sustentável e seu crescimento pessoal e profissional.</p>
                 </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                     {/* Card Benefício */}
-                    <div class="p-6 rounded-lg bg-gray-50 transition-all duration-300 hover:bg-white hover:shadow-md text-center section-animate">
-                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-green/10 text-brand-green mb-4">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" /></svg>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    {/* <!-- Benefício Item: Networking --> */}
+                    <div class="benefit-item section-animate">
+                        <div class="benefit-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" /></svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2 text-brand-dark">Networking Estratégico</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Conecte-se com líderes, inovadores e instituições que estão moldando o futuro.</p>
+                        <h4 class="benefit-title">Networking Estratégico</h4>
+                        <p class="benefit-description">Conecte-se com líderes, inovadores e instituições chave.</p>
                     </div>
-                    {/* ... outros 2 cards ... */}
-                     <div class="p-6 rounded-lg bg-gray-50 transition-all duration-300 hover:bg-white hover:shadow-md text-center section-animate" style="transition-delay: 0.15s;">
-                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-green/10 text-brand-green mb-4">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+                    {/* <!-- Benefício Item: Crescimento --> */}
+                    <div class="benefit-item section-animate" style="transition-delay: 0.15s;">
+                        <div class="benefit-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
                         </div>
-                        <h3 class="text-xl font-semibold mb-2 text-brand-dark">Desenvolvimento Acelerado</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Acesse programas, mentorias e conteúdos exclusivos para seu crescimento.</p>
+                        <h4 class="benefit-title">Desenvolvimento Acelerado</h4>
+                        <p class="benefit-description">Acesse programas e conteúdos exclusivos para seu crescimento.</p>
                     </div>
-                    <div class="p-6 rounded-lg bg-gray-50 transition-all duration-300 hover:bg-white hover:shadow-md text-center section-animate" style="transition-delay: 0.3s;">
-                         <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-green/10 text-brand-green mb-4">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" /></svg>
+                    {/* <!-- Benefício Item: Impacto --> */}
+                    <div class="benefit-item section-animate" style="transition-delay: 0.3s;">
+                         <div class="benefit-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" /></svg>
                          </div>
-                        <h3 class="text-xl font-semibold mb-2 text-brand-dark">Impacto Real e Mensurável</h3>
-                        <p class="text-gray-600 text-sm leading-relaxed">Participe de projetos que geram mudanças significativas e contribuem para os ODS.</p>
+                        <h4 class="benefit-title">Impacto Real</h4>
+                        <p class="benefit-description">Lidere ou participe de projetos que geram mudanças significativas.</p>
                     </div>
-                </div>
+                 </div>
+                 <div class="mt-16 text-center section-animate" style="transition-delay: 0.2s;">
+                     <p class="text-brand-gray-text text-lg italic">"E se a próxima grande solução para um mundo melhor viesse de <span class="text-brand-green font-medium">você</span>?"</p>
+                 </div>
+            </div>
+        </section>
 
-                {/* Testimonial/Quote */}
-                <div class="bg-white rounded-xl p-8 md:p-10 max-w-4xl mx-auto shadow-subtle border border-gray-100 section-animate">
-                    <svg class="h-8 w-8 md:h-10 md:w-10 text-brand-green mb-4 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" /></svg>
-                    <blockquote class="text-lg md:text-xl text-gray-600 italic mb-6">
-                        "A Brasil Sustenta foi fundamental para transformar minha ideia em um negócio viável. A mentoria, o networking e o acesso a recursos me permitiram desenvolver uma solução que hoje impacta positivamente a vida de milhares de pessoas."
-                    </blockquote>
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3 overflow-hidden flex items-center justify-center text-gray-500">
-                            {/* Placeholder SVG usuário */}
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
-                        </div>
+        {/* <!-- Ecossistema Externo Section --> */}
+         <section id="ecossistema" class="py-20 md:py-28 bg-brand-gray-light border-t border-gray-200">
+            <div class="container mx-auto px-4">
+                 <div class="text-center max-w-3xl mx-auto mb-16">
+                     <h2 class="section-heading section-animate">Nosso Ecossistema</h2>
+                     <p class="section-subheading section-animate" style="transition-delay: 0.1s;">Explore nossos canais e mantenha-se conectado com a comunidade.</p>
+                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    {/* <!-- Card Eventos --> */}
+                    <div class="eco-card section-animate">
                         <div>
-                            <p class="font-semibold text-sm text-brand-dark">Mariana Silva</p>
-                            <p class="text-gray-500 text-xs">Fundadora da EcoTech Brasil | Turma 2022</p>
+                            <h3 class="eco-card-title">Nossos Eventos</h3>
+                            <p class="eco-card-description">Participe de workshops, seminários e encontros exclusivos sobre inovação, sustentabilidade e empreendedorismo.</p>
                         </div>
+                         <div class="mt-auto pt-4">
+                             {/* <!-- Link Placeholder --> */}
+                             <a href="#" target="_blank" rel="noopener noreferrer" class="eco-link" title="Link para Agenda de Eventos (Substituir #)">
+                                Ver Agenda
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 0V6.375c0-.621.504-1.125 1.125-1.125h1.5c.621 0 1.125.504 1.125 1.125v1.5m-4.5 0h4.5" /></svg>
+                             </a>
+                             <p class="text-xs text-gray-400 mt-2">Plataforma externa (Link a adicionar)</p>
+                         </div>
+                    </div>
+                    {/* <!-- Card Blog --> */}
+                     <div class="eco-card section-animate" style="transition-delay: 0.15s;">
+                         <div>
+                            <h3 class="eco-card-title">Nosso Blog</h3>
+                            <p class="eco-card-description">Acesse artigos, estudos de caso, insights e ferramentas práticas para empreendedores de impacto.</p>
+                         </div>
+                         <div class="mt-auto pt-4">
+                             {/* <!-- Link Placeholder --> */}
+                             <a href="#" target="_blank" rel="noopener noreferrer" class="eco-link" title="Link para Blog (Substituir #)">
+                                Ler Conteúdo
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 0V6.375c0-.621.504-1.125 1.125-1.125h1.5c.621 0 1.125.504 1.125 1.125v1.5m-4.5 0h4.5" /></svg>
+                             </a>
+                             <p class="text-xs text-gray-400 mt-2">Plataforma externa (Link a adicionar)</p>
+                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+         </section>
 
-         {/* Divisor */}
-        <div class="h-px bg-gray-100 my-16 md:my-20 container mx-auto max-w-6xl"></div>
-
-        <!-- Ecossistema Section -->
-        <section id="ecossistema" class="py-16 md:py-20 bg-gray-50">
-             <div class="container mx-auto px-4">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-brand-dark section-animate">Nosso Ecossistema</h2>
-                    <p class="text-gray-600 text-lg section-animate">Explore nossos canais e mantenha-se conectado com a comunidade.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <a href="https://www.sympla.com.br/produtor/brasilsustenta" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg p-6 shadow-sm transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-md section-animate">
-                        <div class="flex items-start md:items-center flex-col md:flex-row gap-4 md:gap-6">
-                             <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-green/10 text-brand-green flex-shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                             </div>
-                             <div>
-                                <h3 class="text-xl font-semibold mb-2 text-brand-dark">Eventos & Workshops</h3>
-                                <p class="text-gray-600 mb-3 text-sm leading-relaxed">Participe de eventos sobre inovação, sustentabilidade e empreendedorismo. Veja nossa agenda!</p>
-                                <span class="inline-block text-brand-green font-medium transition-all duration-300 hover:text-brand-dark">Ver calendário <span class="ml-1">→</span></span>
+        {/* <!-- Contato Section --> */}
+        <section id="contato" class="py-20 md:py-28 bg-brand-dark text-white">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <div class="section-animate text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-5">Faça a diferença conosco.</h2>
+                        <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                            Seja um jovem talento, uma organização parceira ou um mentor, conecte-se para impulsionarmos juntos o desenvolvimento sustentável no Brasil.
+                        </p>
+                        <div class="space-y-5 inline-block text-left">
+                             <div class="flex items-center gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-green flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                {/* <!-- Email Placeholder --> */}
+                                <a href="mailto:contato@exemplo.com" class="text-base text-gray-200 hover:text-brand-green transition-colors" title="Email de Contato (Substituir)">contato@brasilsustenta.org</a>
                             </div>
                         </div>
-                    </a>
-                    <a href="https://medium.com/@brasilsustenta" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-lg p-6 shadow-sm transition-all duration-300 border border-black/5 hover:-translate-y-1 hover:shadow-md section-animate" style="transition-delay: 0.15s;">
-                        <div class="flex items-start md:items-center flex-col md:flex-row gap-4 md:gap-6">
-                             <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-green/10 text-brand-green flex-shrink-0">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>
+                    </div>
+
+                    {/* <!-- Formulário (action removida, funcionalidade JS desativada) --> */}
+                    <div class="bg-white text-brand-text-default rounded-xl p-8 md:p-10 shadow-2xl section-animate" style="transition-delay: 0.1s;">
+                        <h3 class="text-2xl font-semibold mb-6 text-brand-dark text-center">Envie sua mensagem</h3>
+                        {/* <!-- Formulário sem 'action' e 'required' para evitar quebras --> */}
+                        <form id="contact-form" method="POST" class="space-y-5">
+                            <div>
+                                <label for="name-contact" class="form-label">Nome completo</label>
+                                <input type="text" id="name-contact" name="name" class="form-input" placeholder="Seu nome">
                             </div>
                             <div>
-                                <h3 class="text-xl font-semibold mb-2 text-brand-dark">Blog & Recursos</h3>
-                                <p class="text-gray-600 mb-3 text-sm leading-relaxed">Acesse artigos, estudos de caso e ferramentas práticas para empreendedores de impacto.</p>
-                                <span class="inline-block text-brand-green font-medium transition-all duration-300 hover:text-brand-dark">Acessar conteúdo <span class="ml-1">→</span></span>
+                                <label for="email-contact" class="form-label">Email</label>
+                                <input type="email" id="email-contact" name="email" class="form-input" placeholder="email@exemplo.com">
                             </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        {/* Divisor */}
-        <div class="h-px bg-gray-100 my-16 md:my-20 container mx-auto max-w-6xl"></div>
-
-        <!-- Contato Section -->
-        <section id="contato" class="py-16 md:py-24 bg-brand-dark text-white">
-            <div class="container mx-auto px-4">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div class="section-animate">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Faça a diferença conosco.</h2>
-                        <p class="text-gray-300 mb-8 text-lg leading-relaxed">Seja você um jovem talento, uma organização parceira ou um mentor, conecte-se para impulsionarmos juntos o desenvolvimento sustentável no Brasil.</p>
-                        {/* Info Contato */}
-                        <div class="space-y-6">
-                             <div class="flex items-center gap-4">
-                                <div class="bg-brand-green/20 p-3 rounded-full flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-brand-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                </div>
-                                <div>
-                                    <p class="text-gray-400 text-xs uppercase tracking-wider">Email</p>
-                                    <a href="mailto:contato@brasilsustenta.org" class="text-base hover:text-brand-green transition-colors">contato@brasilsustenta.org</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Formulário */}
-                    <div class="bg-white text-gray-800 rounded-lg p-8 shadow-lg section-animate" style="transition-delay: 0.1s;">
-                        <h3 class="text-2xl font-semibold mb-6 text-brand-dark">Entre em contato</h3>
-                        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"> {/* <<< SUBSTITUIR AQUI */}
-                             <div class="mb-4">
-                                <label for="name-contact" class="block text-gray-600 mb-1 text-sm font-medium">Nome completo*</label>
-                                <input type="text" id="name-contact" name="name" class="w-full px-3 py-2.5 rounded-md border border-gray-200 bg-white transition-all duration-300 focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green/20" required placeholder="Seu nome">
-                            </div>
-                            <div class="mb-4">
-                                <label for="email-contact" class="block text-gray-600 mb-1 text-sm font-medium">Email*</label>
-                                <input type="email" id="email-contact" name="email" class="w-full px-3 py-2.5 rounded-md border border-gray-200 bg-white transition-all duration-300 focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green/20" required placeholder="email@exemplo.com">
-                            </div>
-                             <div class="mb-4">
-                                <label for="subject-contact" class="block text-gray-600 mb-1 text-sm font-medium">Assunto*</label>
-                                <select id="subject-contact" name="subject" class="w-full px-3 py-2.5 rounded-md border border-gray-200 bg-white transition-all duration-300 focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green/20" required>
+                             <div>
+                                <label for="subject-contact" class="form-label">Assunto</label>
+                                <select id="subject-contact" name="subject" class="form-input bg-white">
                                     <option value="" disabled selected>Selecione...</option>
                                     <option value="Interesse em programas">Interesse nos Programas</option>
                                     <option value="Proposta de parceria">Proposta de Parceria</option>
                                     <option value="Mentoria/Voluntariado">Quero ser Mentor(a)/Voluntário(a)</option>
+                                    <option value="Imprensa">Imprensa</option>
                                     <option value="Outro">Outro assunto</option>
                                 </select>
                             </div>
-                             <div class="mb-6">
-                                <label for="message-contact" class="block text-gray-600 mb-1 text-sm font-medium">Mensagem*</label>
-                                <textarea id="message-contact" name="message" rows="4" class="w-full px-3 py-2.5 rounded-md border border-gray-200 bg-white transition-all duration-300 focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green/20" required placeholder="Sua mensagem..."></textarea>
+                             <div>
+                                <label for="message-contact" class="form-label">Mensagem</label>
+                                <textarea id="message-contact" name="message" rows="4" class="form-input" placeholder="Sua mensagem..."></textarea>
                             </div>
-                            <div class="mb-6">
-                                <label class="flex items-center">
-                                    <input type="checkbox" name="consent" class="w-4 h-4 rounded border border-gray-300 text-brand-green bg-white transition-all duration-300 focus:ring-brand-green/20 focus:ring-offset-0" required>
-                                    <span class="ml-2 text-sm text-gray-600">Concordo com a <a href="/politica-privacidade" target="_blank" class="text-brand-green hover:underline">Política de Privacidade</a>.</span>
+                            <div class="pt-1">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" name="consent" class="w-4 h-4 rounded border-brand-gray-medium text-brand-green bg-white transition-all duration-300 focus:ring-brand-green/30 focus:ring-offset-0 shadow-sm">
+                                    {/* <!-- Link Placeholder --> */}
+                                    <span class="ml-2 text-sm text-brand-gray-text">Concordo com a <a href="#" target="_blank" class="text-brand-green hover:underline" title="Link para Política de Privacidade (Substituir #)">Política de Privacidade</a>.</span>
                                 </label>
                             </div>
-                            <div id="form-message" class="mb-4 hidden"></div>
-                            <button type="submit" id="submit-button" class="w-full inline-block bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-3 px-5 rounded-md transition-all duration-300 shadow-md shadow-brand-green/20 hover:shadow-lg hover:shadow-brand-green/20 hover:-translate-y-0.5 active:translate-y-0 active:shadow">Enviar mensagem</button>
+                             {/* <!-- Elemento para mensagens de feedback (manter no HTML) --> */}
+                            <div id="form-message" class="hidden"></div>
+                            <div class="pt-3">
+                                <button type="submit" id="submit-button" class="w-full form-submit-button">Enviar mensagem</button>
+                            </div>
+                             <p class="text-xs text-center text-gray-500 pt-2">O envio está desativado nesta versão.</p>
                         </form>
                     </div>
                 </div>
@@ -356,76 +355,66 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 py-12">
+    {/* <!-- ===== Footer ===== --> */}
+    <footer class="bg-brand-gray-light py-12 border-t border-gray-200">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-sm">
-                {/* Coluna 1: Logo & Desc */}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-sm">
+                {/* <!-- Coluna 1 --> */}
                 <div>
-                    <a href="#home" class="inline-block mb-4 font-bold text-brand-dark text-lg">Brasil Sustenta</a>
-                    <p class="text-gray-600 leading-relaxed">Potencializando jovens talentos para desenvolver projetos alinhados aos ODS da ONU.</p>
-                    {/* Redes Sociais */}
-                    <div class="flex space-x-4 mt-4">
-                        <a href="https://linkedin.com/company/brasilsustenta" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="text-gray-500 hover:text-brand-green transition-colors"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg></a>
-                        <a href="https://instagram.com/brasilsustenta" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-brand-green transition-colors"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd"/></svg></a>
-                        <a href="https://medium.com/@brasilsustenta" target="_blank" rel="noopener noreferrer" aria-label="Medium" class="text-gray-500 hover:text-brand-green transition-colors"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.46.041a.594.594 0 00-.491.63L7.71 8.28a.583.583 0 00.573.5h3.255a.58.58 0 00.573-.5L12.852.67a.591.591 0 00-.49-.63H7.46zm6.193.015a.6.6 0 00-.595.615l-.545 12.27a.6.6 0 00.595.615h3.21a.6.6 0 00.595-.615L17.413.67a.6.6 0 00-.595-.615h-3.162zM18.193.015a.62.62 0 00-.62.615l-.21 16.62a.62.62 0 00.62.615H21.8a.62.62 0 00.62-.615l-.21-16.62a.62.62 0 00-.62-.615h-3.4zM0 .731a.73.73 0 00-.73.73v13.74a.73.73 0 00.73.73h4.83a.73.73 0 00.73-.73V1.46a.73.73 0 00-.73-.73H0z"/></svg></a>
+                    <a href="#home" class="inline-block mb-3 font-bold text-brand-dark text-lg">Brasil Sustenta</a>
+                    <p class="text-brand-gray-text leading-relaxed mb-4">Potencializando jovens talentos para desenvolver projetos alinhados aos ODS.</p>
+                     {/* <!-- Redes Sociais Placeholders --> */}
+                    <div class="flex space-x-4">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link" title="Link LinkedIn (Substituir #)"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link" title="Link Instagram (Substituir #)"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd"/></svg></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Medium" class="social-link" title="Link Medium (Substituir #)"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.46.041a.594.594 0 00-.491.63L7.71 8.28a.583.583 0 00.573.5h3.255a.58.58 0 00.573-.5L12.852.67a.591.591 0 00-.49-.63H7.46zm6.193.015a.6.6 0 00-.595.615l-.545 12.27a.6.6 0 00.595.615h3.21a.6.6 0 00.595-.615L17.413.67a.6.6 0 00-.595-.615h-3.162zM18.193.015a.62.62 0 00-.62.615l-.21 16.62a.62.62 0 00.62.615H21.8a.62.62 0 00.62-.615l-.21-16.62a.62.62 0 00-.62-.615h-3.4zM0 .731a.73.73 0 00-.73.73v13.74a.73.73 0 00.73.73h4.83a.73.73 0 00.73-.73V1.46a.73.73 0 00-.73-.73H0z"/></svg></a>
                     </div>
                 </div>
-                {/* Coluna 2 */}
+                {/* <!-- Coluna 2: Navegação --> */}
                 <div>
-                    <h4 class="text-base font-semibold mb-4 text-brand-dark">Navegação</h4>
+                    <h4 class="footer-heading">Navegação</h4>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-600 hover:text-brand-green transition-colors">Home</a></li>
-                        <li><a href="#sobre" class="text-gray-600 hover:text-brand-green transition-colors">Sobre nós</a></li>
-                        <li><a href="#programas" class="text-gray-600 hover:text-brand-green transition-colors">Programas</a></li>
-                        <li><a href="#beneficios" class="text-gray-600 hover:text-brand-green transition-colors">Benefícios</a></li>
-                        <li><a href="#ecossistema" class="text-gray-600 hover:text-brand-green transition-colors">Ecossistema</a></li>
-                        <li><a href="#contato" class="text-gray-600 hover:text-brand-green transition-colors">Contato</a></li>
+                        <li><a href="#home" class="footer-link">Home</a></li>
+                        <li><a href="#sobre" class="footer-link">Sobre nós</a></li>
+                        <li><a href="#programas" class="footer-link">Programas</a></li>
+                        <li><a href="#beneficios" class="footer-link">Benefícios</a></li>
+                        <li><a href="#ecossistema" class="footer-link">Ecossistema</a></li>
+                        <li><a href="#contato" class="footer-link">Contato</a></li>
                     </ul>
                 </div>
-                {/* Coluna 3 */}
+                {/* <!-- Coluna 3: Recursos --> */}
                 <div>
-                    <h4 class="text-base font-semibold mb-4 text-brand-dark">Recursos</h4>
+                    <h4 class="footer-heading">Recursos</h4>
                     <ul class="space-y-2">
-                         <li><a href="https://medium.com/@brasilsustenta" target="_blank" rel="noopener" class="text-gray-600 hover:text-brand-green transition-colors">Blog</a></li>
-                        <li><a href="https://www.sympla.com.br/produtor/brasilsustenta" target="_blank" rel="noopener" class="text-gray-600 hover:text-brand-green transition-colors">Eventos</a></li>
-                        <li><a href="#parcerias" class="text-gray-600 hover:text-brand-green transition-colors">Parcerias</a></li>
+                         <li><a href="#" target="_blank" rel="noopener" class="footer-link" title="Link para Blog (Substituir #)">Blog</a></li>
+                        <li><a href="#" target="_blank" rel="noopener" class="footer-link" title="Link para Eventos (Substituir #)">Eventos</a></li>
+                        <li><a href="#contato" class="footer-link">Parcerias</a></li>
                     </ul>
                 </div>
-                {/* Coluna 4 */}
+                {/* <!-- Coluna 4: Legal --> */}
                 <div>
-                    <h4 class="text-base font-semibold mb-4 text-brand-dark">Legal</h4>
+                    <h4 class="footer-heading">Legal</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-600 hover:text-brand-green transition-colors">Termos de uso</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-brand-green transition-colors">Política de privacidade</a></li>
-                        <li><a href="#" class="text-gray-600 hover:text-brand-green transition-colors">Cookies</a></li>
+                        <li><a href="#" class="footer-link" title="Link Termos (Substituir #)">Termos de uso</a></li>
+                        <li><a href="#" class="footer-link" title="Link Privacidade (Substituir #)">Política de privacidade</a></li>
                     </ul>
                 </div>
             </div>
-
+            {/* <!-- Copyright --> */}
             <div class="pt-8 mt-8 border-t border-gray-200 text-center sm:flex sm:justify-between sm:text-left">
                 <p class="text-gray-500 text-sm">
                     © <span id="current-year"></span> Brasil Sustenta. Todos os direitos reservados.
                 </p>
                  <p class="text-gray-500 text-sm mt-2 sm:mt-0">
-                    {/* Mude ou remova este crédito */}
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-brand-green transition-colors">Desenvolvido com <span class="text-red-500">❤</span></a>
+                    {/* <!-- Você pode remover ou alterar este crédito --> */}
+                    <span class="hover:text-brand-green transition-colors">Feito com propósito</span>
                 </p>
             </div>
         </div>
     </footer>
 
-    {/* Script JS */}
+    {/* <!-- Script JS --> */}
     <script src="script.js" defer></script>
-    {/* Prevenir zoom */}
-     <script>
-        window.addEventListener("wheel", (e)=> {
-            if (e.ctrlKey) e.preventDefault(); // Previne zoom com Ctrl+Scroll
-        }, { passive: false });
-         // Previne zoom de pinça em touch screens
-         document.addEventListener('touchmove', function (event) {
-           if (event.scale !== 1 && event.scale !== undefined) { event.preventDefault(); }
-         }, { passive: false });
-    </script>
+
 </body>
 </html>
