@@ -1,19 +1,39 @@
 /* Base Styles */
 :root {
-    --primary: #059669;
-    --primary-dark: #047857;
-    --primary-light: #d1fae5;
+    --primary: #059669; /* Emerald-600 */
+    --primary-dark: #047857; /* Emerald-700 */
+    --primary-light: #d1fae5; /* Emerald-100 */
+    --secondary: #06b6d4; /* Cyan-500 - Exemplo se precisar de cor secundária */
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px; /* Ajusta o scroll para compensar o header fixo */
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Fonte Poppins como principal, com fallbacks */
+    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #374151; /* Gray-700 - Cor base do texto */
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.font-geist-mono {
-    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-    letter-spacing: -0.02em;
+/* H1 com peso maior */
+h1 {
+    font-weight: 700; /* Bold */
 }
+/* Outros Headers */
+h2, h3 {
+    font-weight: 600; /* Semibold */
+    color: #111827; /* Gray-900 */
+}
+h4 {
+    font-weight: 500; /* Medium */
+     color: #1f2937; /* Gray-800 */
+}
+
 
 /* Button Styles */
 .btn-primary {
@@ -22,65 +42,65 @@ body {
     justify-content: center;
     background-color: var(--primary);
     color: white;
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.375rem;
-    transition: all 0.2s;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-weight: 500; /* Medium */
+    padding: 0.75rem 1.5rem; /* Ajustar padding conforme necessidade */
+    border-radius: 0.375rem; /* 6px */
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .btn-primary:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:active {
     transform: translateY(0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .btn-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(4px);
-    color: white;
-    font-weight: 500;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.375rem;
-    transition: all 0.2s;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent; /* Ajustar se necessário */
+    color: #374151; /* Cor base, ajustar conforme contexto */
+    font-weight: 500; /* Medium */
+    padding: 0.75rem 1.5rem; /* Ajustar padding */
+    border-radius: 0.375rem; /* 6px */
+    border: 1px solid #d1d5db; /* Gray-300 */
+    transition: all 0.2s ease-in-out;
 }
-
+/* Exemplo de hover para botão secundário, ajustar cor */
 .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #f9fafb; /* Gray-50 */
+    border-color: #9ca3af; /* Gray-400 */
     transform: translateY(-1px);
 }
 
-.btn-secondary:active {
-    transform: translateY(0);
-}
 
 /* Form Element Styles */
 .form-input, .form-select, .form-textarea {
     width: 100%;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.375rem;
-    transition: all 0.2s;
-    font-size: 0.875rem;
+    padding: 0.6rem 0.8rem; /* Ajuste no padding */
+    border: 1px solid #d1d5db; /* Gray-300 */
+    border-radius: 0.375rem; /* 6px */
+    transition: all 0.2s ease-in-out;
+    font-size: 0.875rem; /* 14px */
+    background-color: white;
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); /* Sombra mais suave */
 }
 
-/* Smooth scrolling */
-html {
-    scroll-behavior: smooth;
+.form-input::placeholder, .form-textarea::placeholder {
+    color: #9ca3af; /* Gray-400 */
 }
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -88,14 +108,14 @@ html {
         padding-left: 1rem;
         padding-right: 1rem;
     }
-
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        justify-content: center;
-    }
+    /* Ajustar tamanho dos botões no mobile se necessário */
+    /* .btn-primary, .btn-secondary {
+        font-size: 0.875rem;
+        padding: 0.6rem 1.2rem;
+    } */
 }
 
-/* Animation effects */
+/* Animation effects (mantidos) */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -110,7 +130,7 @@ html {
     animation: countUp 0.5s ease-out forwards;
 }
 
-/* Custom element styling */
+/* Ajustes finos em tabelas (se usadas) */
 table {
     border-collapse: collapse;
     width: 100%;
@@ -118,29 +138,23 @@ table {
 
 th, td {
     text-align: left;
-    padding: 12px;
-    vertical-align: top; /* Alinha o conteúdo no topo das células da tabela */
+    padding: 12px 16px; /* Ajuste no padding */
+    vertical-align: top;
 }
 
 th {
-    background-color: #f9fafb;
-    font-weight: 500;
+    background-color: #f9fafb; /* Gray-50 */
+    font-weight: 500; /* Medium */
+    color: #4b5563; /* Gray-600 */
+    font-size: 0.75rem; /* 12px */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-/* Removido o hover da linha inteira para melhor leitura da CSD/SWOT */
-/* tr:hover {
-    background-color: #f9fafb;
-} */
+/* Remove hover de linha para evitar distração */
+/* tr:hover { background-color: #f9fafb; } */
 
-/* Adicionado espaçamento vertical dentro das células da CSD para melhor legibilidade */
-td ul {
-    margin-bottom: 0; /* Remove margem inferior padrão da lista */
-}
-
-td li {
-    margin-bottom: 0.25rem; /* Adiciona pequeno espaçamento entre itens da lista */
-}
-
-td li:last-child {
-    margin-bottom: 0; /* Remove espaçamento do último item */
-}
+/* Espaçamento interno de listas em células */
+td ul { margin-bottom: 0; }
+td li { margin-bottom: 0.25rem; }
+td li:last-child { margin-bottom: 0; }
