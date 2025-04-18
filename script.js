@@ -2,16 +2,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle
     const menuToggle = document.getElementById('menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    const body = document.body; // Para travar scroll
 
     menuToggle.addEventListener('click', function() {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
         mobileMenu.classList.toggle('hidden');
+        // Trava/destrava o scroll do body quando o menu mobile abre/fecha
+        body.style.overflow = mobileMenu.classList.contains('hidden') ? '' : 'hidden';
     });
 
     // Close mobile menu when clicking a nav link
     const mobileLinks = mobileMenu.querySelectorAll('a');
     mobileLinks.forEach(link => {
         link.addEventListener('click', function() {
+            menuToggle.setAttribute('aria-expanded', 'false');
             mobileMenu.classList.add('hidden');
+            body.style.overflow = ''; // Libera scroll
         });
     });
 
@@ -19,48 +26,66 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
     const successModal = document.getElementById('success-modal');
     const closeModal = document.getElementById('close-modal');
+    const modalOverlay = successModal ? successModal.querySelector('.absolute.inset-0') : null;
 
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    if (contactForm && successModal && closeModal && modalOverlay) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulação de envio
+            console.log('Form submitted');
+            // Exibir modal de sucesso
+            successModal.classList.remove('hidden');
+            body.style.overflow = 'hidden'; // Trava scroll ao abrir modal
+        });
 
-        // Normalmente, aqui seria enviado para um servidor.
-        // Apenas exibindo a mensagem de sucesso.
-        successModal.classList.remove('hidden');
-        contactForm.reset();
-    });
-
-    closeModal.addEventListener('click', function() {
-        successModal.classList.add('hidden');
-    });
-
-    // Close modal when clicking outside
-    successModal.addEventListener('click', function(e) {
-        if (e.target === successModal) {
+        closeModal.addEventListener('click', function() {
             successModal.classList.add('hidden');
-        }
-    });
+            body.style.overflow = ''; // Libera scroll
+        });
 
-    // Animated Counters
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                counterObserver.disconnect(); // Animar apenas uma vez
+        // Fechar modal clicando fora (no overlay)
+        modalOverlay.addEventListener('click', function() {
+            successModal.classList.add('hidden');
+            body.style.overflow = ''; // Libera scroll
+        });
+
+        // Fechar modal com tecla ESC
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !successModal.classList.contains('hidden')) {
+                successModal.classList.add('hidden');
+                body.style.overflow = ''; // Libera scroll
             }
         });
-    }, { threshold: 0.3 }); // Iniciar animação um pouco antes de 50%
+    } else {
+        console.warn('Elementos do formulário ou modal não encontrados.');
+    }
 
-    const impactSection = document.getElementById('impact'); // A seção que dispara a animação
-    if (impactSection) {
-        counterObserver.observe(impactSection);
+
+    // Animated Counters
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Quando a seção de estatísticas entra na visão
+            if (entry.isIntersecting) {
+                animateCounters();
+                observer.unobserve(entry.target); // Anima apenas uma vez
+            }
+        });
+    }, { threshold: 0.3 }); // Inicia quando 30% da seção está visível
+
+    const impactStatsSection = document.getElementById('impact-stats');
+    if (impactStatsSection) {
+        counterObserver.observe(impactStatsSection);
+    } else {
+         console.warn('Seção de estatísticas com ID "impact-stats" não encontrada.');
     }
 
     function animateCounters() {
-        // *** VALORES DE EXEMPLO - SUBSTITUIR PELOS REAIS ***
-        animateCounter('counter-jovens', 500, 1500);        // Ex: 500 jovens impactados
-        animateCounter('counter-satisfacao', 85, 1500);    // Ex: 85% de satisfação
-        animateCounter('counter-projetos', 45, 2000);      // Ex: 45 projetos iniciados
-        animateCounter('counter-parcerias', 20, 1500);     // Ex: 20 parcerias ativas
+        // *** VALORES DE EXEMPLO - SUBSTITUIR PELOS REAIS OU METAS ***
+        // Certifique-se que os IDs no HTML correspondem aqui
+        animateCounter('counter-jovens', 750, 2000);      // Ex: 750 jovens engajados
+        animateCounter('counter-projetos', 60, 2000);     // Ex: 60 iniciativas lançadas
+        animateCounter('counter-mentoria', 1200, 2500);   // Ex: 1200 horas de mentoria
+        animateCounter('counter-parcerias', 30, 2000);    // Ex: 30 parceiros conectados
     }
 
     function animateCounter(id, target, duration) {
@@ -78,63 +103,62 @@ document.addEventListener('DOMContentLoaded', function() {
             const progress = Math.min(1, elapsedTime / duration); // Garante que não passe de 1
 
             // Ease-out function (desacelera no final)
-            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            const easedProgress = 1 - Math.pow(1 - progress, 4); // Expoente 4 para desaceleração mais forte
             let current = start + (target - start) * easedProgress;
-
             const value = Math.floor(current);
 
-            // Tratamento especial para porcentagem (se houver span dentro)
-            const span = element.querySelector('span');
-            if (span) {
-                 span.textContent = value;
-            } else {
-                element.textContent = formatNumber(value); // Formata números grandes se necessário
-            }
+            element.textContent = formatNumber(value); // Formata números grandes
 
             if (progress < 1) {
                 requestAnimationFrame(updateCounter);
             } else {
-                 // Garante que o valor final seja exato
-                 if (span) {
-                    span.textContent = target;
-                 } else {
-                    element.textContent = formatNumber(target);
-                 }
+                 element.textContent = formatNumber(target); // Garante valor final exato
             }
         };
-
         requestAnimationFrame(updateCounter);
     }
 
-    // Função para formatar números grandes (mantida, caso algum contador precise)
+    // Função para formatar números grandes (com ponto)
     function formatNumber(num) {
-        // Formata apenas se for maior que 999
-        if (num > 999) {
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Usa ponto como separador de milhar
-        }
-        return num.toString();
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
-    // Smooth scrolling for anchor links (mantido do original)
+    // Smooth scrolling for anchor links (mantido e ajustado no CSS com scroll-padding-top)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
+            const href = this.getAttribute('href');
+            // Ignora links que são apenas '#'
+            if (href === '#') {
+                 e.preventDefault();
+                 return;
+            }
 
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
+            const targetElement = document.querySelector(href);
             if (targetElement) {
-                // Calcula o offset do header fixo
-                const headerOffset = document.querySelector('header').offsetHeight + 10; // Adiciona uma pequena margem
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    // block: 'start' // 'start' é o padrão, scroll-padding-top no CSS cuida do offset
                 });
+
+                 // Fecha menu mobile se estiver aberto e for um link de navegação
+                 if (!mobileMenu.classList.contains('hidden') && href !== '#') {
+                    menuToggle.click(); // Simula clique para fechar
+                 }
             }
         });
     });
+
+    // Pequeno efeito no scroll do header (adiciona sombra)
+    const header = document.querySelector('header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    }
+
 });
