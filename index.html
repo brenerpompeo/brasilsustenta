@@ -3,909 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Brasil Sustenta - Engajando a Juventude para o Impacto</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml"> <!-- Manter ou trocar favicon -->
+    <title>Brasil Sustenta - Transforme sua Paixão em Impacto Real</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <!-- Adiciona Google Fonts Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- CSS deve referenciar Poppins -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-[#fafafa] text-gray-900 font-sans overflow-x-hidden min-h-screen flex flex-col">
-    <header class="sticky top-0 bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50">
+<body class="bg-[#fafafa] text-gray-800 font-poppins overflow-x-hidden min-h-screen flex flex-col">
+    <header class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-200 z-50 shadow-sm">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <img src="logo.svg" alt="Brasil Sustenta Logo" class="h-8"> <!-- Manter ou trocar logo -->
-                <span class="text-lg font-semibold text-gray-900">Brasil Sustenta</span>
+                <img src="logo.svg" alt="Brasil Sustenta Logo" class="h-8">
+                <span class="text-xl font-semibold text-gray-900 tracking-tight">Brasil Sustenta</span>
             </div>
             <nav class="hidden md:flex space-x-6">
-                <a href="#overview" class="text-sm text-gray-700 hover:text-emerald-600 transition">Visão Geral</a>
-                <a href="#analysis" class="text-sm text-gray-700 hover:text-emerald-600 transition">Análises</a>
-                <a href="#strategy" class="text-sm text-gray-700 hover:text-emerald-600 transition">Modelo</a>
-                <a href="#impact" class="text-sm text-gray-700 hover:text-emerald-600 transition">Programas</a>
-                <a href="#contact" class="text-sm text-gray-700 hover:text-emerald-600 transition">Participe</a>
+                <!-- Menu Atualizado -->
+                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Sobre Nós</a>
+                <a href="#initiatives" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Iniciativas</a>
+                <a href="#benefits" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Benefícios</a>
+                <a href="#events" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Eventos</a>
+                <a href="#blog" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Blog</a>
+                <a href="#join" class="text-sm font-medium text-gray-600 hover:text-emerald-600 transition">Faça Parte</a>
             </nav>
             <button id="menu-toggle" class="md:hidden p-2 rounded-md hover:bg-gray-100">
-                <i data-lucide="menu" class="w-5 h-5"></i>
+                <i data-lucide="menu" class="w-5 h-5 text-gray-700"></i>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden px-4 py-3 border-t border-gray-200 bg-white">
-            <nav class="flex flex-col space-y-3">
-                <a href="#overview" class="text-sm text-gray-700 hover:text-emerald-600 transition">Visão Geral</a>
-                <a href="#analysis" class="text-sm text-gray-700 hover:text-emerald-600 transition">Análises</a>
-                <a href="#strategy" class="text-sm text-gray-700 hover:text-emerald-600 transition">Modelo</a>
-                <a href="#impact" class="text-sm text-gray-700 hover:text-emerald-600 transition">Programas</a>
-                <a href="#contact" class="text-sm text-gray-700 hover:text-emerald-600 transition">Participe</a>
+        <div id="mobile-menu" class="hidden md:hidden px-4 py-4 border-t border-gray-200 bg-white shadow-lg">
+            <nav class="flex flex-col space-y-4">
+                <!-- Menu Mobile Atualizado -->
+                <a href="#about" class="text-base text-gray-700 hover:text-emerald-600 transition block px-2 py-1 rounded hover:bg-gray-50">Sobre Nós</a>
+                <a href="#initiatives" class="text-base text-gray-700 hover:text-emerald-600 transition block px-2 py-1 rounded hover:bg-gray-50">Iniciativas</a>
+                <a href="#benefits" class="text-base text-gray-700 hover:text-emerald-600 transition block px-2 py-1 rounded hover:bg-gray-50">Benefícios</a>
+                <a href="#events" class="text-base text-gray-700 hover:text-emerald-600 transition block px-2 py-1 rounded hover:bg-gray-50">Eventos</a>
+                <a href="#blog" class="text-base text-gray-700 hover:text-emerald-600 transition block px-2 py-1 rounded hover:bg-gray-50">Blog</a>
+                <a href="#join" class="text-base text-gray-700 hover:text-emerald-600 transition block px-2 py-1 rounded hover:bg-gray-50">Faça Parte</a>
             </nav>
         </div>
     </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="relative overflow-hidden bg-gradient-to-br from-emerald-700 to-green-600 text-white">
-             <!-- Nota: Removida a imagem de fundo específica da Amazônia ou adaptar com uma imagem mais genérica/abstrata -->
-            <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
-                <div class="max-w-3xl">
-                    <div class="inline-block px-3 py-1 mb-4 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full">
-                        Alinhados aos ODS da ONU
+        <section class="relative overflow-hidden bg-gradient-to-br from-emerald-600 to-green-500 text-white pt-24 pb-20 md:pt-32 md:pb-28">
+            <div class="container mx-auto px-4 relative z-10 text-center">
+                <div class="max-w-3xl mx-auto">
+                    <div class="inline-block px-4 py-1.5 mb-5 text-sm font-medium bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                        Jovens. Criatividade. Impacto Sustentável.
                     </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">Impulsionando a Juventude Criativa para um Futuro Sustentável</h1>
-                    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl">
-                        Somos uma Impact Venture Builder que investe em jovens talentos (18-35 anos) na fase pré-ideia e pré-equipe, capacitando-os para criar soluções de impacto positivo.
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight !font-poppins">Transforme sua Paixão em Impacto Real</h1>
+                    <p class="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                        Você tem entre 18 e 35 anos e quer mudar o mundo? A Brasil Sustenta te conecta, capacita e impulsiona para criar soluções inovadoras para um futuro mais sustentável.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="#contact" class="btn-primary">
-                            Faça Parte
-                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#join" class="btn-primary text-base px-8 py-3">
+                            Quero Fazer Parte
+                            <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
                         </a>
-                        <a href="#overview" class="btn-secondary">
-                            Saiba Mais
-                            <i data-lucide="chevron-down" class="w-4 h-4 ml-1"></i>
+                        <a href="#about" class="btn-secondary text-base px-8 py-3 bg-white/20 hover:bg-white/30 border-none">
+                            Descubra Como
+                            <i data-lucide="chevron-down" class="w-5 h-5 ml-2"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            <!-- Pode adicionar uma imagem genérica aqui se desejar -->
-             <!-- <img src="hero-image-generic.svg" alt="Ilustração Jovem e Sustentabilidade" class="absolute right-0 bottom-0 w-1/2 md:w-5/12 opacity-20 md:opacity-30"> -->
+             <!-- Elemento gráfico sutil (opcional) -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-30 z-0"></div>
         </section>
 
-        <!-- Overview Section -->
-        <section id="overview" class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Nossa Proposta: Potencializando Jovens Agentes de Mudança</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Engajamos a juventude criativa brasileira para gerar impacto positivo, oferecendo conhecimento, experiência, metodologia e infraestrutura para um propósito comum.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Card 1: Mentoria e Metodologia -->
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 hover:shadow-md transition">
-                        <div class="bg-emerald-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                            <i data-lucide="lightbulb" class="w-6 h-6 text-emerald-700"></i>
-                        </div>
-                        <h3 class="font-semibold text-lg mb-2">Mentoria e Metodologia</h3>
-                        <p class="text-gray-600 text-sm">Acesso ao Laboratório de Criação e especialistas para planejar e executar projetos desde a concepção até a implementação.</p>
+        <!-- Section: O Potencial Jovem (Stats Simplificado) -->
+        <section class="py-16 bg-emerald-50">
+             <div class="container mx-auto px-4">
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="border-r border-emerald-200 md:last:border-r-0 px-4">
+                        <h3 class="text-4xl font-bold text-emerald-700 mb-2">53 Mi+</h3>
+                        <p class="text-gray-600">Jovens (18-35) no Brasil com potencial transformador.</p>
+                        <p class="text-xs text-gray-500 mt-1">(IBGE, 2025)</p>
                     </div>
-
-                    <!-- Card 2: Capacitação e Carreira -->
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 hover:shadow-md transition">
-                        <div class="bg-emerald-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                            <i data-lucide="briefcase" class="w-6 h-6 text-emerald-700"></i>
-                        </div>
-                        <h3 class="font-semibold text-lg mb-2">Capacitação e Carreira</h3>
-                        <p class="text-gray-600 text-sm">Programa Brasil Sustenta Líderes: capacitação, certificação e inserção no mercado com desenvolvimento de habilidades técnicas e comportamentais.</p>
+                    <div class="border-r border-emerald-200 md:last:border-r-0 px-4">
+                        <h3 class="text-4xl font-bold text-emerald-700 mb-2">88%</h3>
+                        <p class="text-gray-600">Preferem trabalhar em empresas com ações sustentáveis.</p>
+                         <p class="text-xs text-gray-500 mt-1">(Accenture, 2022)</p>
                     </div>
-
-                    <!-- Card 3: Conteúdo e Inspiração -->
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 hover:shadow-md transition">
-                        <div class="bg-emerald-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                             <i data-lucide="play-circle" class="w-6 h-6 text-emerald-700"></i>
-                        </div>
-                        <h3 class="font-semibold text-lg mb-2">Conteúdo e Inspiração</h3>
-                        <p class="text-gray-600 text-sm">Brasil Sustenta Play: Acesso exclusivo a masterclasses, documentários, entrevistas e podcasts sobre sustentabilidade, criatividade e cultura.</p>
+                    <div class="px-4">
+                        <h3 class="text-4xl font-bold text-emerald-700 mb-2">+98%</h3>
+                        <p class="text-gray-600">Aumento de vagas em ESG, buscando talentos como você.</p>
+                        <p class="text-xs text-gray-500 mt-1">(GlobalData, 2023)</p>
                     </div>
-
-                     <!-- Card 4: Conexão e Networking -->
-                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-100 hover:shadow-md transition">
-                        <div class="bg-emerald-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                            <i data-lucide="users" class="w-6 h-6 text-emerald-700"></i>
-                        </div>
-                        <h3 class="font-semibold text-lg mb-2">Conexão e Networking</h3>
-                        <p class="text-gray-600 text-sm">Brasil Sustenta Campus e rede ativa: Conecte-se a profissionais, empresas e universidades para impulsionar sua trajetória.</p>
-                    </div>
-                </div>
-
-                <!-- Market Potential / Stats Block -->
-                <div class="mt-12 bg-gray-50 border border-gray-100 rounded-lg p-6">
-                    <div class="flex flex-col md:flex-row gap-6 items-center">
-                        <div class="md:w-2/3">
-                            <h3 class="text-lg font-semibold mb-2">O Potencial da Juventude Brasileira</h3>
-                            <p class="text-gray-600 mb-4">Jovens entre 18 e 35 anos são essenciais para a sustentabilidade. Engajados com ESG, buscam capacitação e priorizam empresas com propósito.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="inline-block px-3 py-1 text-xs font-medium bg-emerald-100 text-emerald-700 rounded-full">53,2 Milhões de Jovens (18-35)</span>
-                                <span class="inline-block px-3 py-1 text-xs font-medium bg-emerald-100 text-emerald-700 rounded-full">+88% Preferem Empresas Sustentáveis</span>
-                                <span class="inline-block px-3 py-1 text-xs font-medium bg-emerald-100 text-emerald-700 rounded-full">+98% Vagas em ESG (Último Ano)</span>
-                            </div>
-                        </div>
-                        <div class="md:w-1/3 bg-emerald-50 p-4 rounded-lg border border-emerald-100 text-center">
-                             <i data-lucide="trending-up" class="w-10 h-10 text-emerald-600 mx-auto mb-2"></i>
-                            <p class="text-lg font-semibold text-emerald-700">Um Mercado em Ascensão</p>
-                            <p class="text-sm text-gray-600 mt-1">Conectamos talento jovem com a crescente demanda por soluções e profissionais de sustentabilidade.</p>
-                        </div>
-                    </div>
-                </div>
+                 </div>
             </div>
         </section>
 
-        <!-- Analysis Section -->
-        <section id="analysis" class="py-16 bg-gray-50">
+
+        <!-- Section: Sobre Nós -->
+        <section id="about" class="py-20 bg-white">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Análises Estratégicas</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Utilizando metodologias de análise de negócios para guiar o desenvolvimento e crescimento da Brasil Sustenta.</p>
-                </div>
-
-                <!-- 5W2H Framework -->
-                <div class="mb-12 bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-                    <div class="p-5 border-b border-gray-200 bg-gray-50">
-                        <h3 class="text-xl font-semibold">Matriz 5W2H</h3>
-                    </div>
-                    <div class="p-5">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <h4 class="font-semibold text-emerald-700 mb-2">What? (O quê?)</h4>
-                                <p class="text-gray-700 mb-4">Operar uma Impact Venture Builder que capacita, conecta e apoia jovens (18-35) na criação de iniciativas de impacto socioambiental alinhadas aos ODS.</p>
-
-                                <h4 class="font-semibold text-emerald-700 mb-2">Who? (Quem?)</h4>
-                                <p class="text-gray-700 mb-4">Jovens (18-35), equipe Brasil Sustenta, rede de parceiros (mentores, empresas, universidades), stakeholders de impacto.</p>
-
-                                <h4 class="font-semibold text-emerald-700 mb-2">Where? (Onde?)</h4>
-                                <p class="text-gray-700 mb-4">Brasil, com atuação digital (plataformas) e físico/híbrida (eventos Campus).</p>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-emerald-700 mb-2">When? (Quando?)</h4>
-                                <p class="text-gray-700 mb-4">Operação contínua, com ciclos constantes de atração, formação, desenvolvimento e capacitação.</p>
-
-                                <h4 class="font-semibold text-emerald-700 mb-2">Why? (Por quê?)</h4>
-                                <p class="text-gray-700 mb-4">Para alavancar o potencial jovem para a sustentabilidade, suprir demanda ESG, promover inovação e empoderar agentes de transformação.</p>
-
-                                <h4 class="font-semibold text-emerald-700 mb-2">How? (Como?)</h4>
-                                <p class="text-gray-700 mb-4">Através de Squads de Impacto, programas (Líderes, Campus, Play), mentoria, rede de contatos e infraestrutura de apoio.</p>
-
-                                <h4 class="font-semibold text-emerald-700 mb-2">How Much? (Quanto custa?)</h4>
-                                <p class="text-gray-700">Requer investimento em capital humano, tecnologia, conteúdo, eventos e marketing. Modelo de receita a ser detalhado/validado (não explícito na descrição inicial).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SWOT Analysis -->
-                <div class="mb-12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-                            <div class="p-5 border-b border-gray-200 bg-gray-50">
-                                <h3 class="text-xl font-semibold">Análise SWOT</h3>
-                            </div>
-                            <div class="p-5">
-                                <div class="grid grid-cols-1 gap-6">
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Forças (Strengths)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Missão clara e alinhada aos ODS/ESG</li>
-                                            <li>Modelo Venture Builder inovador (foco pré-ideia)</li>
-                                            <li>Público-alvo estratégico e engajado (jovens 18-35)</li>
-                                            <li>Proposta de valor abrangente (mentoria, capacitação, rede)</li>
-                                            <li>Portfólio de programas diversificado (Campus, Líderes, Play)</li>
-                                            <li>Potencial de rede de contatos qualificada</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Fraquezas (Weaknesses)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Dependência da atração de talentos qualificados</li>
-                                            <li>Complexidade operacional (múltiplos programas/squads)</li>
-                                            <li>Modelo de receita/sustentabilidade não detalhado</li>
-                                            <li>Qualidade da rede de parceiros é crucial</li>
-                                            <li>Desafio na mensuração de impacto de longo prazo</li>
-                                            <li>Escalabilidade do modelo de acompanhamento próximo</li>
-                                            <li>Marca potencialmente em construção</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Oportunidades (Opportunities)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Grande mercado jovem (53.2M)</li>
-                                            <li>Alta demanda por sustentabilidade e ESG</li>
-                                            <li>Crescimento do ecossistema de impacto e investimento</li>
-                                            <li>Potencial de parcerias corporativas (inovação, talentos)</li>
-                                            <li>Expansão via plataformas digitais</li>
-                                            <li>Acesso a editais e fundos de fomento</li>
-                                            <li>Demanda por capacitação prática em sustentabilidade</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Ameaças (Threats)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Concorrência (outras incubadoras, programas, cursos)</li>
-                                            <li>Instabilidade econômica afetando parceiros/mercado</li>
-                                            <li>Risco de "impact washing" ou saturação do tema ESG</li>
-                                            <li>Dificuldade em reter talentos após capacitação</li>
-                                            <li>Mudanças nas prioridades ou engajamento dos jovens</li>
-                                            <li>Dependência de parceiros chave</li>
-                                            <li>Mudanças regulatórias (incentivos, ESG)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Cross SWOT Strategies -->
-                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-                            <div class="p-5 border-b border-gray-200 bg-gray-50">
-                                <h3 class="text-xl font-semibold">Estratégias Cruzadas (TOWS)</h3>
-                            </div>
-                            <div class="p-5">
-                                <div class="grid grid-cols-1 gap-6">
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Estratégias FO (Forças + Oportunidades)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Alavancar modelo e missão para liderar nicho jovem/ESG.</li>
-                                            <li>Expandir parcerias corporativas usando proposta de valor.</li>
-                                            <li>Escalar programas via plataformas digitais.</li>
-                                            <li>Atrair investimento de impacto destacando ODS.</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Estratégias WO (Fraquezas + Oportunidades)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Validar modelo de receita explorando demanda ESG.</li>
-                                            <li>Fortalecer rede atraindo parceiros com base na demanda.</li>
-                                            <li>Desenvolver métricas de impacto claras para mercado.</li>
-                                            <li>Otimizar operações com tecnologia para escalar.</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Estratégias ST (Forças + Ameaças)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Diferenciar-se pelo nicho pré-ideia e abrangência.</li>
-                                            <li>Construir lealdade via comunidade (Campus, Play).</li>
-                                            <li>Comunicar impacto real para combater "impact washing".</li>
-                                            <li>Diversificar parceiros para reduzir dependência/risco.</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-emerald-700 mb-2">Estratégias WT (Fraquezas + Ameaças)</h4>
-                                        <ul class="list-disc pl-5 text-gray-700 space-y-1 text-sm">
-                                            <li>Focar na qualidade da seleção e acompanhamento.</li>
-                                            <li>Buscar fontes de receita diversificadas.</li>
-                                            <li>Monitorar mercado e concorrência continuamente.</li>
-                                            <li>Construir parcerias estratégicas de longo prazo.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CSD Matrix -->
-                <div class="mb-12 bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-                    <div class="p-5 border-b border-gray-200 bg-gray-50">
-                        <!-- CORREÇÃO IMPORTANTE: Título da Matriz CSD ajustado para o padrão correto -->
-                        <h3 class="text-xl font-semibold">Matriz CSD (Certezas, Suposições, Dúvidas)</h3>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <!-- CORREÇÃO IMPORTANTE: Cabeçalhos ajustados -->
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Certezas (C)</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suposições (S)</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dúvidas (D)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <!-- CORREÇÃO IMPORTANTE: Conteúdo da Matriz CSD substituído -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-normal align-top">
-                                        <ul class="list-disc pl-5 text-sm text-gray-900 space-y-1">
-                                            <li>É uma Impact Venture Builder</li>
-                                            <li>Foco em jovens (18-35) no Brasil</li>
-                                            <li>Alinhada aos ODS</li>
-                                            <li>Atua na fase pré-ideia/pré-equipe</li>
-                                            <li>Oferece conhecimento, metodologia, rede, etc.</li>
-                                            <li>Utiliza Squads de Impacto</li>
-                                            <li>Possui programas: Campus, Líderes, Play</li>
-                                        </ul>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-normal align-top">
-                                        <ul class="list-disc pl-5 text-sm text-gray-900 space-y-1">
-                                            <li>Existe equipe interna qualificada</li>
-                                            <li>Rede de contatos é robusta e ativa</li>
-                                            <li>"Investimento" é primariamente capital social/humano</li>
-                                            <li>Plataformas digitais são funcionais e engajadoras</li>
-                                            <li>Metodologia dos Squads é eficaz</li>
-                                            <li>Processo para cofundador é claro</li>
-                                            <li>Já existem casos de sucesso iniciais</li>
-                                        </ul>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-normal align-top">
-                                        <ul class="list-disc pl-5 text-sm text-gray-900 space-y-1">
-                                            <li>Qual o modelo de negócio/receita detalhado?</li>
-                                            <li>Quais os critérios de seleção dos jovens?</li>
-                                            <li>Como o impacto é medido e reportado (KPIs)?</li>
-                                            <li>Qual a estrutura societária/governança?</li>
-                                            <li>Quem são os concorrentes diretos?</li>
-                                            <li>Qual o tamanho atual da operação?</li>
-                                            <li>Quais recursos estão disponíveis?</li>
-                                            <li>Como funciona a PI dos projetos?</li>
-                                            <li>Qual a visão de longo prazo/escala?</li>
-                                            <li>Quais os maiores desafios operacionais atuais?</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <!-- Adicionar mais linhas se necessário para detalhar mais pontos -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Business Model Canvas Section -->
-        <section id="strategy" class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Nosso Modelo Estratégico</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Nossa abordagem para criar valor e impacto sustentável através do engajamento jovem.</p>
-                </div>
-
-                <div class="bg-gray-50 rounded-lg border border-gray-200 shadow-sm overflow-hidden mb-12">
-                    <div class="p-5 border-b border-gray-200 bg-gray-100">
-                        <h3 class="text-xl font-semibold">Canvas do Modelo de Negócios (Adaptado)</h3>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-gray-200">
-                        <!-- Key Partners -->
-                        <div class="bg-white p-4">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">PARCEIROS CHAVE</h4>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li>• Universidades e Instituições de Ensino</li>
-                                <li>• Empresas (busca de talentos/inovação ESG)</li>
-                                <li>• Mentores e Especialistas</li>
-                                <li>• Organizações do Terceiro Setor</li>
-                                <li>• Investidores de Impacto (potencial)</li>
-                                <li>• Plataformas de Conteúdo</li>
-                            </ul>
-                        </div>
-
-                        <!-- Key Activities -->
-                        <div class="bg-white p-4">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">ATIVIDADES CHAVE</h4>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li>• Atração e Seleção de Jovens</li>
-                                <li>• Formação de Squads de Impacto</li>
-                                <li>• Desenvolvimento de Metodologia</li>
-                                <li>• Mentoria e Acompanhamento</li>
-                                <li>• Capacitação (Programa Líderes)</li>
-                                <li>• Curadoria e Produção de Conteúdo (Play)</li>
-                                <li>• Gestão de Comunidade e Eventos (Campus)</li>
-                                <li>• Construção e Gestão da Rede</li>
-                            </ul>
-                        </div>
-
-                        <!-- Value Propositions -->
-                        <div class="bg-white p-4 row-span-2">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">PROPOSTAS DE VALOR</h4>
-                            <ul class="text-sm text-gray-700 space-y-1 mb-4">
-                                <li class="font-medium text-emerald-700">Para Jovens:</li>
-                                <li>• Desenvolvimento de habilidades (técnicas/soft)</li>
-                                <li>• Experiência prática em projetos de impacto</li>
-                                <li>• Acesso a rede qualificada (mentores, empresas)</li>
-                                <li>• Oportunidade de co-criar soluções relevantes</li>
-                                <li>• Conteúdo exclusivo sobre sustentabilidade/carreira</li>
-                                <li>• Senso de propósito e comunidade</li>
-                            </ul>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li class="font-medium text-emerald-700">Para Parceiros (Empresas/Univ):</li>
-                                <li>• Acesso a talentos engajados com ESG</li>
-                                <li>• Fonte de inovação e soluções sustentáveis</li>
-                                <li>• Oportunidade de investimento/apoio a projetos</li>
-                                <li>• Engajamento com a pauta de sustentabilidade</li>
-                            </ul>
-                        </div>
-
-                        <!-- Key Resources -->
-                        <div class="bg-white p-4">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">RECURSOS CHAVE</h4>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li>• Equipe Interna</li>
-                                <li>• Rede de Mentores e Parceiros</li>
-                                <li>• Metodologia própria</li>
-                                <li>• Plataformas Digitais (Play, Comunidade)</li>
-                                <li>• Conteúdo Exclusivo</li>
-                                <li>• Marca e Reputação</li>
-                                <li>• Infraestrutura (física/digital)</li>
-                                <li>• Capital financeiro (próprio/parceiros)</li>
-                            </ul>
-                        </div>
-
-                        <!-- Customer Relationships & Channels -->
-                        <div class="bg-white p-4">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">RELACIONAMENTO & CANAIS</h4>
-                            <ul class="text-sm text-gray-700 space-y-1 mb-2">
-                                <li class="font-medium text-emerald-700">Relacionamento:</li>
-                                <li>• Mentoria personalizada</li>
-                                <li>• Interação em comunidade online/eventos</li>
-                                <li>• Co-criação nos Squads</li>
-                                <li>• Suporte contínuo</li>
-                            </ul>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li class="font-medium text-emerald-700">Canais:</li>
-                                <li>• Website e Redes Sociais</li>
-                                <li>• Eventos (Campus)</li>
-                                <li>• Plataforma Play</li>
-                                <li>• Parcerias com Universidades/Empresas</li>
-                                <li>• Programas de Indicação</li>
-                            </ul>
-                        </div>
-
-                        <!-- Cost Structure -->
-                        <div class="bg-white p-4 md:col-span-2">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">ESTRUTURA DE CUSTOS</h4>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li>• Pessoal (Equipe, Mentores)</li>
-                                <li>• Tecnologia (Plataformas, Ferramentas)</li>
-                                <li>• Produção de Conteúdo</li>
-                                <li>• Marketing e Aquisição</li>
-                                <li>• Eventos e Logística</li>
-                                <li>• Infraestrutura e Operações</li>
-                                <li>• Custos de Gestão e Administrativos</li>
-                            </ul>
-                        </div>
-
-                         <!-- Revenue Streams -->
-                        <div class="bg-white p-4 md:col-span-2">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">FONTES DE RECEITA (Potenciais)</h4>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li>• Taxas de Parceria (Empresas, Universidades)</li>
-                                <li>• Projetos customizados para parceiros</li>
-                                <li>• Patrocínio de Programas/Eventos</li>
-                                <li>• Serviços de consultoria/capacitação ESG</li>
-                                <li>• Taxas de acesso premium (Play?)</li>
-                                <li>• Equity/Revenue share de projetos incubados (modelo VC)</li>
-                                <li>• Doações / Fomento / Editais</li>
-                                <li>*Nota: Modelo exato a ser definido/validado*</li>
-                            </ul>
-                        </div>
-
-
-                        <!-- Customer Segments -->
-                        <div class="bg-white p-4">
-                            <h4 class="font-semibold text-sm text-gray-500 mb-2">SEGMENTOS DE CLIENTES / BENEFICIÁRIOS</h4>
-                            <ul class="text-sm text-gray-700 space-y-1">
-                                <li>• Jovens Brasileiros (18-35 anos) com interesse em impacto/sustentabilidade</li>
-                                <li>• Empresas buscando talentos ESG, inovação e projetos de impacto</li>
-                                <li>• Universidades e Instituições de Ensino</li>
-                                <li>• Mentores e Profissionais experientes</li>
-                                <li>• Investidores de Impacto</li>
-                                <li>• Organizações do Terceiro Setor</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- KPIs & OKRs -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-gray-50 rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-                        <div class="p-5 border-b border-gray-200 bg-gray-100">
-                            <h3 class="text-xl font-semibold">Indicadores Chave de Desempenho (KPIs)</h3>
-                        </div>
-                        <div class="p-5">
-                            <div class="space-y-4">
-                                <div class="border-b border-gray-100 pb-3">
-                                    <p class="text-sm text-emerald-700 font-semibold">Número de Jovens Ativos nos Programas</p>
-                                    <p class="text-xs text-gray-500">Categoria: Engajamento | Frequência: Mensal/Trimestral</p>
-                                    <p class="text-sm text-gray-700 mt-1">Mede o alcance e a participação nos programas.</p>
-                                </div>
-                                <div class="border-b border-gray-100 pb-3">
-                                    <p class="text-sm text-emerald-700 font-semibold">Número de Projetos de Impacto Iniciados/Desenvolvidos</p>
-                                    <p class="text-xs text-gray-500">Categoria: Impacto | Frequência: Trimestral</p>
-                                    <p class="text-sm text-gray-700 mt-1">Quantifica a geração de novas iniciativas.</p>
-                                </div>
-                                <div class="border-b border-gray-100 pb-3">
-                                    <p class="text-sm text-emerald-700 font-semibold">Nível de Satisfação dos Participantes (NPS/Pesquisa)</p>
-                                    <p class="text-xs text-gray-500">Categoria: Qualidade | Frequência: Semestral</p>
-                                    <p class="text-sm text-gray-700 mt-1">Avalia a qualidade percebida dos programas e suporte.</p>
-                                </div>
-                                <div class="border-b border-gray-100 pb-3">
-                                    <p class="text-sm text-emerald-700 font-semibold">Número de Parcerias Estratégicas Ativas</p>
-                                    <p class="text-xs text-gray-500">Categoria: Rede | Frequência: Trimestral</p>
-                                    <p class="text-sm text-gray-700 mt-1">Monitora a força e o crescimento da rede de apoio.</p>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-emerald-700 font-semibold">Taxa de Conversão (Interessados -> Participantes)</p>
-                                    <p class="text-xs text-gray-500">Categoria: Operacional | Frequência: Mensal</p>
-                                    <p class="text-sm text-gray-700 mt-1">Mede a eficiência do funil de atração e seleção.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-gray-50 rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-                        <div class="p-5 border-b border-gray-200 bg-gray-100">
-                            <h3 class="text-xl font-semibold">Objetivos e Resultados Chave (OKRs) - Exemplos</h3>
-                        </div>
-                        <div class="p-5">
-                            <div class="space-y-5">
-                                <div>
-                                    <p class="text-emerald-700 font-semibold">Objetivo 1: Expandir o Alcance e Engajamento</p>
-                                    <p class="text-sm text-gray-700 mb-2">Aumentar o número de jovens impactados e engajados pela Brasil Sustenta.</p>
-                                    <ul class="text-sm text-gray-600 space-y-1 pl-5 list-disc">
-                                        <li>KR1: Atingir 1.000 jovens ativos nos programas até [Data].</li>
-                                        <li>KR2: Aumentar em 30% o número de inscritos nos processos seletivos.</li>
-                                        <li>KR3: Realizar 12 eventos (Campus) com média de 50 participantes.</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <p class="text-emerald-700 font-semibold">Objetivo 2: Fortalecer a Geração de Impacto</p>
-                                    <p class="text-sm text-gray-700 mb-2">Aumentar a quantidade e qualidade dos projetos de impacto desenvolvidos.</p>
-                                    <ul class="text-sm text-gray-600 space-y-1 pl-5 list-disc">
-                                        <li>KR1: Lançar 15 novos Squads de Impacto no próximo ciclo.</li>
-                                        <li>KR2: Implementar sistema de avaliação de impacto inicial para 80% dos projetos.</li>
-                                        <li>KR3: Certificar 100 jovens através do programa Líderes.</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <p class="text-emerald-700 font-semibold">Objetivo 3: Garantir a Sustentabilidade da Operação</p>
-                                    <p class="text-sm text-gray-700 mb-2">Desenvolver e validar fontes de receita e parcerias estratégicas.</p>
-                                    <ul class="text-sm text-gray-600 space-y-1 pl-5 list-disc">
-                                        <li>KR1: Firmar 5 novas parcerias corporativas/institucionais.</li>
-                                        <li>KR2: Validar 1 modelo de receita recorrente com X clientes/parceiros.</li>
-                                        <li>KR3: Alcançar um NPS médio de 50+ entre os participantes.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Impact & Programs Section -->
-        <section id="impact" class="py-16 bg-gradient-to-br from-emerald-50 to-green-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Nossos Programas e Impacto</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Conheça nossas frentes de atuação e veja como estamos construindo um futuro mais sustentável.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                     <!-- Card Programa 1: Campus -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-                        <div class="h-48 bg-emerald-600 flex items-center justify-center">
-                            <i data-lucide="university" class="w-20 h-20 text-white opacity-50"></i>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-xs text-emerald-600 font-semibold uppercase mb-2">Comunidade e Eventos</p>
-                            <h3 class="text-lg font-semibold mb-2">Brasil Sustenta Campus</h3>
-                            <p class="text-gray-600 text-sm mb-4">Eventos, workshops e grupos de afinidade em empresas e universidades, promovendo criatividade, networking e desenvolvimento.</p>
-                             <!-- Progress Bar Placeholder -->
-                            <div class="flex items-center mt-2">
-                                <div class="h-2 w-full bg-gray-200 rounded-full">
-                                    <div class="h-2 bg-emerald-500 rounded-full" style="width: 70%"></div>
-                                </div>
-                                <span class="text-sm font-medium text-gray-700 ml-3">70%</span>
-                            </div>
-                            <p class="text-xs text-gray-500 mt-1">Eventos planejados realizados</p>
-                        </div>
-                    </div>
-
-                    <!-- Card Programa 2: Líderes -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-                        <div class="h-48 bg-emerald-700 flex items-center justify-center">
-                            <i data-lucide="award" class="w-20 h-20 text-white opacity-50"></i>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-xs text-emerald-600 font-semibold uppercase mb-2">Capacitação e Carreira</p>
-                            <h3 class="text-lg font-semibold mb-2">Brasil Sustenta Líderes</h3>
-                            <p class="text-gray-600 text-sm mb-4">Capacitamos, certificamos e inserimos jovens no mercado, desenvolvendo habilidades técnicas e comportamentais para os desafios modernos.</p>
-                            <!-- Progress Bar Placeholder -->
-                            <div class="flex items-center mt-2">
-                                <div class="h-2 w-full bg-gray-200 rounded-full">
-                                    <div class="h-2 bg-emerald-500 rounded-full" style="width: 85%"></div>
-                                </div>
-                                <span class="text-sm font-medium text-gray-700 ml-3">85%</span>
-                            </div>
-                            <p class="text-xs text-gray-500 mt-1">Meta de jovens certificados</p>
-                        </div>
-                    </div>
-
-                    <!-- Card Programa 3: Squads -->
-                    <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100">
-                        <div class="h-48 bg-emerald-800 flex items-center justify-center">
-                           <i data-lucide="rocket" class="w-20 h-20 text-white opacity-50"></i>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-xs text-emerald-600 font-semibold uppercase mb-2">Criação e Inovação</p>
-                            <h3 class="text-lg font-semibold mb-2">Squads de Impacto</h3>
-                            <p class="text-gray-600 text-sm mb-4">Grupos de jovens criam ou desenvolvem projetos de impacto com acompanhamento especializado, desde a ideia até a implementação.</p>
-                            <!-- Progress Bar Placeholder -->
-                            <div class="flex items-center mt-2">
-                                <div class="h-2 w-full bg-gray-200 rounded-full">
-                                    <div class="h-2 bg-emerald-500 rounded-full" style="width: 60%"></div>
-                                </div>
-                                <span class="text-sm font-medium text-gray-700 ml-3">60%</span>
-                            </div>
-                            <p class="text-xs text-gray-500 mt-1">Projetos em desenvolvimento ativo</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonials -->
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 p-6 mb-12">
-                    <h3 class="text-xl font-semibold mb-6 text-center">Vozes da Nossa Comunidade</h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                         <!-- Testimonial 1 (Placeholder) -->
-                        <div class="bg-gray-50 rounded-lg p-5 border border-gray-100">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <i data-lucide="user" class="w-6 h-6 text-emerald-700"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-medium">Jovem Participante</p>
-                                    <p class="text-xs text-gray-500">Membro de Squad de Impacto</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 text-sm italic">
-                                "A Brasil Sustenta me conectou com pessoas incríveis e me deu as ferramentas para tirar minha ideia do papel. Aprendi muito sobre gestão de projetos e sustentabilidade de uma forma super prática."
-                            </p>
-                        </div>
-
-                         <!-- Testimonial 2 (Placeholder) -->
-                        <div class="bg-gray-50 rounded-lg p-5 border border-gray-100">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                     <i data-lucide="user" class="w-6 h-6 text-emerald-700"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="font-medium">Jovem Líder</p>
-                                    <p class="text-xs text-gray-500">Participante do Programa Líderes</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-700 text-sm italic">
-                                "O programa Líderes foi um divisor de águas na minha carreira. Desenvolvi habilidades essenciais e ganhei confiança para buscar oportunidades no mercado de trabalho com foco em ESG."
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Impact Statistics (Adaptados) -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white rounded-lg p-6 text-center border border-gray-100 shadow-sm">
-                        <div class="text-emerald-600 mb-1">
-                            <i data-lucide="users" class="w-8 h-8 mx-auto"></i>
-                        </div>
-                        <!-- Atualizar ID para JS -->
-                        <p class="text-3xl font-bold text-gray-800" id="counter-jovens">0</p>
-                        <p class="text-sm text-gray-500">Jovens Impactados</p>
-                    </div>
-
-                    <div class="bg-white rounded-lg p-6 text-center border border-gray-100 shadow-sm">
-                        <div class="text-emerald-600 mb-1">
-                             <i data-lucide="smile" class="w-8 h-8 mx-auto"></i>
-                        </div>
-                         <!-- Atualizar ID para JS -->
-                        <p class="text-3xl font-bold text-gray-800" id="counter-satisfacao"><span>0</span>%</p>
-                        <p class="text-sm text-gray-500">Satisfação Média</p>
-                    </div>
-
-                    <div class="bg-white rounded-lg p-6 text-center border border-gray-100 shadow-sm">
-                        <div class="text-emerald-600 mb-1">
-                            <i data-lucide="rocket" class="w-8 h-8 mx-auto"></i>
-                        </div>
-                         <!-- Atualizar ID para JS -->
-                        <p class="text-3xl font-bold text-gray-800" id="counter-projetos">0</p>
-                        <p class="text-sm text-gray-500">Projetos Iniciados</p>
-                    </div>
-
-                    <div class="bg-white rounded-lg p-6 text-center border border-gray-100 shadow-sm">
-                        <div class="text-emerald-600 mb-1">
-                            <i data-lucide="handshake" class="w-8 h-8 mx-auto"></i>
-                        </div>
-                         <!-- Atualizar ID para JS -->
-                        <p class="text-3xl font-bold text-gray-800" id="counter-parcerias">0</p>
-                        <p class="text-sm text-gray-500">Parcerias Ativas</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section with Contact Form -->
-        <section id="contact" class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold mb-4">Junte-se a Nós</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Faça parte da nossa comunidade e lidere projetos com propósito. Seja você um jovem talento ou uma organização parceira, sua contribuição é fundamental.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <h3 class="text-xl font-semibold mb-4">Entre em Contato</h3>
-                        <form id="contact-form" class="space-y-4">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
-                                <input type="text" id="name" name="name" class="form-input w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring focus:ring-emerald-200" required>
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" id="email" name="email" class="form-input w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring focus:ring-emerald-200" required>
-                            </div>
-                            <div>
-                                <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Tenho interesse em</label>
-                                <select id="interest" name="interest" class="form-select w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring focus:ring-emerald-200">
-                                    <option value="jovem">Participar como Jovem</option>
-                                    <option value="parceria">Parceria Corporativa/Institucional</option>
-                                    <option value="mentoria">Ser Mentor(a)</option>
-                                    <option value="informacao">Mais Informações</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
-                                <textarea id="message" name="message" rows="4" class="form-textarea w-full rounded-md border-gray-300 shadow-sm focus:border-emerald-500 focus:ring focus:ring-emerald-200" required></textarea>
-                            </div>
-                            <div>
-                                <button type="submit" class="w-full btn-primary">
-                                    Enviar Mensagem
-                                </button>
-                            </div>
-                        </form>
+                        <span class="text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-2 block">Quem Somos</span>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-5 leading-tight">Acelerando o Futuro Sustentável, <br class="hidden md:block"> Impulsionado pela Juventude</h2>
+                        <p class="text-gray-600 mb-4 text-lg leading-relaxed">
+                            A Brasil Sustenta é mais que uma organização: somos uma **Impact Venture Builder**. Acreditamos no poder da juventude criativa e investimos em talentos como você, mesmo antes de ter uma equipe formada ou uma ideia totalmente definida.
+                        </p>
+                        <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                            Nossa missão é fornecer o **conhecimento, a mentoria, a rede de contatos e a infraestrutura** necessários para que jovens protagonistas transformem suas visões em projetos de impacto socioambiental real, alinhados aos Objetivos de Desenvolvimento Sustentável (ODS) da ONU.
+                        </p>
+                        <a href="#initiatives" class="text-emerald-700 font-semibold hover:text-emerald-800 inline-flex items-center group">
+                            Conheça nossas iniciativas
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <!-- Placeholder para imagem ou vídeo inspirador -->
+                        <div class="bg-gray-100 rounded-lg aspect-video flex items-center justify-center">
+                            <i data-lucide="lightbulb" class="w-16 h-16 text-gray-300"></i>
+                            <!-- <img src="imagem-sobre-nos.jpg" alt="Jovens colaborando em projetos" class="rounded-lg object-cover w-full h-full"> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Iniciativas (Squads, Laboratório, etc.) -->
+        <section id="initiatives" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-2 block">Como Fazemos</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Da Ideia ao Impacto Concreto</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">Nossa metodologia única acompanha você em cada etapa da jornada de criação.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Card 1: Squads de Impacto -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+                        <div class="bg-emerald-100 text-emerald-700 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i data-lucide="users-2" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-2">Squads de Impacto</h3>
+                        <p class="text-gray-600 text-sm">Formamos equipes multidisciplinares de jovens para co-criar ou desenvolver projetos inovadores, sejam eles ideias próprias ou desafios propostos por parceiros.</p>
                     </div>
 
+                    <!-- Card 2: Laboratório de Criação -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+                         <div class="bg-emerald-100 text-emerald-700 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i data-lucide="flask-conical" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-2">Laboratório de Criação</h3>
+                        <p class="text-gray-600 text-sm">Um ambiente de desenvolvimento intensivo onde sua ideia ganha forma, com acompanhamento especializado para validação, prototipagem e planejamento.</p>
+                    </div>
+
+                    <!-- Card 3: Planejamento e Execução -->
+                    <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300">
+                         <div class="bg-emerald-100 text-emerald-700 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i data-lucide="rocket" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-semibold text-xl mb-2">Planejamento e Execução</h3>
+                        <p class="text-gray-600 text-sm">Conte com nosso suporte e expertise para dimensionar seu projeto, definir estratégias de implementação e tirar sua iniciativa do papel com sucesso.</p>
+                    </div>
+                </div>
+                 <div class="text-center mt-12">
+                    <a href="#benefits" class="btn-primary px-6 py-2.5">
+                        Veja os Benefícios para Você
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Stakeholders e Benefícios -->
+        <section id="benefits" class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                 <div class="text-center mb-16">
+                    <span class="text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-2 block">Valor para Todos</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Impulsionando Carreiras e Negócios Sustentáveis</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">Oferecemos oportunidades únicas para jovens talentos e soluções estratégicas para organizações parceiras.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Coluna: Benefícios para Jovens -->
                     <div>
-                        <h3 class="text-xl font-semibold mb-4">Formas de Engajar</h3>
-                        <div class="space-y-4">
-                            <!-- Engage Card 1 -->
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="flex items-start">
-                                    <div class="bg-emerald-100 p-2 rounded-full flex-shrink-0">
-                                        <i data-lucide="user-plus" class="w-5 h-5 text-emerald-700"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="font-medium text-gray-900">Participe dos Programas</h4>
-                                        <p class="text-sm text-gray-600 mt-1">Inscreva-se para os Squads de Impacto, Programa Líderes ou eventos do Campus.</p>
-                                    </div>
+                        <h3 class="text-2xl font-semibold mb-6 flex items-center text-emerald-700">
+                            <i data-lucide="user-check" class="w-7 h-7 mr-3"></i>
+                            Para Jovens Talentos (18-35)
+                        </h3>
+                        <div class="space-y-5">
+                            <div class="flex items-start">
+                                <i data-lucide="graduation-cap" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Aprenda na Prática</h4>
+                                    <p class="text-gray-600">Desenvolva habilidades técnicas e comportamentais (soft skills) essenciais para o mercado moderno através do programa <span class="font-medium">Brasil Sustenta Líderes</span> e da experiência nos Squads.</p>
                                 </div>
                             </div>
-
-                            <!-- Engage Card 2 -->
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="flex items-start">
-                                    <div class="bg-emerald-100 p-2 rounded-full flex-shrink-0">
-                                        <i data-lucide="handshake" class="w-5 h-5 text-emerald-700"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="font-medium text-gray-900">Seja um Parceiro</h4>
-                                        <p class="text-sm text-gray-600 mt-1">Explore parcerias estratégicas para apoiar talentos, co-criar projetos ou investir em impacto.</p>
-                                    </div>
+                             <div class="flex items-start">
+                                <i data-lucide="network" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Conecte-se com o Ecossistema</h4>
+                                    <p class="text-gray-600">Amplie sua rede! Acesse mentores experientes, profissionais de referência, empresas inovadoras e outras mentes criativas em nossos eventos <span class="font-medium">Brasil Sustenta Campus</span>.</p>
                                 </div>
                             </div>
-
-                            <!-- Engage Card 3 -->
-                             <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="flex items-start">
-                                    <div class="bg-emerald-100 p-2 rounded-full flex-shrink-0">
-                                        <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-700"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="font-medium text-gray-900">Ofereça Mentoria</h4>
-                                        <p class="text-sm text-gray-600 mt-1">Compartilhe sua experiência e conhecimento como mentor(a) para nossos jovens.</p>
-                                    </div>
+                            <div class="flex items-start">
+                                <i data-lucide="lightbulb" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Crie e Inove com Propósito</h4>
+                                    <p class="text-gray-600">Tire suas ideias do papel ou junte-se a projetos desafiadores nos <span class="font-medium">Squads de Impacto</span>, recebendo suporte para criar soluções que fazem a diferença.</p>
                                 </div>
                             </div>
-
-                            <!-- Engage Card 4 -->
-                            <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                                <div class="flex items-start">
-                                    <div class="bg-emerald-100 p-2 rounded-full flex-shrink-0">
-                                        <i data-lucide="megaphone" class="w-5 h-5 text-emerald-700"></i>
-                                    </div>
-                                    <div class="ml-4">
-                                        <h4 class="font-medium text-gray-900">Divulgue a Iniciativa</h4>
-                                        <p class="text-sm text-gray-600 mt-1">Ajude a ampliar nossa mensagem em suas redes e comunidade.</p>
-                                    </div>
+                            <div class="flex items-start">
+                                <i data-lucide="play-circle" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Inspire-se e Expanda seu Repertório</h4>
+                                    <p class="text-gray-600">Acesse conteúdos exclusivos (masterclasses, documentários, podcasts) na plataforma <span class="font-medium">Brasil Sustenta Play</span> sobre sustentabilidade, criatividade e cultura.</p>
                                 </div>
+                            </div>
+                             <div class="mt-6">
+                                 <a href="#join" class="text-emerald-700 font-semibold hover:text-emerald-800 inline-flex items-center group">
+                                    Quero participar como jovem
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                </a>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="mt-6">
-                            <h4 class="font-medium text-gray-900 mb-3">Siga-nos</h4>
-                            <div class="flex space-x-4">
-                                <!-- Manter links de redes sociais (ajustar href="#") -->
-                                <a href="#" class="bg-gray-100 hover:bg-emerald-100 transition w-10 h-10 rounded-full flex items-center justify-center text-gray-700 hover:text-emerald-700">
-                                    <i data-lucide="instagram" class="w-5 h-5"></i>
-                                </a>
-                                <a href="#" class="bg-gray-100 hover:bg-emerald-100 transition w-10 h-10 rounded-full flex items-center justify-center text-gray-700 hover:text-emerald-700">
-                                    <i data-lucide="twitter" class="w-5 h-5"></i>
-                                </a>
-                                <a href="#" class="bg-gray-100 hover:bg-emerald-100 transition w-10 h-10 rounded-full flex items-center justify-center text-gray-700 hover:text-emerald-700">
-                                    <i data-lucide="linkedin" class="w-5 h-5"></i>
-                                </a>
-                                <a href="#" class="bg-gray-100 hover:bg-emerald-100 transition w-10 h-10 rounded-full flex items-center justify-center text-gray-700 hover:text-emerald-700">
-                                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                     <!-- Coluna: Benefícios para Parceiros -->
+                     <div>
+                         <h3 class="text-2xl font-semibold mb-6 flex items-center text-emerald-700">
+                            <i data-lucide="building-2" class="w-7 h-7 mr-3"></i>
+                            Para Organizações Parceiras
+                        </h3>
+                        <div class="space-y-5">
+                            <div class="flex items-start">
+                                <i data-lucide="search" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Acesso a Talentos ESG</h4>
+                                    <p class="text-gray-600">Conecte-se com a nova geração de profissionais engajados, capacitados e prontos para os desafios da sustentabilidade.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i data-lucide="zap" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Inovação Aberta e Soluções Criativas</h4>
+                                    <p class="text-gray-600">Proponha desafios reais e receba soluções inovadoras desenvolvidas pelos nossos Squads de Impacto.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i data-lucide="leaf" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Desenvolvimento de Projetos de Impacto</h4>
+                                    <p class="text-gray-600">Invista ou apoie o desenvolvimento de iniciativas alinhadas aos seus objetivos de sustentabilidade e responsabilidade social.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i data-lucide="award" class="w-6 h-6 text-emerald-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-semibold text-lg mb-1">Fortalecimento de Marca e Reputação</h4>
+                                    <p class="text-gray-600">Associe sua marca a uma iniciativa que promove o desenvolvimento de jovens líderes e soluções para um futuro sustentável.</p>
+                                </div>
+                            </div>
+                             <div class="mt-6">
+                                 <a href="#join" class="text-emerald-700 font-semibold hover:text-emerald-800 inline-flex items-center group">
+                                    Quero ser um parceiro
+                                    <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Success Message Modal (hidden by default) -->
-                <div id="success-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-                    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-                    <div class="bg-white rounded-lg p-8 max-w-md w-full relative z-10">
+        <!-- Section: Testimonials (Prova Social) -->
+        <section class="py-20 bg-emerald-600 text-white">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto text-center">
+                    <i data-lucide="quote" class="w-12 h-12 text-white/50 mx-auto mb-6"></i>
+                    <h2 class="text-3xl font-semibold mb-8">O que nossa comunidade diz:</h2>
+                    
+                    <!-- Slider Placeholder (ou pode listar 2-3 depoimentos estáticos) -->
+                    <div class="relative">
+                        <!-- Depoimento 1 -->
+                        <div class="mb-8">
+                             <p class="text-xl md:text-2xl italic leading-relaxed mb-6 text-white/90">
+                                "A Brasil Sustenta abriu portas que eu nem imaginava. Conheci mentores incríveis e hoje estou co-liderando um projeto que une tecnologia e conservação. É realizador!"
+                             </p>
+                             <p class="font-semibold text-lg">Ana Beatriz R.</p>
+                             <p class="text-sm text-white/70">Participante, Squad de Bioeconomia</p>
+                        </div>
+                        <!-- Adicionar mais depoimentos aqui, talvez com JS para fazer um carrossel simples -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section: Eventos (Brasil Sustenta Campus) -->
+        <section id="events" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                 <div class="text-center mb-12">
+                    <span class="text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-2 block">Conecte-se</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Brasil Sustenta Campus: Onde as Ideias se Encontram</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">Participe de workshops, seminários e encontros interativos em universidades e empresas parceiras.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                     <!-- Placeholder para Imagens/Cards de Eventos -->
+                     <div class="bg-white rounded-lg shadow-sm overflow-hidden aspect-[4/3] border border-gray-100 flex flex-col justify-end p-4 hover:shadow-lg transition">
+                         <h3 class="font-semibold text-lg mb-1">Workshop Design Thinking para Impacto</h3>
+                         <p class="text-sm text-gray-500">Data: Em breve | Local: Online</p>
+                     </div>
+                      <div class="bg-white rounded-lg shadow-sm overflow-hidden aspect-[4/3] border border-gray-100 flex flex-col justify-end p-4 hover:shadow-lg transition">
+                         <h3 class="font-semibold text-lg mb-1">Painel: Carreiras em ESG</h3>
+                         <p class="text-sm text-gray-500">Data: Em breve | Local: Universidade Parceira</p>
+                     </div>
+                      <div class="bg-white rounded-lg shadow-sm overflow-hidden aspect-[4/3] border border-gray-100 flex flex-col justify-end p-4 hover:shadow-lg transition">
+                         <h3 class="font-semibold text-lg mb-1">Happy Hour de Networking Sustentável</h3>
+                         <p class="text-sm text-gray-500">Data: Em breve | Local: Hub de Inovação</p>
+                     </div>
+                </div>
+                <div class="text-center mt-10">
+                     <a href="#join" class="text-emerald-700 font-semibold hover:text-emerald-800 inline-flex items-center group">
+                        Fique por dentro da agenda
+                        <i data-lucide="calendar" class="w-4 h-4 ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Blog (Placeholder) -->
+        <section id="blog" class="py-20 bg-white">
+             <div class="container mx-auto px-4">
+                 <div class="text-center mb-12">
+                    <span class="text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-2 block">Conteúdo</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Insights e Histórias do Nosso Ecossistema</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto text-lg">Acompanhe as últimas notícias, tendências e histórias de impacto no nosso blog.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Placeholder Post 1 -->
+                    <div class="bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
+                        <div class="h-40 bg-gray-200"></div>
+                        <div class="p-5">
+                            <p class="text-xs text-emerald-600 font-medium mb-1">Inovação</p>
+                            <h3 class="font-semibold mb-2">5 Tendências em Negócios Sustentáveis para 2024</h3>
+                            <a href="#" class="text-sm text-emerald-700 hover:underline">Leia mais</a>
+                        </div>
+                    </div>
+                     <!-- Placeholder Post 2 -->
+                     <div class="bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
+                        <div class="h-40 bg-gray-200"></div>
+                        <div class="p-5">
+                            <p class="text-xs text-emerald-600 font-medium mb-1">Comunidade</p>
+                            <h3 class="font-semibold mb-2">História de Sucesso: Do Squad à Startup de Impacto</h3>
+                             <a href="#" class="text-sm text-emerald-700 hover:underline">Leia mais</a>
+                        </div>
+                    </div>
+                     <!-- Placeholder Post 3 -->
+                     <div class="bg-gray-50 rounded-lg border border-gray-100 overflow-hidden">
+                        <div class="h-40 bg-gray-200"></div>
+                         <div class="p-5">
+                            <p class="text-xs text-emerald-600 font-medium mb-1">Carreira</p>
+                            <h3 class="font-semibold mb-2">Como Desenvolver as Soft Skills Essenciais para ESG</h3>
+                             <a href="#" class="text-sm text-emerald-700 hover:underline">Leia mais</a>
+                        </div>
+                    </div>
+                 </div>
+                  <div class="text-center mt-10">
+                     <a href="#" class="btn-secondary bg-emerald-50 border border-emerald-200 text-emerald-700 hover:bg-emerald-100 px-6 py-2.5">
+                        Ver Todos os Posts
+                    </a>
+                </div>
+             </div>
+        </section>
+
+        <!-- Section: Impact Statistics (Simplificado) -->
+        <section id="impact-stats" class="py-16 bg-emerald-700 text-white">
+             <div class="container mx-auto px-4">
+                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <p class="text-4xl lg:text-5xl font-bold mb-1" id="counter-jovens">0</p>
+                        <p class="text-sm text-white/80">Jovens Engajados</p>
+                    </div>
+                     <div>
+                        <p class="text-4xl lg:text-5xl font-bold mb-1" id="counter-projetos">0</p>
+                        <p class="text-sm text-white/80">Iniciativas Lançadas</p>
+                    </div>
+                     <div>
+                         <!-- Exemplo de nova métrica -->
+                        <p class="text-4xl lg:text-5xl font-bold mb-1" id="counter-mentoria">0</p>
+                        <p class="text-sm text-white/80">Horas de Mentoria</p>
+                    </div>
+                    <div>
+                        <p class="text-4xl lg:text-5xl font-bold mb-1" id="counter-parcerias">0</p>
+                        <p class="text-sm text-white/80">Parceiros Conectados</p>
+                    </div>
+                 </div>
+             </div>
+        </section>
+
+        <!-- CTA Section: Faça Parte -->
+        <section id="join" class="py-20 bg-gradient-to-b from-white to-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 max-w-3xl mx-auto">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Pronto para Fazer a Diferença?</h2>
+                    <p class="text-gray-600 text-lg mb-8">Seja você um jovem com uma ideia transformadora, uma organização buscando impacto ou um mentor querendo compartilhar conhecimento, seu lugar é aqui.</p>
+                     <a href="#contact-form-section" class="btn-primary text-lg px-10 py-3.5">
+                        Entre em Contato Agora
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    <!-- Card CTA Jovem -->
+                     <div class="text-center bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition">
+                          <div class="bg-emerald-100 text-emerald-700 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                             <i data-lucide="user" class="w-8 h-8"></i>
+                         </div>
+                         <h3 class="font-semibold text-xl mb-2">Sou Jovem (18-35)</h3>
+                         <p class="text-gray-600 text-sm mb-4">Quero participar dos programas, desenvolver meu projeto e me conectar.</p>
+                         <a href="#contact-form-section" class="text-sm text-emerald-600 font-medium hover:underline">Inscreva-se ou Saiba Mais</a>
+                     </div>
+                    <!-- Card CTA Parceiro -->
+                    <div class="text-center bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition">
+                          <div class="bg-emerald-100 text-emerald-700 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                             <i data-lucide="building-2" class="w-8 h-8"></i>
+                         </div>
+                         <h3 class="font-semibold text-xl mb-2">Sou uma Organização</h3>
+                         <p class="text-gray-600 text-sm mb-4">Quero propor parcerias, investir em projetos ou encontrar talentos ESG.</p>
+                         <a href="#contact-form-section" class="text-sm text-emerald-600 font-medium hover:underline">Explore Oportunidades</a>
+                     </div>
+                     <!-- Card CTA Mentor -->
+                    <div class="text-center bg-white p-6 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition">
+                         <div class="bg-emerald-100 text-emerald-700 p-3 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
+                             <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                         </div>
+                         <h3 class="font-semibold text-xl mb-2">Quero ser Mentor(a)</h3>
+                         <p class="text-gray-600 text-sm mb-4">Quero compartilhar minha experiência e apoiar a nova geração de líderes.</p>
+                          <a href="#contact-form-section" class="text-sm text-emerald-600 font-medium hover:underline">Ofereça sua Experiência</a>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact-form-section" class="py-16 bg-gray-50">
+             <div class="container mx-auto px-4 max-w-2xl">
+                 <h3 class="text-2xl font-semibold mb-6 text-center">Fale Conosco</h3>
+                 <form id="contact-form" class="space-y-5 bg-white p-8 rounded-lg border border-gray-200 shadow-sm">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Seu Melhor Email</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="interest" class="block text-sm font-medium text-gray-700 mb-1">Principal Interesse</label>
+                        <select id="interest" name="interest" class="form-select">
+                            <option value="">Selecione...</option>
+                            <option value="jovem_participar">Quero participar (Jovem 18-35)</option>
+                            <option value="organizacao_parceria">Quero ser parceiro (Organização)</option>
+                            <option value="mentor_voluntario">Quero ser mentor(a)</option>
+                            <option value="informacao_geral">Gostaria de mais informações</option>
+                            <option value="imprensa">Imprensa / Mídia</option>
+                            <option value="outro">Outro Assunto</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Sua Mensagem</label>
+                        <textarea id="message" name="message" rows="4" class="form-textarea" required placeholder="Conte-nos um pouco mais sobre seu interesse..."></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full btn-primary text-base py-3">
+                            Enviar Mensagem
+                            <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+
+                 <!-- Success Message Modal (mantido) -->
+                 <div id="success-modal" class="fixed inset-0 flex items-center justify-center z-[100] hidden">
+                    <div class="absolute inset-0 bg-black bg-opacity-60 backdrop-blur-sm"></div>
+                    <div class="bg-white rounded-lg p-8 max-w-md w-11/12 relative z-10 shadow-xl">
                         <div class="text-center">
-                            <div class="w-16 h-16 bg-emerald-100 mx-auto rounded-full flex items-center justify-center mb-4">
-                                <i data-lucide="check" class="w-8 h-8 text-emerald-600"></i>
+                            <div class="w-16 h-16 bg-emerald-100 mx-auto rounded-full flex items-center justify-center mb-5">
+                                <i data-lucide="check-circle-2" class="w-10 h-10 text-emerald-600"></i>
                             </div>
-                            <h3 class="text-xl font-bold mb-2">Mensagem Enviada!</h3>
-                            <p class="text-gray-600 mb-6">Obrigado pelo seu interesse na Brasil Sustenta. Entraremos em contato em breve.</p>
-                            <button id="close-modal" class="btn-primary">Fechar</button>
+                            <h3 class="text-xl font-bold mb-2">Mensagem Enviada com Sucesso!</h3>
+                            <p class="text-gray-600 mb-6">Agradecemos seu contato. Nossa equipe retornará em breve.</p>
+                            <button id="close-modal" class="btn-primary px-6 py-2">Entendido</button>
                         </div>
                     </div>
                 </div>
-            </div>
+             </div>
         </section>
+
     </main>
 
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Brasil Sustenta</h3>
-                    <p class="text-gray-400 text-sm">Engajamos a juventude criativa para gerar impacto positivo, alinhados aos ODS da ONU.</p>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div class="md:col-span-1">
+                    <div class="flex items-center space-x-2 mb-4">
+                         <img src="logo-white.svg" alt="Brasil Sustenta Logo Branco" class="h-8"> <!-- Logo Versão Branca -->
+                         <span class="text-xl font-semibold tracking-tight">Brasil Sustenta</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">Engajando a juventude criativa para gerar impacto positivo e construir um futuro sustentável.</p>
+                     <div class="flex space-x-4 mt-6">
+                        <!-- Links Redes Sociais -->
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Navegação</h3>
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-semibold mb-4 uppercase text-gray-300 tracking-wider text-sm">Navegue</h3>
                     <ul class="space-y-2">
-                         <li><a href="#overview" class="text-gray-400 hover:text-white text-sm transition">Visão Geral</a></li>
-                        <li><a href="#analysis" class="text-gray-400 hover:text-white text-sm transition">Análises</a></li>
-                        <li><a href="#strategy" class="text-gray-400 hover:text-white text-sm transition">Modelo</a></li>
-                        <li><a href="#impact" class="text-gray-400 hover:text-white text-sm transition">Programas</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white text-sm transition">Participe</a></li>
+                         <li><a href="#about" class="text-gray-400 hover:text-white text-sm transition">Sobre Nós</a></li>
+                        <li><a href="#initiatives" class="text-gray-400 hover:text-white text-sm transition">Iniciativas</a></li>
+                        <li><a href="#benefits" class="text-gray-400 hover:text-white text-sm transition">Benefícios</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white text-sm transition">Eventos</a></li>
+                        <li><a href="#blog" class="text-gray-400 hover:text-white text-sm transition">Blog</a></li>
+                         <li><a href="#join" class="text-gray-400 hover:text-white text-sm transition">Faça Parte</a></li>
                     </ul>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Recursos</h3>
+                 <div class="md:col-span-1">
+                    <h3 class="text-lg font-semibold mb-4 uppercase text-gray-300 tracking-wider text-sm">Programas</h3>
                     <ul class="space-y-2">
-                        <!-- Links de recursos podem ser adaptados ou removidos -->
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition">Blog</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition">Estudos de Caso</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition">Imprensa</a></li>
+                        <li><p class="text-gray-400 text-sm">Squads de Impacto</p></li>
+                        <li><p class="text-gray-400 text-sm">Brasil Sustenta Líderes</p></li>
+                        <li><p class="text-gray-400 text-sm">Brasil Sustenta Campus</p></li>
+                         <li><p class="text-gray-400 text-sm">Brasil Sustenta Play</p></li>
                     </ul>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Contato</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center text-gray-400 text-sm">
-                            <i data-lucide="mail" class="w-4 h-4 mr-2"></i>
-                            <span>contato@brasilsustenta.org</span> <!-- Email exemplo -->
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-semibold mb-4 uppercase text-gray-300 tracking-wider text-sm">Contato</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start text-gray-400 text-sm">
+                            <i data-lucide="mail" class="w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                            <span>contato@brasilsustenta.org</span>
                         </li>
-                        <li class="flex items-center text-gray-400 text-sm">
-                            <i data-lucide="phone" class="w-4 h-4 mr-2"></i>
-                            <span>+55 (XX) XXXX-XXXX</span> <!-- Telefone exemplo -->
+                        <li class="flex items-start text-gray-400 text-sm">
+                             <i data-lucide="map-pin" class="w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                            <span>Atuação Nacional - Brasil</span>
                         </li>
-                        <li class="flex items-center text-gray-400 text-sm">
-                             <i data-lucide="map-pin" class="w-4 h-4 mr-2"></i>
-                             <span>Brasil (Atuação Nacional)</span> <!-- Localização genérica -->
+                         <li class="flex items-start text-gray-400 text-sm">
+                             <i data-lucide="phone" class="w-4 h-4 mr-2 mt-0.5 flex-shrink-0"></i>
+                            <span>+55 (XX) XXXX-XXXX</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
-                 <!-- Atualizar ano se necessário -->
-                <p class="text-gray-500 text-sm mb-4 md:mb-0">© 2024 Brasil Sustenta. Todos os direitos reservados.</p>
-                <p class="text-gray-500 text-sm">Built with <a href="https://flowith.net" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">Flowith Oracle</a>.</p>
+            <div class="border-t border-gray-700 pt-6 text-center">
+                <p class="text-gray-500 text-xs">© 2024 Brasil Sustenta. Todos os direitos reservados. Desenvolvido com paixão por impacto.</p>
+                 <!-- Remover ou manter crédito do Flowith Oracle se desejar -->
+                 <!-- <p class="text-gray-500 text-xs mt-1">Built with <a href="https://flowith.net" target="_blank" class="text-emerald-400 hover:text-emerald-300 transition">Flowith Oracle</a>.</p> -->
             </div>
         </div>
     </footer>
@@ -915,7 +566,7 @@
         // Initialize Lucide icons
         lucide.createIcons();
 
-        // Prevent zooming (mantido do original)
+        // Prevent zooming (mantido)
         window.addEventListener("wheel", (e)=> {
             const isPinching = e.ctrlKey
             if(isPinching) e.preventDefault()
