@@ -1,34 +1,34 @@
 document.addEventListener("DOMContentLoaded", function() {
-
-    // --- Seletores Globais ---
     const header = document.getElementById("main-header");
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
     const menuIcon = document.getElementById("menu-icon");
     const closeIcon = document.getElementById("close-icon");
-    const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+    const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll("a.mobile-nav-link") : [];
     const navLinksContainer = document.getElementById("nav-links");
-    const currentYearEl = document.getElementById("current-year");
-    const sections = document.querySelectorAll("main > section[id]"); // Seções diretas do main com ID
     const navLinks = navLinksContainer ? Array.from(navLinksContainer.querySelectorAll("a.nav-link")) : [];
-    const contactForm = document.getElementById("contact-form");
-    const formMessage = document.getElementById("form-message");
-    const submitButton = document.getElementById("submit-button");
+    const currentYearEl = document.getElementById("current-year");
     const animatedItems = document.querySelectorAll('.animate-item');
-    const programItems = document.querySelectorAll('.program-journey-item');
+    const contactForm = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message"); // Garanta que este ID exista no HTML
+    const submitButton = document.getElementById("submit-button"); // Garanta que este ID exista no HTML
 
     // --- Atualizar Ano no Footer ---
     if (currentYearEl) {
         currentYearEl.textContent = new Date().getFullYear();
     }
 
-    // --- Header com Sombra e Padding no Scroll ---
+    // --- Header com Sombra no Scroll ---
     if (header) {
         const handleHeaderScroll = () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
+            if (window.scrollY > 30) { // Pequeno scroll para ativar
+                header.classList.add('scrolled', 'shadow-md');
+                header.classList.remove('border-transparent');
+                header.classList.add('border-bs-gray-medium');
             } else {
-                header.classList.remove('scrolled');
+                header.classList.remove('scrolled', 'shadow-md');
+                header.classList.add('border-transparent');
+                header.classList.remove('border-bs-gray-medium');
             }
         };
         window.addEventListener('scroll', handleHeaderScroll, { passive: true });
@@ -43,20 +43,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.remove('hidden');
-                requestAnimationFrame(() => {
+                requestAnimationFrame(() => { // Garante que 'hidden' foi removido
                     mobileMenu.classList.add('opacity-100', 'translate-y-0');
                     mobileMenu.classList.remove('opacity-0', 'translate-y-[-100%]');
                 });
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; // Impede scroll do body
                 menuIcon.classList.add('hidden');
                 closeIcon.classList.remove('hidden');
             } else {
                 mobileMenu.classList.remove('opacity-100', 'translate-y-0');
                 mobileMenu.classList.add('opacity-0', 'translate-y-[-100%]');
-                document.body.style.overflow = '';
+                document.body.style.overflow = ''; // Restaura scroll
                 menuIcon.classList.remove('hidden');
                 closeIcon.classList.add('hidden');
-                 setTimeout(() => {
+                 setTimeout(() => { // Garante que a transição termine antes de esconder
                     if (menuToggle.getAttribute("aria-expanded") === "false") {
                          mobileMenu.classList.add('hidden');
                     }
@@ -64,68 +64,63 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         };
         menuToggle.addEventListener("click", toggleMenu);
+
         mobileLinks.forEach(link => {
             link.addEventListener("click", () => {
-                if (menuToggle.getAttribute("aria-expanded") === "true") toggleMenu();
+                if (menuToggle.getAttribute("aria-expanded") === "true") {
+                    toggleMenu(); // Fecha o menu ao clicar em um link
+                }
             });
         });
     }
 
     // --- Active Navigation (Scrollspy) ---
     if ('IntersectionObserver' in window && sections.length > 0 && navLinks.length > 0) {
-        let lastActiveLinkId = 'home';
-        const homeLinkForSpy = navLinksContainer?.querySelector('a.nav-link[href="#home"]'); // Link Home para scrollspy
+        let lastActiveLinkId = null;
+        const homeLinkForSpy = navLinksContainer?.querySelector('a.nav-link[href="#home"]');
 
         const observerOptions = {
             root: null,
-            rootMargin: `-${(header?.offsetHeight || 70) + 20}px 0px -60% 0px`, // Ajuste fino
-            threshold: 0
+            rootMargin: `-${(header?.offsetHeight || 60) + 20}px 0px -60% 0px`, // Offset pelo header + margem
+            threshold: 0 // Quando o topo da seção cruza a linha de observação
         };
 
         const observerCallback = (entries) => {
             let currentActiveSectionId = null;
-            let topEntry = null;
-
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (!topEntry || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
-                        topEntry = entry;
+                    if (!currentActiveSectionId) { // Pega o primeiro que está intersectando
+                        currentActiveSectionId = entry.target.getAttribute('id');
                     }
                 }
             });
 
-            if (topEntry) {
-                currentActiveSectionId = topEntry.target.getAttribute('id');
-            } else if (window.scrollY < window.innerHeight * 0.3) { // Se muito perto do topo, é home
-                currentActiveSectionId = 'home';
-            } else { // Senão, mantém o último ativo se nada for detectado
-                currentActiveSectionId = lastActiveLinkId;
+            if (window.scrollY < window.innerHeight * 0.4 && !currentActiveSectionId) { // Perto do topo, força home
+                 currentActiveSectionId = 'home';
+            } else if (!currentActiveSectionId) { // Se nada foi encontrado, mantém o último ativo
+                 currentActiveSectionId = lastActiveLinkId;
             }
 
-            if (currentActiveSectionId !== lastActiveLinkId) {
-                navLinks.forEach(link => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href") === `#${currentActiveSectionId}`) {
-                        link.classList.add("active");
-                    }
-                });
-                // Caso especial para o link #home no scrollspy
-                if (homeLinkForSpy) {
-                    if (currentActiveSectionId === 'home') {
-                        homeLinkForSpy.classList.add('active');
-                    } else {
-                        homeLinkForSpy.classList.remove('active');
-                    }
-                }
+
+            if (currentActiveSectionId && currentActiveSectionId !== lastActiveLinkId) {
+                navLinks.forEach(link => link.classList.remove("active"));
+                const activeLink = navLinksContainer?.querySelector(`a.nav-link[href="#${currentActiveSectionId}"]`);
+                if (activeLink) activeLink.classList.add("active");
                 lastActiveLinkId = currentActiveSectionId;
+            } else if (currentActiveSectionId === 'home' && lastActiveLinkId !== 'home') { // Garante home ativo no topo
+                 navLinks.forEach(link => link.classList.remove("active"));
+                 if (homeLinkForSpy) homeLinkForSpy.classList.add('active');
+                 lastActiveLinkId = 'home';
             }
         };
         const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const sections = document.querySelectorAll("main section[id]"); // Re-seleciona aqui para garantir
         sections.forEach(section => { if(section) observer.observe(section); });
 
-        // Ativa 'home' inicialmente se não houver hash
+        // Ativa 'home' inicialmente se não houver hash e o link existir
         if (!window.location.hash && homeLinkForSpy) {
             homeLinkForSpy.classList.add('active');
+            lastActiveLinkId = 'home';
         }
     }
 
@@ -137,9 +132,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const targetElement = document.getElementById(hrefAttribute.substring(1));
                 if (targetElement) {
                     e.preventDefault();
-                    const headerHeight = header?.offsetHeight || 70;
+                    const headerHeight = header?.offsetHeight || 60; // Altura do header
                     const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerHeight - 20; // Espaço extra
+                    const offsetPosition = elementPosition - headerHeight - 20; // 20px de espaço extra
+
                     window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
             }
@@ -151,11 +147,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const animationObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Aplica a classe de animação definida no Tailwind config
-                    entry.target.classList.add('is-visible', 'animate-fade-in-up');
-                    // Pega o delay customizado do style (se existir)
+                    entry.target.classList.add('is-visible'); // Adiciona classe para JS pegar
+                                                            // A animação em si ('animate-fade-in-up') é aplicada pelo Tailwind
                     const delay = entry.target.style.getPropertyValue('--animation-delay');
                     if (delay) entry.target.style.animationDelay = delay;
+
                     observer.unobserve(entry.target);
                 }
             });
@@ -163,52 +159,26 @@ document.addEventListener("DOMContentLoaded", function() {
         animatedItems.forEach(item => animationObserver.observe(item));
     }
 
-    // --- Interatividade Programas (Acordeão/Linha do Tempo) ---
-    if (programItems.length > 0) {
-        programItems.forEach(item => {
-            const title = item.querySelector('.program-journey-title');
-            if (title) {
-                title.addEventListener('click', () => {
-                    // Fecha todos os outros abertos
-                    programItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active-program');
-                        }
-                    });
-                    // Alterna o item clicado
-                    item.classList.toggle('active-program');
-                });
-            }
-        });
-        // Opcional: Abrir o primeiro item por padrão
-        // if (programItems[0]) programItems[0].classList.add('active-program');
-    }
-
-
     // --- Formulário de Contato (Funcionalidade de Envio DESATIVADA) ---
-    if (contactForm && submitButton && formMessage) {
+     if (contactForm && submitButton && formMessage) {
          contactForm.addEventListener('submit', (e) => {
-             e.preventDefault(); // Impede o envio real do formulário
-             console.log('Envio de formulário DESATIVADO nesta versão de demonstração.');
+             e.preventDefault();
+             console.log('Envio de formulário DESATIVADO.');
 
-             submitButton.disabled = true;
-             submitButton.innerHTML = 'Envio Desativado';
-             formMessage.textContent = "O envio online está temporariamente desativado nesta demonstração.";
-             formMessage.className = "error"; // Usa a classe de erro para feedback visual
-             formMessage.classList.remove('hidden');
-
-             setTimeout(() => {
-                 // Não reseta o botão para 'Enviar mensagem' para deixar claro que está desativado
-                 // submitButton.disabled = false;
-                 // submitButton.innerHTML = 'Enviar mensagem';
-                 // formMessage.classList.add('hidden');
-                 // formMessage.textContent = '';
-             }, 4000);
+             if(submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'Envio Desativado';
+             }
+             if(formMessage){
+                formMessage.textContent = "O envio online está temporariamente desativado.";
+                formMessage.className = "error"; // Usa a classe de erro para feedback visual
+                formMessage.classList.remove('hidden');
+             }
+             // Não há timeout para resetar, pois está desativado.
          });
      } else {
-         console.warn("Elementos do formulário de contato (#contact-form, #submit-button, #form-message) não encontrados.");
+         console.warn("Elementos do formulário não encontrados ou JS de formulário desativado.");
      }
 
-    console.log("Brasil Sustenta - Script V4 Inicializado (Formulário Desativado)");
-
-}); // Fim do DOMContentLoaded
+    console.log("Brasil Sustenta - Script V.Final-Clareza Inicializado");
+});
