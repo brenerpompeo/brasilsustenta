@@ -1,160 +1,151 @@
-/* Base Styles */
-:root {
-    --primary: #059669; /* Emerald-600 */
-    --primary-dark: #047857; /* Emerald-700 */
-    --primary-light: #d1fae5; /* Emerald-100 */
-    --secondary: #06b6d4; /* Cyan-500 - Exemplo se precisar de cor secundária */
-}
+/* ==========================================================================
+   Base Styles & Font Import
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 70px; /* Ajusta o scroll para compensar o header fixo */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
-    /* Fonte Poppins como principal, com fallbacks */
-    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #374151; /* Gray-700 - Cor base do texto */
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: 'Poppins', sans-serif;
+  color: #282828; /* bs-dark */
+  background-color: #FFFFFF; /* bs-white */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* H1 com peso maior */
-h1 {
-    font-weight: 700; /* Bold */
-}
-/* Outros Headers */
-h2, h3 {
-    font-weight: 600; /* Semibold */
-    color: #111827; /* Gray-900 */
-}
-h4 {
-    font-weight: 500; /* Medium */
-     color: #1f2937; /* Gray-800 */
+/* Foco Visível para Acessibilidade */
+:focus { outline: none; }
+:focus-visible {
+  outline: 3px solid #27AE60; /* bs-green-accent */
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-
-/* Button Styles */
-.btn-primary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--primary);
-    color: white;
-    font-weight: 500; /* Medium */
-    padding: 0.75rem 1.5rem; /* Ajustar padding conforme necessidade */
-    border-radius: 0.375rem; /* 6px */
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+/* Padrão de fundo sutil para Hero (opcional) */
+.pattern-bg {
+  background-image: radial-gradient(circle at 1px 1px, rgba(39, 174, 96, 0.03) 1px, transparent 0);
+  background-size: 30px 30px;
 }
 
-.btn-primary:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+/* ==========================================================================
+   Header & Navigation Styles
+   ========================================================================== */
+#main-header.scrolled {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-bottom-color: #E5E7EB; /* bs-gray-medium */
 }
 
-.btn-primary:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+.nav-link {
+    @apply text-sm font-medium text-bs-gray-text hover:text-bs-green-accent transition-colors duration-300 py-1;
+}
+.nav-link::after {
+    content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; /* Mais espaço */
+    left: 50%; transform: translateX(-50%);
+    background-color: #27AE60; /* bs-green-accent */
+    transition: width 0.3s ease-out; border-radius: 1px;
+}
+.nav-link:hover::after, .nav-link.active::after { width: 24px; } /* Sublinhado menor e centralizado */
+.nav-link.active { color: #0D4A42; /* bs-green-dark */ }
+
+.nav-link-cta {
+     @apply inline-block bg-bs-green-accent text-bs-white text-sm font-semibold py-2.5 px-6 rounded-full transition-all duration-300 hover:opacity-90 hover:shadow-lg shadow-bs-green-accent/25;
 }
 
-.btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent; /* Ajustar se necessário */
-    color: #374151; /* Cor base, ajustar conforme contexto */
-    font-weight: 500; /* Medium */
-    padding: 0.75rem 1.5rem; /* Ajustar padding */
-    border-radius: 0.375rem; /* 6px */
-    border: 1px solid #d1d5db; /* Gray-300 */
-    transition: all 0.2s ease-in-out;
-}
-/* Exemplo de hover para botão secundário, ajustar cor */
-.btn-secondary:hover {
-    background-color: #f9fafb; /* Gray-50 */
-    border-color: #9ca3af; /* Gray-400 */
-    transform: translateY(-1px);
-}
+.mobile-menu { transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+.mobile-nav-link { @apply block px-6 py-3 text-xl font-medium text-bs-dark hover:text-bs-green-accent transition-colors duration-200; }
+.mobile-nav-cta { @apply inline-block bg-bs-green-accent text-bs-white font-semibold py-3 px-7 rounded-full transition-all duration-300 shadow-md mt-6 hover:opacity-90 text-lg; }
 
-
-/* Form Element Styles */
-.form-input, .form-select, .form-textarea {
-    width: 100%;
-    padding: 0.6rem 0.8rem; /* Ajuste no padding */
-    border: 1px solid #d1d5db; /* Gray-300 */
-    border-radius: 0.375rem; /* 6px */
-    transition: all 0.2s ease-in-out;
-    font-size: 0.875rem; /* 14px */
-    background-color: white;
+/* ==========================================================================
+   Botões Globais
+   ========================================================================== */
+.button-primary {
+    @apply inline-block bg-bs-green-accent text-bs-white font-semibold py-3.5 px-8 rounded-full text-base transition-all duration-300 shadow-lg shadow-bs-green-accent/30 hover:shadow-xl hover:shadow-bs-green-accent/40 hover:-translate-y-1 active:translate-y-0 active:shadow-lg;
 }
-
-.form-input:focus, .form-select:focus, .form-textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); /* Sombra mais suave */
+.button-secondary {
+    @apply inline-block bg-bs-white text-bs-dark font-semibold py-3.5 px-8 rounded-full border-2 border-bs-gray-medium transition-all duration-300 hover:bg-bs-gray-light hover:border-bs-dark hover:-translate-y-1 active:translate-y-0 text-base;
 }
-
-.form-input::placeholder, .form-textarea::placeholder {
-    color: #9ca3af; /* Gray-400 */
+.form-submit-button-alt { /* Estilo para botão de formulário */
+     @apply w-full button-primary py-3; /* Reusa primário com padding ajustado */
+}
+.form-submit-button-alt:disabled {
+    @apply opacity-60 cursor-not-allowed bg-gray-400 from-gray-400 to-gray-500 hover:shadow-none hover:-translate-y-0;
 }
 
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-    /* Ajustar tamanho dos botões no mobile se necessário */
-    /* .btn-primary, .btn-secondary {
-        font-size: 0.875rem;
-        padding: 0.6rem 1.2rem;
-    } */
+/* ==========================================================================
+   Estilos de Seção e Componentes Específicos
+   ========================================================================== */
+.section-tag { @apply inline-block bg-bs-green-bg text-bs-green-accent text-xs font-semibold px-3.5 py-1.5 rounded-full mb-4 uppercase tracking-wider; }
+.section-heading { @apply text-3xl md:text-4xl lg:text-[50px] font-extrabold mb-5 md:mb-6 text-bs-dark leading-tight; }
+.section-heading-alt { @apply text-3xl md:text-4xl font-bold mb-5 md:mb-6 text-bs-dark leading-snug; }
+.section-subheading { @apply text-lg md:text-xl text-bs-gray-text leading-relaxed mb-10 md:mb-12 max-w-3xl mx-auto; }
+.section-subheading-alt { @apply text-lg text-bs-gray-text leading-relaxed mb-8 md:mb-10; }
+
+/* Stats Card Alt */
+.stats-card-alt { @apply bg-transparent p-4 text-center; }
+
+/* DNA Value Card */
+.dna-value-card {
+    @apply bg-bs-gray-light p-4 rounded-lg transition-all duration-300 hover:shadow-md hover:bg-bs-green-bg;
 }
 
-/* Animation effects (mantidos) */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Program Journey (Linha do Tempo/Acordeão) */
+.program-journey-item.active-program .program-journey-description {
+    max-height: 250px; /* Aumenta para mais texto */
+    opacity: 1;
+    margin-top: 0.75rem; /* my-3 */
+    padding-bottom: 0.75rem;
+}
+.program-journey-item.active-program::before {
+    border-color: #27AE60; /* bs-green-accent */
+    transform: scale(1.25); background-color: #27AE60;
 }
 
-@keyframes countUp {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Benefit Highlight (Layout diferenciado para benefícios) */
+.benefit-highlight {
+    @apply flex items-start gap-4 p-4 bg-bs-white rounded-lg transition-all duration-300 hover:shadow-md;
 }
 
-.animated-count {
-    animation: countUp 0.5s ease-out forwards;
+/* Eco Card Alt (Layout melhorado para Ecossistema) */
+.eco-card-alt {
+    @apply flex flex-col bg-bs-white p-8 rounded-xl shadow-lg shadow-bs-gray-light/30 transition-all duration-300 border border-transparent hover:border-bs-green-accent/30 hover:transform hover:-translate-y-1.5 h-full;
 }
-
-/* Ajustes finos em tabelas (se usadas) */
-table {
-    border-collapse: collapse;
-    width: 100%;
+.eco-card-title-alt { @apply text-xl font-semibold text-bs-dark mb-3; }
+.eco-card-description-alt { @apply text-bs-gray-text mb-6 text-sm leading-relaxed flex-grow; }
+.eco-link-alt {
+    @apply inline-flex items-center text-sm font-semibold text-bs-green-accent hover:text-bs-dark transition-colors duration-300 group;
 }
+.eco-link-alt svg { @apply w-4 h-4 ml-1.5 transition-transform duration-300 group-hover:translate-x-1; }
 
-th, td {
-    text-align: left;
-    padding: 12px 16px; /* Ajuste no padding */
-    vertical-align: top;
+
+/* Formulário */
+.form-label { @apply block text-bs-gray-text mb-1.5 text-xs font-medium uppercase tracking-wider; }
+.form-input-alt, select.form-input-alt, textarea.form-input-alt {
+    @apply block w-full px-4 py-3 border border-bs-gray-medium rounded-lg bg-bs-gray-light transition-all duration-200 ease-in-out text-sm focus:outline-none focus:border-bs-green-accent focus:ring-2 focus:ring-bs-green-accent/20 focus:bg-bs-white placeholder-bs-gray-text/70;
 }
-
-th {
-    background-color: #f9fafb; /* Gray-50 */
-    font-weight: 500; /* Medium */
-    color: #4b5563; /* Gray-600 */
-    font-size: 0.75rem; /* 12px */
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+select.form-input-alt {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;
+    padding-right: 2.5rem; -webkit-appearance: none; -moz-appearance: none; appearance: none;
 }
+#form-message.success { @apply bg-bs-green-bg text-bs-green-accent p-3 rounded-md block mt-4 mb-1 text-sm border border-bs-green-accent/20; }
+#form-message.error { @apply bg-red-50 text-red-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-red-200; }
 
-/* Remove hover de linha para evitar distração */
-/* tr:hover { background-color: #f9fafb; } */
 
-/* Espaçamento interno de listas em células */
-td ul { margin-bottom: 0; }
-td li { margin-bottom: 0.25rem; }
-td li:last-child { margin-bottom: 0; }
+/* Footer */
+.footer-heading { @apply text-sm font-semibold mb-4 text-bs-dark uppercase tracking-wider; }
+.footer-link { @apply text-sm text-bs-gray-text hover:text-bs-green-accent transition-colors duration-200 block pb-2; }
+.social-link { @apply text-bs-gray-text hover:text-bs-green-accent transition-colors duration-300; }
+.social-link svg { @apply h-5 w-5; }
+
+
+/* Animação de entrada (usando a classe definida no Tailwind config) */
+.animate-item.is-visible { /* JS adiciona 'is-visible' */
+    animation: fade-in-up 0.7s ease-out forwards; /* Duração e timing */
+    animation-delay: var(--animation-delay, 0s); /* Permite delay customizado via style */
+}
