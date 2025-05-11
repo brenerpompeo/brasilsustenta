@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brasil Sustenta | Inovação Jovem para um Futuro Sustentável</title>
-    <meta name="description" content="Impact Venture Builder que catalisa o potencial criativo de jovens (18-35) para desenvolver soluções alinhadas aos ODS.">
+    <title>Brasil Sustenta | Juventude Criativa, Futuro Sustentável</title>
+    <meta name="description" content="Impact Venture Builder que investe em jovens (18-35) na fase pré-ideia. Conectamos talento, propósito e ODS para criar impacto real.">
 
-    {/* <!-- Tailwind CSS via Play CDN --> */}
+    <!-- Tailwind CSS via Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    {/* <!-- Configuração Tailwind --> */}
+    <!-- Configuração Tailwind -->
     <script>
       tailwind.config = {
         theme: {
@@ -22,36 +22,19 @@
                 'bs-green-accent': '#27AE60',
                 'bs-green-dark': '#0D4A42',
                 'bs-white': '#FFFFFF',
-                'bs-gray-light': '#F9FAFB',
-                'bs-gray-medium': '#E5E7EB',
-                'bs-gray-text': '#6B7280',
+                'bs-gray-light': '#F9FAFB',   // bg-gray-50
+                'bs-gray-medium': '#E5E7EB',  // bg-gray-200 (bordas)
+                'bs-gray-text': '#6B7280',    // text-gray-500
+                'bs-text-default': '#374151', // text-gray-700
                 'bs-green-bg': 'rgba(39, 174, 96, 0.07)',
-                // Novas cores de acento (usar com moderação)
-                'bs-yellow-accent': '#F2C94C',
-                'bs-blue-accent': '#2F80ED',
             },
             animation: {
-                'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                'pulse-slow': 'pulseSlow 4s infinite ease-in-out',
-                'slide-in-left': 'slideInLeft 0.7s ease-out forwards',
-                'slide-in-right': 'slideInRight 0.7s ease-out forwards',
+                'fade-in-up': 'fadeInUp 0.7s ease-out forwards'
             },
             keyframes: {
                 fadeInUp: {
-                    '0%': { opacity: '0', transform: 'translateY(30px)' },
+                    '0%': { opacity: '0', transform: 'translateY(20px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
-                },
-                pulseSlow: {
-                    '0%, 100%': { opacity: '0.7' },
-                    '50%': { opacity: '0.3' },
-                },
-                slideInLeft: {
-                    '0%': { opacity: '0', transform: 'translateX(-50px)' },
-                    '100%': { opacity: '1', transform: 'translateX(0)' },
-                },
-                slideInRight: {
-                    '0%': { opacity: '0', transform: 'translateX(50px)' },
-                    '100%': { opacity: '1', transform: 'translateX(0)' },
                 }
             }
           }
@@ -59,466 +42,249 @@
       }
     </script>
 
-    {/* <!-- Google Fonts (Poppins) --> */}
+    <!-- Google Fonts (Poppins) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    {/* <!-- ESTILOS CSS EMBUTIDOS --> */}
-    <style>
-        /* ==========================================================================
-           Base Styles & Font Import (Poppins já linkado)
-           ========================================================================== */
-        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #282828; /* bs-dark */
-            background-color: #FFFFFF; /* bs-white */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-        }
-        :focus { outline: none; }
-        :focus-visible {
-            outline: 3px solid #27AE60; /* bs-green-accent */
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        /* ==========================================================================
-           Header & Navigation Styles
-           ========================================================================== */
-        #main-header {
-            transition: background-color 0.3s ease-out, box-shadow 0.3s ease-out, padding-top 0.3s ease-out, padding-bottom 0.3s ease-out;
-            border-bottom-color: transparent;
-        }
-        #main-header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95); /* bs-white com transparência */
-            backdrop-filter: blur(8px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
-            /* padding-top: 0.75rem; padding-bottom: 0.75rem; /* py-3 */ */
-        }
-
-        .nav-link {
-            @apply text-sm font-medium text-bs-gray-text hover:text-bs-green-accent transition-colors duration-300 py-1;
-        }
-        .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0;
-            background-color: #27AE60; transition: width 0.3s ease-out; border-radius: 1px;
-        }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link.active { color: #0D4A42; font-weight: 600; } /* bs-green-dark */
-
-        .nav-link-cta {
-            @apply inline-block bg-bs-green-accent text-bs-white text-sm font-semibold py-2 px-5 rounded-full transition-all duration-300 hover:opacity-90 hover:shadow-md shadow-bs-green-accent/20;
-        }
-
-        .mobile-menu { transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
-        .mobile-nav-link { @apply block px-6 py-3 text-xl font-medium text-bs-dark hover:text-bs-green-accent transition-colors duration-200; }
-        .mobile-nav-cta { @apply inline-block bg-bs-green-accent text-bs-white font-semibold py-2.5 px-6 rounded-full transition-all duration-300 shadow-md mt-6 hover:opacity-90; }
-
-        /* ==========================================================================
-           Botões Globais
-           ========================================================================== */
-        .button-primary {
-            @apply inline-block bg-bs-green-accent text-bs-white font-semibold py-3 px-8 rounded-full text-base transition-all duration-300 shadow-lg shadow-bs-green-accent/30 hover:shadow-xl hover:shadow-bs-green-accent/40 hover:-translate-y-1 active:translate-y-0 active:shadow-lg;
-        }
-        .button-secondary {
-            @apply inline-block bg-bs-white text-bs-dark font-semibold py-3 px-8 rounded-full border-2 border-bs-gray-medium transition-all duration-300 hover:bg-bs-gray-light hover:border-bs-dark hover:-translate-y-1 active:translate-y-0 text-base;
-        }
-        /* Para formulário */
-         .form-submit-button {
-            @apply w-full button-primary text-base py-3.5; /* Um pouco mais de padding */
-        }
-        .form-submit-button:disabled {
-            @apply opacity-60 cursor-not-allowed hover:shadow-md hover:-translate-y-0 bg-none bg-gray-400 from-gray-400 to-gray-500;
-        }
-
-        /* ==========================================================================
-           Estilos de Seção e Componentes Específicos
-           ========================================================================== */
-        .section-animate { /* Classe base para animação de entrada */
-            opacity: 0;
-            /* A animação 'fade-in-up' será aplicada pela classe do Tailwind config */
-        }
-        .section-tag { @apply inline-block bg-bs-green-bg text-bs-green-accent text-xs font-semibold px-3 py-1.5 rounded-full mb-4 uppercase tracking-wider; }
-        .section-heading { @apply text-3xl md:text-4xl lg:text-[52px] font-extrabold mb-5 md:mb-6 text-bs-dark leading-tight; }
-        .section-subheading { @apply text-lg md:text-xl text-bs-gray-text leading-relaxed mb-10 md:mb-12 max-w-3xl mx-auto; }
-
-        /* Stats Card */
-        .stats-card { @apply bg-transparent p-4 text-center; }
-        .stats-number { @apply text-bs-green-accent font-bold text-4xl md:text-5xl mb-1 tracking-tight; }
-        .stats-label { @apply text-bs-dark font-semibold text-sm; }
-        .stats-source { @apply text-xs text-bs-gray-text mt-0.5 opacity-80; }
-
-        /* Program Card (Layout Inovador para #sua-jornada) */
-        .program-journey-item {
-            @apply relative pl-10 py-4 border-l-2 border-bs-gray-medium transition-all duration-300;
-        }
-        .program-journey-item::before { /* Círculo na linha do tempo */
-            content: ''; position: absolute; left: -9px; top: 1.25rem; /* Ajuste para alinhar com texto */
-            width: 16px; height: 16px; background-color: #FFFFFF; /* bs-white */
-            border: 3px solid #E5E7EB; /* bs-gray-medium */
-            border-radius: 9999px; transition: all 0.3s ease-out;
-        }
-        .program-journey-item.active-program::before, .program-journey-item:hover::before {
-            border-color: #27AE60; /* bs-green-accent */
-            transform: scale(1.2); background-color: #27AE60;
-        }
-        .program-journey-title { @apply text-xl font-semibold text-bs-dark mb-1 cursor-pointer; }
-        .program-journey-description { @apply text-sm text-bs-gray-text leading-relaxed max-h-0 opacity-0 overflow-hidden transition-all duration-500 ease-in-out; }
-        .program-journey-item.active-program .program-journey-description {
-            max-height: 200px; /* Ajuste conforme necessário */
-            opacity: 1;
-            margin-top: 0.5rem;
-        }
-        .program-journey-icon { /* Ícone ao lado do título */
-            @apply absolute -left-5 top-5 w-10 h-10 p-2 bg-bs-green-bg text-bs-green-accent rounded-full flex items-center justify-center shadow-sm;
-        }
-         .program-journey-icon svg { @apply w-5 h-5; }
-
-
-        /* Formulário */
-        .form-label { @apply block text-bs-gray-text mb-1.5 text-xs font-medium uppercase tracking-wide; }
-        .form-input, select.form-input, textarea.form-input {
-            @apply block w-full px-4 py-3 border border-bs-gray-medium rounded-lg bg-bs-gray-light transition-all duration-200 ease-in-out text-sm focus:outline-none focus:border-bs-green-accent focus:ring-2 focus:ring-bs-green-accent/20 focus:bg-bs-white placeholder-bs-gray-text/70;
-        }
-        select.form-input { /* Seta do select */
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-            background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;
-            padding-right: 2.5rem; -webkit-appearance: none; -moz-appearance: none; appearance: none;
-        }
-        #form-message.success { @apply bg-green-50 text-green-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-green-200; }
-        #form-message.error { @apply bg-red-50 text-red-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-red-200; }
-
-        /* Footer */
-        .footer-heading { @apply text-sm font-semibold mb-4 text-bs-dark uppercase tracking-wider; }
-        .footer-link { @apply text-sm text-bs-gray-text hover:text-bs-green-accent transition-colors duration-200 block pb-2; }
-        .social-link { @apply text-bs-gray-text hover:text-bs-green-accent transition-colors duration-300; }
-        .social-link svg { @apply h-5 w-5; }
-
-        /* Animação de entrada (Tailwind já tem 'animate-fade-in-up') */
-        .animate-item {
-            opacity: 0; /* Começa invisível */
-        }
-        .animate-item.is-visible { /* Classe adicionada pelo JS */
-            animation: fade-in-up 0.7s ease-out forwards; /* Usa animação do Tailwind config */
-            animation-delay: var(--animation-delay, 0s);
-        }
-
-    </style>
+    <!-- Seu CSS Customizado -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="font-sans text-bs-text-default bg-bs-white antialiased">
 
-    {/* <!-- ===== Header (Simplificado) ===== --> */}
-    <header id="main-header" class="fixed w-full bg-bs-white/80 backdrop-blur-md z-50 transition-shadow duration-300 border-b border-transparent py-3">
-        <nav class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold text-bs-dark hover:text-bs-green-accent">Brasil Sustenta</a>
-            <div class="hidden lg:flex space-x-8" id="nav-links">
-                <a href="#potencial" class="nav-link relative">Potencial</a>
-                <a href="#nosso-dna" class="nav-link relative">Nosso DNA</a>
-                <a href="#sua-jornada" class="nav-link relative">Sua Jornada</a>
-                <a href="#comunidade" class="nav-link relative">Comunidade</a>
-                <a href="#agir" class="nav-link-cta">Faça Parte</a>
+    <!-- ===== Header Fixo ===== -->
+    <header id="main-header" class="fixed w-full bg-bs-white/90 backdrop-blur-md z-50 transition-all duration-300 border-b border-transparent">
+        <nav class="container mx-auto px-6 py-3.5 flex justify-between items-center">
+            <a href="#home" aria-label="Brasil Sustenta - Início" class="text-xl font-bold text-bs-dark hover:text-bs-green-accent transition-colors duration-300">
+                Brasil Sustenta
+            </a>
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center space-x-7" id="nav-links">
+                <a href="#sobre" class="nav-link relative">Sobre</a>
+                <a href="#programas" class="nav-link relative">Programas</a>
+                <a href="#beneficios" class="nav-link relative">Benefícios</a>
+                <a href="#ecossistema" class="nav-link relative">Ecossistema</a>
+                <a href="#contato" class="button-cta-nav">Fale Conosco</a>
             </div>
-            <button class="lg:hidden text-bs-dark p-1" id="menu-toggle" aria-label="Menu"><svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg><svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-bs-dark focus:outline-none p-1" id="menu-toggle" aria-label="Abrir Menu" aria-expanded="false" aria-controls="mobile-menu">
+                <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+                <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
         </nav>
+        <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-bs-white z-40 flex-col items-center justify-center hidden opacity-0 translate-y-[-100%]">
-            <nav class="flex flex-col items-center space-y-6">
-                <a href="#potencial" class="mobile-nav-link">Potencial</a>
-                <a href="#nosso-dna" class="mobile-nav-link">Nosso DNA</a>
-                <a href="#sua-jornada" class="mobile-nav-link">Sua Jornada</a>
-                <a href="#comunidade" class="mobile-nav-link">Comunidade</a>
-                <a href="#agir" class="mobile-nav-cta mobile-nav-link">Faça Parte</a>
+             <nav class="flex flex-col items-center space-y-6 py-8">
+                <a href="#home" class="mobile-nav-link">Home</a>
+                <a href="#sobre" class="mobile-nav-link">Sobre</a>
+                <a href="#programas" class="mobile-nav-link">Programas</a>
+                <a href="#beneficios" class="mobile-nav-link">Benefícios</a>
+                <a href="#ecossistema" class="mobile-nav-link">Ecossistema</a>
+                <a href="#contato" class="mobile-nav-cta mobile-nav-link">Fale Conosco</a>
             </nav>
         </div>
     </header>
 
     <main>
-        {/* <!-- Seção Hero: #home --> */}
+        <!-- Seção Hero: #home -->
         <section id="home" class="min-h-screen flex flex-col justify-center items-center text-center pt-28 pb-16 relative overflow-hidden bg-bs-white">
-             <div aria-hidden="true" class="absolute inset-0 -z-10 opacity-10 pattern-bg"></div>
             <div class="container mx-auto px-6 animate-item">
                 <span class="section-tag">Brasil Sustenta</span>
-                <h1 class="text-5xl lg:text-7xl font-extrabold text-bs-dark mb-6 leading-tight">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-bs-dark mb-6 leading-tight">
                     Juventude Criativa, <br><span class="text-bs-green-accent">Futuro Sustentável.</span>
                 </h1>
                 <p class="text-lg md:text-xl text-bs-gray-text mb-10 max-w-2xl mx-auto">
                     Engajamos talentos (18-35 anos) na fase pré-ideia para desenvolver soluções de impacto alinhadas aos ODS.
                 </p>
-                <a href="#agir" class="button-primary text-lg px-10 py-4">Descubra Seu Impacto</a>
+                <a href="#contato" class="button-primary text-lg px-10 py-4">Descubra Seu Impacto</a>
             </div>
-             <a href="#potencial" aria-label="Rolar para próxima seção" class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-bs-gray-text hover:text-bs-green-accent transition-colors">
+             <a href="#stats" aria-label="Rolar para próxima seção" class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-bs-gray-text hover:text-bs-green-accent transition-colors">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
             </a>
         </section>
 
-        {/* <!-- Seção Potencial: #potencial (Dados Criativos) --> */}
-        <section id="potencial" class="py-24 md:py-32 bg-bs-gray-light">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="section-heading animate-item">A Força da <span class="text-bs-green-accent">Juventude</span> Brasileira</h2>
-                <p class="section-subheading animate-item" style="--animation-delay: 0.1s;">Dados que impulsionam nossa missão e mostram o poder transformador dos jovens.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-                    <div class="stats-card-alt animate-item" style="--animation-delay: 0.2s;">
-                        <div class="text-5xl font-bold text-bs-green-accent mb-2">53M+</div>
-                        <h3 class="text-lg font-semibold text-bs-dark mb-1">Jovens (18-35)</h3>
-                        <p class="text-sm text-bs-gray-text">Com potencial criativo e de impacto no país (IBGE).</p>
+        <!-- Stats Section: #stats -->
+        <section id="stats" class="py-20 md:py-24 bg-bs-gray-light">
+             <div class="container mx-auto px-6">
+                <h2 class="sr-only">Brasil Sustenta em Números</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <div class="stats-card animate-item">
+                        <div class="stats-number">53 mi+</div>
+                        <p class="stats-label">Jovens (18-35) no Brasil</p>
+                        <p class="stats-source">(IBGE)</p>
                     </div>
-                    <div class="stats-card-alt animate-item" style="--animation-delay: 0.35s;">
-                        <div class="text-5xl font-bold text-bs-green-accent mb-2">88%</div>
-                        <h3 class="text-lg font-semibold text-bs-dark mb-1">Buscam Propósito</h3>
-                        <p class="text-sm text-bs-gray-text">Preferem trabalhar em empresas alinhadas a valores sustentáveis (Accenture).</p>
+                    <div class="stats-card animate-item" style="--animation-delay: 0.15s;">
+                        <div class="stats-number">88%</div>
+                        <p class="stats-label">Preferem Empresas Sustentáveis</p>
+                         <p class="stats-source">(Accenture)</p>
                     </div>
-                    <div class="stats-card-alt animate-item" style="--animation-delay: 0.5s;">
-                        <div class="text-5xl font-bold text-bs-green-accent mb-2">98%<span class="text-3xl align-top">+</span></div>
-                        <h3 class="text-lg font-semibold text-bs-dark mb-1">Vagas ESG</h3>
-                        <p class="text-sm text-bs-gray-text">Crescimento expressivo no mercado de trabalho sustentável (GlobalData).</p>
+                    <div class="stats-card animate-item" style="--animation-delay: 0.3s;">
+                        <div class="stats-number">ODS</div>
+                        <p class="stats-label">Alinhamento Estratégico Global</p>
+                         <p class="stats-source">(ONU)</p>
                     </div>
                 </div>
-                 <p class="mt-16 text-xl text-bs-dark italic animate-item" style="--animation-delay: 0.6s;">
-                    "E se a próxima grande solução para um mundo melhor viesse de <strong class="text-bs-green-accent">você</strong>?"
-                </p>
             </div>
         </section>
 
-        {/* <!-- Seção Nosso DNA: #nosso-dna (IVB, Valores) --> */}
-        <section id="nosso-dna" class="py-24 md:py-32 bg-bs-white">
+        <!-- Sobre Section: #sobre -->
+        <section id="sobre" class="py-20 md:py-28 bg-bs-white">
             <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                     <div class="animate-item text-center lg:text-left">
-                        <span class="section-tag">Brasil Sustenta</span>
-                        <h2 class="section-heading">Nosso DNA: Impact Venture Builder <br>Focada em <span class="text-bs-green-accent">Pessoas</span>.</h2>
-                        <p class="text-lg text-bs-gray-text mb-6 leading-relaxed">
-                            Somos mais que uma aceleradora. Investimos no seu potencial <strong class="font-semibold text-bs-dark">antes da ideia estar pronta</strong>. Oferecemos um ecossistema completo para jovens transformarem paixão em impacto real.
+                        <span class="section-tag">Nosso Diferencial</span>
+                        <h2 class="section-heading">Investimos em <span class="text-bs-green-accent">Talento</span>, <br> Cultivamos <span class="text-bs-green-accent">Impacto</span>.</h2>
+                         <p class="section-subheading-narrow">
+                            Somos uma <strong class="font-semibold text-bs-dark">Impact Venture Builder</strong>. Focamos no potencial humano <strong class="font-semibold text-bs-dark">pré-ideia e pré-equipe</strong>, oferecendo jornada completa com conhecimento, mentoria e rede para jovens (18-35) desenvolverem soluções ODS.
                         </p>
-                        <div class="grid grid-cols-2 gap-6 mt-8 text-left">
-                            <div class="dna-value-card">
-                                <svg class="w-6 h-6 text-bs-green-accent mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg> {/* Ícone: Inovação (Raio) */}
-                                <h4 class="font-semibold text-bs-dark">Inovação</h4>
-                                <p class="text-xs text-bs-gray-text">Fomentamos soluções criativas para os ODS.</p>
-                            </div>
-                            <div class="dna-value-card">
-                                <svg class="w-6 h-6 text-bs-green-accent mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 016-6h6a6 6 0 016 6v1h-3" /></svg> {/* Ícone: Colaboração (Pessoas) */}
-                                <h4 class="font-semibold text-bs-dark">Colaboração</h4>
-                                <p class="text-xs text-bs-gray-text">Criamos em Squads e em rede.</p>
-                            </div>
-                            <div class="dna-value-card">
-                                 <svg class="w-6 h-6 text-bs-green-accent mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> {/* Ícone: Sustentabilidade (Check/Folha) */}
-                                <h4 class="font-semibold text-bs-dark">Sustentabilidade</h4>
-                                <p class="text-xs text-bs-gray-text">Alinhamento total com os ODS.</p>
-                            </div>
-                            <div class="dna-value-card">
-                                <svg class="w-6 h-6 text-bs-green-accent mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg> {/* Ícone: Protagonismo Jovem (Pessoa) */}
-                                <h4 class="font-semibold text-bs-dark">Protagonismo Jovem</h4>
-                                <p class="text-xs text-bs-gray-text">Você no centro da transformação.</p>
-                            </div>
-                        </div>
                     </div>
                     <div class="relative animate-item" style="--animation-delay: 0.2s;">
-                        <div class="aspect-w-1 aspect-h-1">
-                            <img src="https://images.unsplash.com/photo-1573495627363-batzdd192463?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="Jovens em reunião estratégica de impacto" class="rounded-2xl shadow-xl w-full h-full object-cover">
-                        </div>
-                         <div aria-hidden="true" class="absolute -top-10 -right-10 w-40 h-40 bg-bs-green-bg rounded-full blur-2xl opacity-70 -z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Jovens colaborando" class="rounded-xl shadow-xl w-full object-cover aspect-[4/3]">
                     </div>
                 </div>
             </div>
         </section>
 
-        {/* <!-- Seção Sua Jornada: #sua-jornada (Programas Interativos) --> */}
-        <section id="sua-jornada" class="py-24 md:py-32 bg-bs-gray-light border-t border-bs-gray-medium">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-                    <h2 class="section-heading animate-item">Sua Jornada de <span class="text-bs-green-accent">Impacto</span> Começa Aqui</h2>
-                    <p class="section-subheading animate-item" style="--animation-delay: 0.1s;">Explore nossas plataformas de desenvolvimento, capacitação e conexão, desenhadas para cada etapa do seu projeto.</p>
+        <!-- Programas Section: #programas -->
+        <section id="programas" class="py-20 md:py-28 bg-bs-gray-light">
+             <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="section-heading animate-item">Nossas Plataformas de Impulso</h2>
+                    <p class="section-subheading animate-item" style="--animation-delay: 0.1s;">Estruturamos sua jornada com frentes de atuação complementares.</p>
                 </div>
-                {/* <!-- Linha do Tempo Interativa / Acordeão --> */}
-                <div class="max-w-3xl mx-auto space-y-4" id="program-list">
-                    {/* <!-- Item 1: Laboratório de Criação --> */}
-                    <div class="program-journey-item animate-item" data-program="lab">
-                        <div class="program-journey-icon">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* <!-- Card Programa: Laboratório --> */}
+                    <div class="program-card animate-item">
+                         <div class="program-icon">
                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>
-                        </div>
-                        <h3 class="program-journey-title">Laboratório de Criação</h3>
-                        <div class="program-journey-description">
-                            <p>Transforme suas ideias em projetos de impacto social, ambiental e econômico com mentoria e suporte prático. Ideal para a fase pré-ideia e validação.</p>
-                            <a href="#agir" class="inline-block text-bs-green-accent font-medium mt-2 text-sm hover:underline">Quero participar →</a>
-                        </div>
+                         </div>
+                        <h3 class="program-title">Laboratório de Criação</h3>
+                        <p class="program-description">Valide ideias e desenvolva protótipos com mentoria direcionada.</p>
                     </div>
-                     {/* <!-- Item 2: Planejamento e Execução --> */}
-                    <div class="program-journey-item animate-item" data-program="planejamento" style="--animation-delay: 0.1s;">
-                        <div class="program-journey-icon">
+                    {/* <!-- Card Programa: Planejamento --> */}
+                     <div class="program-card animate-item" style="--animation-delay: 0.1s;">
+                        <div class="program-icon">
                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" /></svg>
                         </div>
-                        <h3 class="program-journey-title">Planejamento e Execução</h3>
-                        <div class="program-journey-description">
-                            <p>Conte com especialistas para dimensionar, modelar o negócio e implementar seu projeto de impacto, da concepção à escala inicial.</p>
-                             <a href="#agir" class="inline-block text-bs-green-accent font-medium mt-2 text-sm hover:underline">Preciso deste apoio →</a>
-                        </div>
+                        <h3 class="program-title">Planejamento & Execução</h3>
+                        <p class="program-description">Apoio para modelagem de negócios e implementação eficaz.</p>
                     </div>
-                    {/* <!-- Adicione os outros 4 programas aqui (Acesso à Rede, Lideres, Campus, Play) seguindo o mesmo padrão --> */}
-                    {/* <!-- Exemplo Item 3: Acesso à Rede --> */}
-                    <div class="program-journey-item animate-item" data-program="rede" style="--animation-delay: 0.2s;">
-                        <div class="program-journey-icon">
+                    {/* <!-- Card Programa: Rede --> */}
+                     <div class="program-card animate-item" style="--animation-delay: 0.2s;">
+                        <div class="program-icon">
                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
                         </div>
-                        <h3 class="program-journey-title">Acesso à Rede</h3>
-                        <div class="program-journey-description">
-                            <p>Conecte-se a profissionais, empresas, universidades e investidores essenciais para impulsionar sua trilha de sucesso e impacto.</p>
-                             <a href="#agir" class="inline-block text-bs-green-accent font-medium mt-2 text-sm hover:underline">Quero ampliar minha rede →</a>
-                        </div>
+                        <h3 class="program-title">Acesso à Rede</h3>
+                        <p class="program-description">Conexões com mentores, investidores e parceiros estratégicos.</p>
                     </div>
-                    {/* <!-- Adicionar Lideres, Campus, Play aqui --> */}
+                     {/* <!-- Adicione Lideres, Campus, Play aqui, seguindo o mesmo padrão --> */}
                 </div>
             </div>
         </section>
 
-        {/* <!-- Seção Comunidade: #comunidade (Vantagens, Eventos, Blog - Mais Dinâmico) --> */}
-        <section id="comunidade" class="py-24 md:py-32 bg-bs-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-                    <h2 class="section-heading animate-item">Faça Parte de um Ecossistema <span class="text-bs-green-accent">Vibrante</span></h2>
-                    <p class="section-subheading animate-item" style="--animation-delay: 0.1s;">Desenvolva-se, conecte-se e inspire-se com oportunidades e conteúdos exclusivos.</p>
+        {/* <!-- Benefícios Section: #beneficios --> */}
+        <section id="beneficios" class="py-20 md:py-28 bg-bs-white">
+             <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="section-heading animate-item">Vantagens de Fazer Parte</h2>
+                    <p class="section-subheading animate-item" style="--animation-delay: 0.1s;">Desenvolva-se, conecte-se e gere impacto real em uma comunidade vibrante.</p>
                 </div>
-
-                {/* <!-- Grid para Vantagens + Cards de Eventos/Blog --> */}
-                <div class="grid lg:grid-cols-3 gap-10 items-start">
-                    {/* <!-- Coluna de Vantagens --> */}
-                    <div class="lg:col-span-1 space-y-8">
-                        <div class="benefit-highlight animate-item" style="--animation-delay: 0.15s;">
-                            <div class="benefit-icon-alt">
-                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" /></svg>
-                            </div>
-                            <div>
-                                <h4 class="benefit-title-alt">Networking Estratégico</h4>
-                                <p class="benefit-description-alt text-xs">Conexões com líderes e instituições chave.</p>
-                            </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+                    <div class="benefit-item animate-item">
+                        <div class="benefit-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0" /></svg>
                         </div>
-                        <div class="benefit-highlight animate-item" style="--animation-delay: 0.25s;">
-                            <div class="benefit-icon-alt">
-                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
-                            </div>
-                             <div>
-                                <h4 class="benefit-title-alt">Desenvolvimento Contínuo</h4>
-                                <p class="benefit-description-alt text-xs">Acesso a programas e conteúdos exclusivos.</p>
-                            </div>
-                        </div>
-                         <div class="benefit-highlight animate-item" style="--animation-delay: 0.35s;">
-                            <div class="benefit-icon-alt">
-                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" /></svg>
-                            </div>
-                             <div>
-                                <h4 class="benefit-title-alt">Experiência Prática</h4>
-                                <p class="benefit-description-alt text-xs">Lidere ou participe de projetos que geram impacto real.</p>
-                            </div>
-                        </div>
+                        <h4 class="benefit-title">Networking Estratégico</h4>
+                        <p class="benefit-description">Conecte-se com líderes e instituições chave.</p>
                     </div>
-
-                    {/* <!-- Coluna de Eventos e Blog --> */}
-                    <div class="lg:col-span-2 space-y-10">
-                        {/* <!-- Card Eventos --> */}
-                        <div id="eventos" class="eco-card-alt animate-item" style="--animation-delay: 0.2s;">
-                            <div>
-                                <h3 class="eco-card-title-alt">Próximos Eventos e Workshops</h3>
-                                <p class="eco-card-description-alt">Participe de encontros inspiradores sobre inovação, sustentabilidade e empreendedorismo jovem. Conecte-se com nossa comunidade!</p>
-                            </div>
-                            <div class="mt-6">
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="eco-link-alt" title="Link para Agenda de Eventos (Substituir #)">
-                                    Ver Agenda Completa
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 0V6.375c0-.621.504-1.125 1.125-1.125h1.5c.621 0 1.125.504 1.125 1.125v1.5m-4.5 0h4.5" /></svg>
-                                </a>
-                            </div>
+                    <div class="benefit-item animate-item" style="--animation-delay: 0.15s;">
+                        <div class="benefit-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
                         </div>
-                        {/* <!-- Card Blog --> */}
-                        <div id="blog" class="eco-card-alt animate-item" style="--animation-delay: 0.3s;">
-                            <div>
-                                <h3 class="eco-card-title-alt">Blog: Insights e Inspiração</h3>
-                                <p class="eco-card-description-alt">Acesse artigos, estudos de caso e ferramentas práticas para sua jornada como empreendedor(a) de impacto.</p>
-                            </div>
-                            <div class="mt-6">
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="eco-link-alt" title="Link para Blog (Substituir #)">
-                                    Ler Nossos Artigos
-                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 0V6.375c0-.621.504-1.125 1.125-1.125h1.5c.621 0 1.125.504 1.125 1.125v1.5m-4.5 0h4.5" /></svg>
-                                </a>
-                            </div>
-                        </div>
+                        <h4 class="benefit-title">Desenvolvimento Contínuo</h4>
+                        <p class="benefit-description">Acesse programas e conteúdos exclusivos.</p>
                     </div>
-                </div>
-
-                 {/* <!-- Seção de Parceiros (Opcional, se houver logos) --> */}
-                 <div id="parceiros" class="mt-24 md:mt-32 animate-item" style="--animation-delay: 0.4s;">
-                     <h3 class="text-center text-sm font-semibold text-bs-gray-text uppercase tracking-wider mb-8">Quem Acredita e Constrói Conosco</h3>
-                     <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-6 opacity-70">
-                         {/* <!-- Adicionar logos de parceiros aqui (placeholders) --> */}
-                         <img src="https://via.placeholder.com/120x40/cccccc/969696?text=Parceiro+1" alt="Logo Parceiro 1" class="h-8">
-                         <img src="https://via.placeholder.com/130x45/cccccc/969696?text=Parceiro+2" alt="Logo Parceiro 2" class="h-9">
-                         <img src="https://via.placeholder.com/110x35/cccccc/969696?text=Parceiro+3" alt="Logo Parceiro 3" class="h-7">
-                         <img src="https://via.placeholder.com/140x50/cccccc/969696?text=Parceiro+4" alt="Logo Parceiro 4" class="h-10">
-                     </div>
+                    <div class="benefit-item animate-item" style="--animation-delay: 0.3s;">
+                         <div class="benefit-icon">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" /></svg>
+                         </div>
+                        <h4 class="benefit-title">Experiência Prática</h4>
+                        <p class="benefit-description">Lidere ou participe de projetos de impacto real.</p>
+                    </div>
                  </div>
             </div>
         </section>
 
-        {/* <!-- Contato Section --> */}
-        <section id="agir" class="py-24 md:py-32 bg-gradient-to-br from-bs-green-dark to-bs-dark text-bs-white"> {/* Renomeado para #agir */}
+        <!-- Ecossistema Section: #ecossistema -->
+         <section id="ecossistema" class="py-20 md:py-28 bg-bs-gray-light border-t border-bs-gray-medium">
             <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    <div class="animate-item text-center lg:text-left">
-                        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">Pronto para <span class="text-bs-green-accent">Agir</span>?</h2>
-                        <p class="text-lg text-gray-300 mb-8 leading-relaxed">
-                            Seja um jovem talento com vontade de mudar o mundo, uma organização buscando impacto e inovação, ou um mentor disposto a compartilhar conhecimento. Conecte-se conosco!
-                        </p>
-                         <div class="space-y-4 text-left max-w-md mx-auto lg:mx-0">
-                            <a href="mailto:contato@brasilsustenta.org" class="flex items-center gap-3 p-4 bg-white/10 rounded-lg hover:bg-white/20 transition-colors group">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-bs-green-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                <div>
-                                    <span class="font-semibold">Envie um Email</span>
-                                    <span class="block text-xs text-gray-400 group-hover:text-bs-green-accent transition-colors">contato@brasilsustenta.org</span>
-                                </div>
-                            </a>
-                            {/* Adicionar outros contatos como WhatsApp ou Telefone se desejar */}
+                 <div class="text-center max-w-3xl mx-auto mb-16">
+                     <h2 class="section-heading animate-item">Explore Nosso Ecossistema</h2>
+                     <p class="section-subheading animate-item" style="--animation-delay: 0.1s;">Mantenha-se atualizado com nossos eventos e conteúdos.</p>
+                 </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="eco-card animate-item">
+                        <div>
+                            <h3 class="eco-card-title">Eventos & Workshops</h3>
+                            <p class="eco-card-description">Participe de encontros sobre inovação e sustentabilidade.</p>
                         </div>
+                         <div class="mt-auto pt-4">
+                             <a href="#" target="_blank" rel="noopener noreferrer" class="eco-link" title="Link para Agenda de Eventos (Substituir #)">Ver Agenda
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 0V6.375c0-.621.504-1.125 1.125-1.125h1.5c.621 0 1.125.504 1.125 1.125v1.5m-4.5 0h4.5" /></svg>
+                             </a>
+                         </div>
                     </div>
+                     <div class="eco-card animate-item" style="--animation-delay: 0.15s;">
+                         <div>
+                            <h3 class="eco-card-title">Blog & Insights</h3>
+                            <p class="eco-card-description">Acesse artigos e ferramentas para empreendedores de impacto.</p>
+                         </div>
+                         <div class="mt-auto pt-4">
+                             <a href="#" target="_blank" rel="noopener noreferrer" class="eco-link" title="Link para Blog (Substituir #)">Ler Conteúdo
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-4.5 0V6.375c0-.621.504-1.125 1.125-1.125h1.5c.621 0 1.125.504 1.125 1.125v1.5m-4.5 0h4.5" /></svg>
+                             </a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+         </section>
 
-                    {/* <!-- Formulário --> */}
-                    <div class="bg-bs-white text-bs-text-default rounded-xl p-8 md:p-10 shadow-2xl animate-item" style="--animation-delay: 0.15s;">
-                        <h3 class="text-2xl font-semibold mb-6 text-bs-dark text-center">Junte-se à Nossa Rede</h3>
-                        {/* <!-- Formulário SEM action, JS vai prevenir envio padrão --> */}
+        <!-- Contato Section: #contato -->
+        <section id="contato" class="py-20 md:py-28 bg-bs-green-dark text-bs-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="animate-item text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-5">Faça a diferença conosco.</h2>
+                        <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                            Seja um jovem talento, organização parceira ou mentor. Conecte-se!
+                        </p>
+                    </div>
+                    <div class="bg-bs-white text-bs-text-default rounded-xl p-8 shadow-2xl animate-item" style="--animation-delay: 0.1s;">
+                        <h3 class="text-2xl font-semibold mb-6 text-bs-dark text-center">Envie sua mensagem</h3>
                         <form id="contact-form" method="POST" class="space-y-5">
                             <div>
-                                <label for="name-contact" class="form-label">Nome completo</label>
-                                <input type="text" id="name-contact" name="name" class="form-input-alt" placeholder="Seu nome">
+                                <label for="name-contact" class="form-label">Nome</label>
+                                <input type="text" id="name-contact" name="name" class="form-input" placeholder="Seu nome">
                             </div>
                             <div>
                                 <label for="email-contact" class="form-label">Email</label>
-                                <input type="email" id="email-contact" name="email" class="form-input-alt" placeholder="email@exemplo.com">
+                                <input type="email" id="email-contact" name="email" class="form-input" placeholder="email@exemplo.com">
                             </div>
                              <div>
-                                <label for="subject-contact" class="form-label">Principal Interesse</label>
-                                <select id="subject-contact" name="subject" class="form-input-alt bg-white">
-                                    <option value="" disabled selected>Selecione seu interesse...</option>
-                                    <option value="Jovem Criador (Programas)">Sou Jovem e quero participar</option>
-                                    <option value="Parceria (Organização)">Represento uma Organização Parceira</option>
-                                    <option value="Mentoria/Voluntariado">Quero ser Mentor(a) ou Voluntário(a)</option>
-                                    <option value="Outro">Outro assunto</option>
+                                <label for="subject-contact" class="form-label">Interesse</label>
+                                <select id="subject-contact" name="subject" class="form-input bg-white">
+                                    <option value="" disabled selected>Selecione...</option>
+                                    <option value="Programas">Interesse nos Programas</option>
+                                    <option value="Parceria">Proposta de Parceria</option>
+                                    <option value="Mentoria">Quero ser Mentor(a)</option>
+                                    <option value="Outro">Outro</option>
                                 </select>
                             </div>
-                             <div>
-                                <label for="message-contact" class="form-label">Sua Mensagem (Opcional)</label>
-                                <textarea id="message-contact" name="message" rows="3" class="form-input-alt" placeholder="Conte-nos um pouco mais..."></textarea>
+                            <div id="form-message" class="hidden text-sm"></div>
+                            <div class="pt-2">
+                                <button type="submit" id="submit-button" class="form-submit-button">Enviar</button>
                             </div>
-                            <div class="pt-1">
-                                <label class="flex items-center cursor-pointer">
-                                    <input type="checkbox" name="consent" class="w-4 h-4 rounded border-bs-gray-medium text-bs-green-accent bg-white transition-all duration-300 focus:ring-bs-green-accent/30 focus:ring-offset-0 shadow-sm">
-                                    {/* <!-- Link Placeholder --> */}
-                                    <span class="ml-2 text-xs text-bs-gray-text">Concordo com a <a href="#" target="_blank" class="text-bs-green-accent hover:underline" title="Link para Política de Privacidade (Substituir #)">Política de Privacidade</a>.</span>
-                                </label>
-                            </div>
-                             {/* <!-- Elemento para mensagens de feedback --> */}
-                            <div id="form-message" class="hidden"></div>
-                            <div class="pt-3">
-                                <button type="submit" id="submit-button" class="form-submit-button-alt">Quero Me Conectar</button>
-                            </div>
-                             <p class="text-xs text-center text-bs-gray-text pt-2">O envio online está temporariamente desativado.</p>
+                             <p class="text-xs text-center text-gray-500 pt-2">O envio online está desativado nesta versão.</p>
                         </form>
                     </div>
                 </div>
@@ -526,52 +292,42 @@
         </section>
     </main>
 
-    {/* <!-- ===== Footer ===== --> */}
+    <!-- ===== Footer ===== -->
     <footer class="bg-bs-gray-light py-16 border-t border-bs-gray-medium">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 text-sm">
-                {/* <!-- Coluna 1 --> */}
-                <div class="sm:col-span-2 lg:col-span-1">
-                    <a href="#home" class="inline-block mb-3 font-bold text-bs-dark text-lg">Brasil Sustenta</a>
-                    <p class="text-bs-gray-text leading-relaxed mb-4 text-xs">Engajando a juventude criativa para gerar impacto positivo alinhado aos Objetivos de Desenvolvimento Sustentável (ODS) da ONU.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-sm">
+                <div>
+                    <h4 class="footer-heading">Brasil Sustenta</h4>
+                    <p class="text-bs-gray-text text-xs leading-relaxed mb-4">Potencializando jovens para um futuro sustentável.</p>
                     <div class="flex space-x-4">
                         <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link" title="LinkedIn (Substituir #)"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg></a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link" title="Instagram (Substituir #)"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" clip-rule="evenodd"/></svg></a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Medium" class="social-link" title="Medium (Substituir #)"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.46.041a.594.594 0 00-.491.63L7.71 8.28a.583.583 0 00.573.5h3.255a.58.58 0 00.573-.5L12.852.67a.591.591 0 00-.49-.63H7.46zm6.193.015a.6.6 0 00-.595.615l-.545 12.27a.6.6 0 00.595.615h3.21a.6.6 0 00.595-.615L17.413.67a.6.6 0 00-.595-.615h-3.162zM18.193.015a.62.62 0 00-.62.615l-.21 16.62a.62.62 0 00.62.615H21.8a.62.62 0 00.62-.615l-.21-16.62a.62.62 0 00-.62-.615h-3.4zM0 .731a.73.73 0 00-.73.73v13.74a.73.73 0 00.73.73h4.83a.73.73 0 00.73-.73V1.46a.73.73 0 00-.73-.73H0z"/></svg></a>
+                        {/* <!-- Adicione outros ícones sociais --> */}
                     </div>
                 </div>
-                {/* <!-- Coluna 2: Navegação --> */}
                 <div>
                     <h4 class="footer-heading">Navegação</h4>
-                    <ul class="space-y-2.5">
+                    <ul class="space-y-2">
                         <li><a href="#sobre" class="footer-link">Sobre Nós</a></li>
-                        <li><a href="#programas" class="footer-link">Nossos Programas</a></li>
-                        <li><a href="#beneficios" class="footer-link">Benefícios</a></li>
-                        <li><a href="#ecossistema" class="footer-link">Nosso Ecossistema</a></li>
-                        <li><a href="#agir" class="footer-link">Faça Parte</a></li>
+                        <li><a href="#programas" class="footer-link">Programas</a></li>
+                        <li><a href="#contato" class="footer-link">Contato</a></li>
                     </ul>
                 </div>
-                {/* <!-- Coluna 3: Recursos --> */}
                 <div>
                     <h4 class="footer-heading">Recursos</h4>
-                    <ul class="space-y-2.5">
-                         <li><a href="#" target="_blank" rel="noopener" class="footer-link" title="Link para Blog (Substituir #)">Blog & Insights</a></li>
-                        <li><a href="#" target="_blank" rel="noopener" class="footer-link" title="Link para Eventos (Substituir #)">Eventos & Workshops</a></li>
-                        <li><a href="#agir" class="footer-link">Seja um Parceiro</a></li>
-                         <li><a href="#agir" class="footer-link">Seja Mentor(a)</a></li>
+                    <ul class="space-y-2">
+                         <li><a href="#" target="_blank" rel="noopener" class="footer-link" title="Link Blog (Substituir #)">Blog</a></li>
+                        <li><a href="#" target="_blank" rel="noopener" class="footer-link" title="Link Eventos (Substituir #)">Eventos</a></li>
                     </ul>
                 </div>
-                {/* <!-- Coluna 4: Legal --> */}
                 <div>
                     <h4 class="footer-heading">Legal</h4>
-                    <ul class="space-y-2.5">
+                    <ul class="space-y-2">
                         <li><a href="#" class="footer-link" title="Link Termos (Substituir #)">Termos de Uso</a></li>
                         <li><a href="#" class="footer-link" title="Link Privacidade (Substituir #)">Política de Privacidade</a></li>
                     </ul>
                 </div>
             </div>
-            {/* <!-- Copyright --> */}
-            <div class="pt-10 mt-10 border-t border-bs-gray-medium text-center">
+            <div class="pt-8 mt-8 border-t border-bs-gray-medium text-center">
                 <p class="text-bs-gray-text text-xs">
                     © <span id="current-year"></span> Brasil Sustenta. Todos os direitos reservados.
                 </p>
@@ -579,8 +335,6 @@
         </div>
     </footer>
 
-    {/* <!-- Script JS --> */}
     <script src="script.js" defer></script>
-
 </body>
 </html>
