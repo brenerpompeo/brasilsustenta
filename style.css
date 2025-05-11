@@ -1,151 +1,120 @@
 /* ==========================================================================
-   Base Styles & Font Import
+   Base e Fontes (Poppins já linkado no HTML)
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Poppins', sans-serif;
-  color: #282828; /* bs-dark */
-  background-color: #FFFFFF; /* bs-white */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Previne scroll horizontal */
 }
-
-/* Foco Visível para Acessibilidade */
 :focus { outline: none; }
 :focus-visible {
-  outline: 3px solid #27AE60; /* bs-green-accent */
+  outline: 2px solid #27AE60; /* bs-green-accent */
   outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Padrão de fundo sutil para Hero (opcional) */
-.pattern-bg {
-  background-image: radial-gradient(circle at 1px 1px, rgba(39, 174, 96, 0.03) 1px, transparent 0);
-  background-size: 30px 30px;
+  border-radius: 3px;
 }
 
 /* ==========================================================================
-   Header & Navigation Styles
+   Header e Navegação
    ========================================================================== */
 #main-header.scrolled {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-bottom-color: #E5E7EB; /* bs-gray-medium */
 }
-
-.nav-link {
-    @apply text-sm font-medium text-bs-gray-text hover:text-bs-green-accent transition-colors duration-300 py-1;
+.nav-link { /* As classes base de cor/fonte estão no HTML com Tailwind */
+    transition: color 0.2s ease-out;
 }
 .nav-link::after {
-    content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; /* Mais espaço */
+    content: ''; position: absolute; width: 0; height: 2px; bottom: -4px;
     left: 50%; transform: translateX(-50%);
     background-color: #27AE60; /* bs-green-accent */
     transition: width 0.3s ease-out; border-radius: 1px;
 }
-.nav-link:hover::after, .nav-link.active::after { width: 24px; } /* Sublinhado menor e centralizado */
+.nav-link:hover::after, .nav-link.active::after { width: 24px; }
 .nav-link.active { color: #0D4A42; /* bs-green-dark */ }
 
-.nav-link-cta {
-     @apply inline-block bg-bs-green-accent text-bs-white text-sm font-semibold py-2.5 px-6 rounded-full transition-all duration-300 hover:opacity-90 hover:shadow-lg shadow-bs-green-accent/25;
+.mobile-menu { transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+.mobile-nav-link { /* Classes base Tailwind no HTML */
+    @apply text-lg font-medium text-bs-dark hover:text-bs-green-accent;
+}
+.mobile-nav-cta { /* Classes base Tailwind no HTML */
+     @apply bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-2.5 px-6 rounded-md mt-6;
 }
 
-.mobile-menu { transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
-.mobile-nav-link { @apply block px-6 py-3 text-xl font-medium text-bs-dark hover:text-bs-green-accent transition-colors duration-200; }
-.mobile-nav-cta { @apply inline-block bg-bs-green-accent text-bs-white font-semibold py-3 px-7 rounded-full transition-all duration-300 shadow-md mt-6 hover:opacity-90 text-lg; }
 
 /* ==========================================================================
-   Botões Globais
+   Botões Globais (Estilos Base, Tailwind complementa)
    ========================================================================== */
 .button-primary {
-    @apply inline-block bg-bs-green-accent text-bs-white font-semibold py-3.5 px-8 rounded-full text-base transition-all duration-300 shadow-lg shadow-bs-green-accent/30 hover:shadow-xl hover:shadow-bs-green-accent/40 hover:-translate-y-1 active:translate-y-0 active:shadow-lg;
+    @apply inline-block bg-bs-green-accent text-bs-white font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm;
 }
 .button-secondary {
-    @apply inline-block bg-bs-white text-bs-dark font-semibold py-3.5 px-8 rounded-full border-2 border-bs-gray-medium transition-all duration-300 hover:bg-bs-gray-light hover:border-bs-dark hover:-translate-y-1 active:translate-y-0 text-base;
+    @apply inline-block bg-bs-white text-bs-dark font-semibold border-2 border-bs-gray-medium transition-all duration-300 hover:bg-bs-gray-light hover:border-bs-dark hover:-translate-y-0.5 active:translate-y-0;
 }
-.form-submit-button-alt { /* Estilo para botão de formulário */
-     @apply w-full button-primary py-3; /* Reusa primário com padding ajustado */
-}
-.form-submit-button-alt:disabled {
-    @apply opacity-60 cursor-not-allowed bg-gray-400 from-gray-400 to-gray-500 hover:shadow-none hover:-translate-y-0;
+.button-cta-nav { /* Botão de contato no header desktop */
+     @apply inline-block bg-bs-green-accent text-bs-white text-sm font-medium py-2 px-5 rounded-md transition-all duration-300 shadow hover:shadow-md hover:opacity-90;
 }
 
 
 /* ==========================================================================
-   Estilos de Seção e Componentes Específicos
+   Estilos de Seção e Componentes
    ========================================================================== */
-.section-tag { @apply inline-block bg-bs-green-bg text-bs-green-accent text-xs font-semibold px-3.5 py-1.5 rounded-full mb-4 uppercase tracking-wider; }
-.section-heading { @apply text-3xl md:text-4xl lg:text-[50px] font-extrabold mb-5 md:mb-6 text-bs-dark leading-tight; }
-.section-heading-alt { @apply text-3xl md:text-4xl font-bold mb-5 md:mb-6 text-bs-dark leading-snug; }
-.section-subheading { @apply text-lg md:text-xl text-bs-gray-text leading-relaxed mb-10 md:mb-12 max-w-3xl mx-auto; }
-.section-subheading-alt { @apply text-lg text-bs-gray-text leading-relaxed mb-8 md:mb-10; }
-
-/* Stats Card Alt */
-.stats-card-alt { @apply bg-transparent p-4 text-center; }
-
-/* DNA Value Card */
-.dna-value-card {
-    @apply bg-bs-gray-light p-4 rounded-lg transition-all duration-300 hover:shadow-md hover:bg-bs-green-bg;
-}
-
-/* Program Journey (Linha do Tempo/Acordeão) */
-.program-journey-item.active-program .program-journey-description {
-    max-height: 250px; /* Aumenta para mais texto */
-    opacity: 1;
-    margin-top: 0.75rem; /* my-3 */
-    padding-bottom: 0.75rem;
-}
-.program-journey-item.active-program::before {
-    border-color: #27AE60; /* bs-green-accent */
-    transform: scale(1.25); background-color: #27AE60;
-}
-
-/* Benefit Highlight (Layout diferenciado para benefícios) */
-.benefit-highlight {
-    @apply flex items-start gap-4 p-4 bg-bs-white rounded-lg transition-all duration-300 hover:shadow-md;
-}
-
-/* Eco Card Alt (Layout melhorado para Ecossistema) */
-.eco-card-alt {
-    @apply flex flex-col bg-bs-white p-8 rounded-xl shadow-lg shadow-bs-gray-light/30 transition-all duration-300 border border-transparent hover:border-bs-green-accent/30 hover:transform hover:-translate-y-1.5 h-full;
-}
-.eco-card-title-alt { @apply text-xl font-semibold text-bs-dark mb-3; }
-.eco-card-description-alt { @apply text-bs-gray-text mb-6 text-sm leading-relaxed flex-grow; }
-.eco-link-alt {
-    @apply inline-flex items-center text-sm font-semibold text-bs-green-accent hover:text-bs-dark transition-colors duration-300 group;
-}
-.eco-link-alt svg { @apply w-4 h-4 ml-1.5 transition-transform duration-300 group-hover:translate-x-1; }
+.section-tag { @apply inline-block bg-bs-green-bg text-bs-green-accent text-xs font-semibold px-3 py-1.5 rounded-full mb-4 uppercase tracking-wider; }
+.section-heading { @apply text-3xl md:text-4xl lg:text-[42px] font-bold mb-4 text-bs-dark leading-tight; } /* Tamanho ajustado */
+.section-subheading { @apply text-lg text-bs-gray-text leading-relaxed mb-10 max-w-2xl mx-auto; }
+.section-subheading-narrow { @apply text-base text-bs-gray-text leading-relaxed mb-6 max-w-xl; }
 
 
-/* Formulário */
-.form-label { @apply block text-bs-gray-text mb-1.5 text-xs font-medium uppercase tracking-wider; }
-.form-input-alt, select.form-input-alt, textarea.form-input-alt {
-    @apply block w-full px-4 py-3 border border-bs-gray-medium rounded-lg bg-bs-gray-light transition-all duration-200 ease-in-out text-sm focus:outline-none focus:border-bs-green-accent focus:ring-2 focus:ring-bs-green-accent/20 focus:bg-bs-white placeholder-bs-gray-text/70;
+.stats-card { @apply bg-bs-white p-6 rounded-xl shadow-sm text-center transition-shadow duration-300 hover:shadow-lg; }
+.stats-number { @apply text-bs-green-accent font-bold text-4xl md:text-5xl mb-1 tracking-tight; }
+.stats-label { @apply text-bs-dark font-semibold text-sm; }
+.stats-source { @apply text-xs text-bs-gray-text mt-0.5 opacity-80; }
+
+.program-card { @apply bg-bs-white p-6 rounded-xl shadow-sm transition-all duration-300 border border-transparent hover:border-bs-green-accent/30 hover:shadow-lg hover:transform hover:-translate-y-1; }
+.program-icon { @apply flex items-center justify-center w-12 h-12 rounded-lg bg-bs-green-bg text-bs-green-accent mb-4; }
+.program-icon svg { @apply w-6 h-6; }
+.program-title { @apply text-lg font-semibold text-bs-dark mb-1.5; }
+.program-description { @apply text-sm text-bs-gray-text leading-relaxed; }
+
+.benefit-item { @apply text-center p-2; }
+.benefit-icon { @apply inline-flex items-center justify-center w-14 h-14 rounded-full bg-bs-green-bg text-bs-green-accent mb-4 shadow-sm; }
+.benefit-icon svg { @apply w-7 h-7; }
+.benefit-title { @apply text-base font-semibold text-bs-dark mb-1; }
+.benefit-description { @apply text-xs text-bs-gray-text leading-relaxed max-w-[200px] mx-auto; } /* Mais estreito */
+
+.eco-card { @apply flex flex-col justify-between bg-bs-white p-6 rounded-lg shadow-sm transition-shadow duration-300 border border-bs-gray-medium/50 hover:shadow-lg h-full; }
+.eco-card-title { @apply text-lg font-semibold text-bs-dark mb-2; }
+.eco-card-description { @apply text-sm text-bs-gray-text mb-4 flex-grow; }
+.eco-link { @apply inline-flex items-center text-sm font-medium text-bs-green-accent hover:text-bs-green-dark transition-colors duration-200 group; }
+.eco-link svg { @apply w-4 h-4 ml-1 transition-transform duration-200 group-hover:translate-x-0.5; }
+
+.form-label { @apply block text-bs-gray-text mb-1 text-xs font-medium uppercase tracking-wide; }
+.form-input, select.form-input, textarea.form-input {
+    @apply block w-full px-3.5 py-2.5 border border-bs-gray-medium rounded-md bg-bs-white transition-colors duration-200 text-sm focus:outline-none focus:border-bs-green-accent focus:ring-1 focus:ring-bs-green-accent/50 placeholder-bs-gray-text/60;
 }
-select.form-input-alt {
+select.form-input {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;
+    background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em; /* Ajuste tamanho seta */
     padding-right: 2.5rem; -webkit-appearance: none; -moz-appearance: none; appearance: none;
 }
-#form-message.success { @apply bg-bs-green-bg text-bs-green-accent p-3 rounded-md block mt-4 mb-1 text-sm border border-bs-green-accent/20; }
-#form-message.error { @apply bg-red-50 text-red-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-red-200; }
+#form-message.success { @apply bg-green-50 text-green-700 p-3 rounded-md block mt-3 text-sm border border-green-200; }
+#form-message.error { @apply bg-red-50 text-red-700 p-3 rounded-md block mt-3 text-sm border border-red-200; }
+.form-submit-button { /* Estilo no HTML com Tailwind */ }
+.form-submit-button:disabled { @apply opacity-60 cursor-not-allowed; }
 
 
-/* Footer */
-.footer-heading { @apply text-sm font-semibold mb-4 text-bs-dark uppercase tracking-wider; }
-.footer-link { @apply text-sm text-bs-gray-text hover:text-bs-green-accent transition-colors duration-200 block pb-2; }
+.footer-heading { @apply text-xs font-semibold mb-3 text-bs-dark uppercase tracking-wider; }
+.footer-link { @apply text-sm text-bs-gray-text hover:text-bs-green-accent transition-colors duration-200 block pb-1.5; }
 .social-link { @apply text-bs-gray-text hover:text-bs-green-accent transition-colors duration-300; }
 .social-link svg { @apply h-5 w-5; }
 
-
-/* Animação de entrada (usando a classe definida no Tailwind config) */
-.animate-item.is-visible { /* JS adiciona 'is-visible' */
-    animation: fade-in-up 0.7s ease-out forwards; /* Duração e timing */
+/* Animações de Scroll */
+.animate-item {
+   opacity: 0;
+   /* A classe 'is-visible' e a animação 'animate-fade-in-up' serão aplicadas via JS e Tailwind config */
+}
+.animate-item.is-visible {
+    animation: fade-in-up 0.7s ease-out forwards; /* Referencia a animação do Tailwind config */
     animation-delay: var(--animation-delay, 0s); /* Permite delay customizado via style */
 }
