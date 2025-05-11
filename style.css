@@ -1,152 +1,123 @@
-/* ==========================================================================
-   Base Styles & Font Import (Fontes já no HTML via Google Fonts)
-   ========================================================================== */
+/* Base Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
 :root {
-    --primary-color: #16a34a; /* green-600 (Tailwind config) */
-    --secondary-color: #f59e0b; /* amber-500 (Tailwind config) */
-    --text-primary: #111827; /* gray-900 (Tailwind config) */
-    --text-secondary: #4b5563; /* gray-600 (Tailwind config) */
-    --bg-light: #f9fafb; /* gray-50 (Tailwind config) */
-    --border-light: #e5e7eb; /* gray-200 (Tailwind config) */
-    --border-medium: #cbd5e1; /* gray-300 (Tailwind config) */
+    --primary-color: #16a34a; /* green-600 */
+    --secondary-color: #f59e0b; /* amber-500 */
+    --text-primary: #111827; /* gray-900 */
+    --text-secondary: #4b5563; /* gray-600 */
+    --bg-light: #f9fafb; /* gray-50 */
 }
 
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
+/* Base styles */
 body {
-  font-family: 'Inter', sans-serif; /* Fonte base */
-  color: var(--text-primary);
-  background-color: #ffffff;
-  line-height: 1.6; /* Aumenta um pouco para melhor leitura */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-.font-display { font-family: 'Space Grotesk', sans-serif; }
-.font-geist-mono { font-family: 'Geist Mono', monospace; letter-spacing: -0.025em; } /* Exemplo, precisa importar a fonte */
-
-/* Foco Visível (Acessibilidade) */
-:focus { outline: none; }
-:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-  border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
-/* ==========================================================================
-   Header & Navigation Styles
-   ========================================================================== */
-#main-header.scrolled {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    border-bottom-color: var(--border-light);
-}
-.nav-link {
-    @apply text-sm text-text-secondary hover:text-primary font-medium transition-colors duration-200 ease-custom-ease relative py-1;
-}
-.nav-link::after {
-    content: ''; position: absolute; width: 0; height: 2px; bottom: -3px;
-    left: 50%; transform: translateX(-50%);
-    background-color: var(--primary-color);
-    transition: width 0.3s var(--custom-ease); border-radius: 1px;
-}
-.nav-link:hover::after, .nav-link.active::after { width: 20px; } /* Sublinhado menor e elegante */
-.nav-link.active { color: var(--primary-color); }
-
-.btn-primary-small { /* Botão de contato no header desktop */
-    @apply inline-block bg-secondary text-white text-xs font-medium py-2 px-4 rounded-full transition-all duration-150 ease-custom-ease shadow-sm hover:bg-orange-500 hover:shadow-md hover:-translate-y-px active:translate-y-0 active:shadow-sm;
+.font-display {
+    font-family: 'Space Grotesk', sans-serif;
 }
 
-.mobile-menu {
-    transform-origin: top;
-    transition: opacity 0.3s var(--custom-ease), transform 0.3s var(--custom-ease), visibility 0.3s;
-    visibility: hidden; /* Controla visibilidade para acessibilidade */
-}
-.mobile-menu.open { /* Classe adicionada via JS */
-    visibility: visible;
-    opacity: 1;
-    transform: scaleY(1);
-}
-.mobile-nav-link {
-    @apply block text-center py-3 px-4 text-base font-medium text-text-secondary hover:text-primary hover:bg-bg-light rounded-md transition-colors duration-200;
+.font-geist-mono {
+    font-family: monospace;
+    letter-spacing: -0.02em;
 }
 
-/* ==========================================================================
-   Botões Globais
-   ========================================================================== */
-.btn { /* Classe base para botões, Tailwind pode adicionar o resto */
-    display: inline-flex; align-items: center; justify-content: center;
-    font-weight: 500; border-radius: 9999px; /* pill shape */
-    transition: transform 0.15s var(--custom-ease), box-shadow 0.15s var(--custom-ease), background-color 0.15s var(--custom-ease), border-color 0.15s var(--custom-ease);
-    will-change: transform;
-    text-decoration: none; /* Garante que não haja sublinhado */
-    cursor: pointer;
-}
+/* Button styles */
 .btn-primary {
-    @apply btn bg-primary text-white py-3 px-7 text-sm md:text-base; /* Usando variáveis */
-}
-.btn-primary:hover {
-    @apply bg-primary-dark transform -translate-y-px shadow-interactive;
-}
-.btn-primary:active {
-    @apply transform translate-y-0 shadow-subtle;
-}
-.btn-secondary {
-    @apply btn bg-white text-text-primary py-3 px-7 text-sm md:text-base border border-border-medium;
-}
-.btn-secondary:hover {
-    @apply border-border-medium transform -translate-y-px shadow-interactive;
-}
-.btn-secondary:active {
-    @apply transform translate-y-0 shadow-subtle;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    border-radius: 9999px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    will-change: transform;
 }
 
-/* ==========================================================================
-   Estilos de Seção e Componentes
-   ========================================================================== */
-.section-animate { /* Classe para animação de entrada */
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.7s var(--custom-ease) 0.1s, transform 0.7s var(--custom-ease) 0.1s; /* Com delay */
-    will-change: opacity, transform;
+.btn-primary:hover {
+    background-color: #15803d; /* green-700 */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
-.section-animate.is-visible {
+
+.btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background-color: white;
+    color: var(--text-primary);
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 1px solid #e5e7eb; /* gray-200 */
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    will-change: transform;
+}
+
+.btn-secondary:hover {
+    border-color: #cbd5e1; /* gray-300 */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Animations */
+.fade-in-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-item.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* Card de Programa (Exemplo) */
-.program-card {
-    @apply bg-white rounded-xl p-6 md:p-8 shadow-subtle border border-gray-100 transition-all duration-300 ease-custom-ease hover:shadow-interactive-lg hover:border-primary/30 hover:transform hover:-translate-y-1.5;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
 }
-.program-icon {
-    @apply inline-flex items-center justify-center w-14 h-14 rounded-lg bg-green-100 text-primary mb-5; /* Ajuste bg/text */
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
 }
-.program-icon svg { @apply w-7 h-7; }
-.program-title { @apply text-xl font-semibold text-text-primary mb-2 font-display; }
-.program-description { @apply text-text-secondary text-sm leading-relaxed mb-4; }
-.program-cta { @apply inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors group; }
-.program-cta span { @apply transition-transform duration-200 group-hover:translate-x-1; }
 
-
-/* Formulário */
-.form-input, select.form-input, textarea.form-input {
-    @apply block w-full px-4 py-3 border border-border-medium rounded-lg bg-white transition-all duration-200 ease-custom-ease text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 placeholder-text-secondary/70;
+/* Custom styling for form elements */
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--primary-color);
+    border-color: var(--primary-color);
 }
-select.form-input { /* Seta do select */
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;
-    padding-right: 2.5rem; -webkit-appearance: none; -moz-appearance: none; appearance: none;
+
+/* Mobile menu style adjustments */
+#mobile-menu {
+    transform-origin: top;
+    transition: all 0.3s ease;
 }
-#form-message { transition: all 0.3s ease-out; }
-#form-message.success { @apply bg-green-50 text-green-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-green-200; }
-#form-message.error { @apply bg-red-50 text-red-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-red-200; }
 
-
-/* Footer */
-.footer-heading { @apply text-sm font-semibold mb-4 text-text-primary uppercase tracking-wider; }
-.footer-link { @apply text-sm text-text-secondary hover:text-primary transition-colors duration-200 block pb-2; }
-.social-icon-footer { @apply text-text-secondary hover:text-primary transition-colors duration-300; }
-.social-icon-footer svg { @apply h-5 w-5; }
+/* For Safari mobile bottom bar consideration */
+@supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+        min-height: -webkit-fill-available;
+    }
+}
