@@ -1,120 +1,152 @@
 /* ==========================================================================
-   Base e Fontes (Poppins já linkado no HTML)
+   Base Styles & Font Import (Fontes já no HTML via Google Fonts)
    ========================================================================== */
-html { scroll-behavior: smooth; }
+:root {
+    --primary-color: #16a34a; /* green-600 (Tailwind config) */
+    --secondary-color: #f59e0b; /* amber-500 (Tailwind config) */
+    --text-primary: #111827; /* gray-900 (Tailwind config) */
+    --text-secondary: #4b5563; /* gray-600 (Tailwind config) */
+    --bg-light: #f9fafb; /* gray-50 (Tailwind config) */
+    --border-light: #e5e7eb; /* gray-200 (Tailwind config) */
+    --border-medium: #cbd5e1; /* gray-300 (Tailwind config) */
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Inter', sans-serif; /* Fonte base */
+  color: var(--text-primary);
+  background-color: #ffffff;
+  line-height: 1.6; /* Aumenta um pouco para melhor leitura */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden; /* Previne scroll horizontal */
+  overflow-x: hidden;
 }
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+.font-geist-mono { font-family: 'Geist Mono', monospace; letter-spacing: -0.025em; } /* Exemplo, precisa importar a fonte */
+
+/* Foco Visível (Acessibilidade) */
 :focus { outline: none; }
 :focus-visible {
-  outline: 2px solid #27AE60; /* bs-green-accent */
+  outline: 2px solid var(--primary-color);
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 /* ==========================================================================
-   Header e Navegação
+   Header & Navigation Styles
    ========================================================================== */
 #main-header.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    border-bottom-color: #E5E7EB; /* bs-gray-medium */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-bottom-color: var(--border-light);
 }
-.nav-link { /* As classes base de cor/fonte estão no HTML com Tailwind */
-    transition: color 0.2s ease-out;
+.nav-link {
+    @apply text-sm text-text-secondary hover:text-primary font-medium transition-colors duration-200 ease-custom-ease relative py-1;
 }
 .nav-link::after {
-    content: ''; position: absolute; width: 0; height: 2px; bottom: -4px;
+    content: ''; position: absolute; width: 0; height: 2px; bottom: -3px;
     left: 50%; transform: translateX(-50%);
-    background-color: #27AE60; /* bs-green-accent */
-    transition: width 0.3s ease-out; border-radius: 1px;
+    background-color: var(--primary-color);
+    transition: width 0.3s var(--custom-ease); border-radius: 1px;
 }
-.nav-link:hover::after, .nav-link.active::after { width: 24px; }
-.nav-link.active { color: #0D4A42; /* bs-green-dark */ }
+.nav-link:hover::after, .nav-link.active::after { width: 20px; } /* Sublinhado menor e elegante */
+.nav-link.active { color: var(--primary-color); }
 
-.mobile-menu { transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
-.mobile-nav-link { /* Classes base Tailwind no HTML */
-    @apply text-lg font-medium text-bs-dark hover:text-bs-green-accent;
-}
-.mobile-nav-cta { /* Classes base Tailwind no HTML */
-     @apply bg-gradient-to-r from-brand-dark to-brand-green text-white font-medium py-2.5 px-6 rounded-md mt-6;
+.btn-primary-small { /* Botão de contato no header desktop */
+    @apply inline-block bg-secondary text-white text-xs font-medium py-2 px-4 rounded-full transition-all duration-150 ease-custom-ease shadow-sm hover:bg-orange-500 hover:shadow-md hover:-translate-y-px active:translate-y-0 active:shadow-sm;
 }
 
+.mobile-menu {
+    transform-origin: top;
+    transition: opacity 0.3s var(--custom-ease), transform 0.3s var(--custom-ease), visibility 0.3s;
+    visibility: hidden; /* Controla visibilidade para acessibilidade */
+}
+.mobile-menu.open { /* Classe adicionada via JS */
+    visibility: visible;
+    opacity: 1;
+    transform: scaleY(1);
+}
+.mobile-nav-link {
+    @apply block text-center py-3 px-4 text-base font-medium text-text-secondary hover:text-primary hover:bg-bg-light rounded-md transition-colors duration-200;
+}
 
 /* ==========================================================================
-   Botões Globais (Estilos Base, Tailwind complementa)
+   Botões Globais
    ========================================================================== */
-.button-primary {
-    @apply inline-block bg-bs-green-accent text-bs-white font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm;
+.btn { /* Classe base para botões, Tailwind pode adicionar o resto */
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 500; border-radius: 9999px; /* pill shape */
+    transition: transform 0.15s var(--custom-ease), box-shadow 0.15s var(--custom-ease), background-color 0.15s var(--custom-ease), border-color 0.15s var(--custom-ease);
+    will-change: transform;
+    text-decoration: none; /* Garante que não haja sublinhado */
+    cursor: pointer;
 }
-.button-secondary {
-    @apply inline-block bg-bs-white text-bs-dark font-semibold border-2 border-bs-gray-medium transition-all duration-300 hover:bg-bs-gray-light hover:border-bs-dark hover:-translate-y-0.5 active:translate-y-0;
+.btn-primary {
+    @apply btn bg-primary text-white py-3 px-7 text-sm md:text-base; /* Usando variáveis */
 }
-.button-cta-nav { /* Botão de contato no header desktop */
-     @apply inline-block bg-bs-green-accent text-bs-white text-sm font-medium py-2 px-5 rounded-md transition-all duration-300 shadow hover:shadow-md hover:opacity-90;
+.btn-primary:hover {
+    @apply bg-primary-dark transform -translate-y-px shadow-interactive;
 }
-
+.btn-primary:active {
+    @apply transform translate-y-0 shadow-subtle;
+}
+.btn-secondary {
+    @apply btn bg-white text-text-primary py-3 px-7 text-sm md:text-base border border-border-medium;
+}
+.btn-secondary:hover {
+    @apply border-border-medium transform -translate-y-px shadow-interactive;
+}
+.btn-secondary:active {
+    @apply transform translate-y-0 shadow-subtle;
+}
 
 /* ==========================================================================
    Estilos de Seção e Componentes
    ========================================================================== */
-.section-tag { @apply inline-block bg-bs-green-bg text-bs-green-accent text-xs font-semibold px-3 py-1.5 rounded-full mb-4 uppercase tracking-wider; }
-.section-heading { @apply text-3xl md:text-4xl lg:text-[42px] font-bold mb-4 text-bs-dark leading-tight; } /* Tamanho ajustado */
-.section-subheading { @apply text-lg text-bs-gray-text leading-relaxed mb-10 max-w-2xl mx-auto; }
-.section-subheading-narrow { @apply text-base text-bs-gray-text leading-relaxed mb-6 max-w-xl; }
-
-
-.stats-card { @apply bg-bs-white p-6 rounded-xl shadow-sm text-center transition-shadow duration-300 hover:shadow-lg; }
-.stats-number { @apply text-bs-green-accent font-bold text-4xl md:text-5xl mb-1 tracking-tight; }
-.stats-label { @apply text-bs-dark font-semibold text-sm; }
-.stats-source { @apply text-xs text-bs-gray-text mt-0.5 opacity-80; }
-
-.program-card { @apply bg-bs-white p-6 rounded-xl shadow-sm transition-all duration-300 border border-transparent hover:border-bs-green-accent/30 hover:shadow-lg hover:transform hover:-translate-y-1; }
-.program-icon { @apply flex items-center justify-center w-12 h-12 rounded-lg bg-bs-green-bg text-bs-green-accent mb-4; }
-.program-icon svg { @apply w-6 h-6; }
-.program-title { @apply text-lg font-semibold text-bs-dark mb-1.5; }
-.program-description { @apply text-sm text-bs-gray-text leading-relaxed; }
-
-.benefit-item { @apply text-center p-2; }
-.benefit-icon { @apply inline-flex items-center justify-center w-14 h-14 rounded-full bg-bs-green-bg text-bs-green-accent mb-4 shadow-sm; }
-.benefit-icon svg { @apply w-7 h-7; }
-.benefit-title { @apply text-base font-semibold text-bs-dark mb-1; }
-.benefit-description { @apply text-xs text-bs-gray-text leading-relaxed max-w-[200px] mx-auto; } /* Mais estreito */
-
-.eco-card { @apply flex flex-col justify-between bg-bs-white p-6 rounded-lg shadow-sm transition-shadow duration-300 border border-bs-gray-medium/50 hover:shadow-lg h-full; }
-.eco-card-title { @apply text-lg font-semibold text-bs-dark mb-2; }
-.eco-card-description { @apply text-sm text-bs-gray-text mb-4 flex-grow; }
-.eco-link { @apply inline-flex items-center text-sm font-medium text-bs-green-accent hover:text-bs-green-dark transition-colors duration-200 group; }
-.eco-link svg { @apply w-4 h-4 ml-1 transition-transform duration-200 group-hover:translate-x-0.5; }
-
-.form-label { @apply block text-bs-gray-text mb-1 text-xs font-medium uppercase tracking-wide; }
-.form-input, select.form-input, textarea.form-input {
-    @apply block w-full px-3.5 py-2.5 border border-bs-gray-medium rounded-md bg-bs-white transition-colors duration-200 text-sm focus:outline-none focus:border-bs-green-accent focus:ring-1 focus:ring-bs-green-accent/50 placeholder-bs-gray-text/60;
+.section-animate { /* Classe para animação de entrada */
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s var(--custom-ease) 0.1s, transform 0.7s var(--custom-ease) 0.1s; /* Com delay */
+    will-change: opacity, transform;
 }
-select.form-input {
+.section-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card de Programa (Exemplo) */
+.program-card {
+    @apply bg-white rounded-xl p-6 md:p-8 shadow-subtle border border-gray-100 transition-all duration-300 ease-custom-ease hover:shadow-interactive-lg hover:border-primary/30 hover:transform hover:-translate-y-1.5;
+}
+.program-icon {
+    @apply inline-flex items-center justify-center w-14 h-14 rounded-lg bg-green-100 text-primary mb-5; /* Ajuste bg/text */
+}
+.program-icon svg { @apply w-7 h-7; }
+.program-title { @apply text-xl font-semibold text-text-primary mb-2 font-display; }
+.program-description { @apply text-text-secondary text-sm leading-relaxed mb-4; }
+.program-cta { @apply inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors group; }
+.program-cta span { @apply transition-transform duration-200 group-hover:translate-x-1; }
+
+
+/* Formulário */
+.form-input, select.form-input, textarea.form-input {
+    @apply block w-full px-4 py-3 border border-border-medium rounded-lg bg-white transition-all duration-200 ease-custom-ease text-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 placeholder-text-secondary/70;
+}
+select.form-input { /* Seta do select */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
-    background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.25em 1.25em; /* Ajuste tamanho seta */
+    background-position: right 0.75rem center; background-repeat: no-repeat; background-size: 1.5em 1.5em;
     padding-right: 2.5rem; -webkit-appearance: none; -moz-appearance: none; appearance: none;
 }
-#form-message.success { @apply bg-green-50 text-green-700 p-3 rounded-md block mt-3 text-sm border border-green-200; }
-#form-message.error { @apply bg-red-50 text-red-700 p-3 rounded-md block mt-3 text-sm border border-red-200; }
-.form-submit-button { /* Estilo no HTML com Tailwind */ }
-.form-submit-button:disabled { @apply opacity-60 cursor-not-allowed; }
+#form-message { transition: all 0.3s ease-out; }
+#form-message.success { @apply bg-green-50 text-green-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-green-200; }
+#form-message.error { @apply bg-red-50 text-red-700 p-3 rounded-md block mt-4 mb-1 text-sm border border-red-200; }
 
 
-.footer-heading { @apply text-xs font-semibold mb-3 text-bs-dark uppercase tracking-wider; }
-.footer-link { @apply text-sm text-bs-gray-text hover:text-bs-green-accent transition-colors duration-200 block pb-1.5; }
-.social-link { @apply text-bs-gray-text hover:text-bs-green-accent transition-colors duration-300; }
-.social-link svg { @apply h-5 w-5; }
-
-/* Animações de Scroll */
-.animate-item {
-   opacity: 0;
-   /* A classe 'is-visible' e a animação 'animate-fade-in-up' serão aplicadas via JS e Tailwind config */
-}
-.animate-item.is-visible {
-    animation: fade-in-up 0.7s ease-out forwards; /* Referencia a animação do Tailwind config */
-    animation-delay: var(--animation-delay, 0s); /* Permite delay customizado via style */
-}
+/* Footer */
+.footer-heading { @apply text-sm font-semibold mb-4 text-text-primary uppercase tracking-wider; }
+.footer-link { @apply text-sm text-text-secondary hover:text-primary transition-colors duration-200 block pb-2; }
+.social-icon-footer { @apply text-text-secondary hover:text-primary transition-colors duration-300; }
+.social-icon-footer svg { @apply h-5 w-5; }
