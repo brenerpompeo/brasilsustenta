@@ -1,138 +1,93 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const header = document.getElementById("main-header");
-    const menuToggle = document.getElementById("menu-toggle");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const menuIcon = document.getElementById("menu-icon");
-    const closeIcon = document.getElementById("close-icon");
-    const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : []; // Links dentro do menu mobile
-    const navLinks = document.querySelectorAll("nav.hidden.md\\:flex a.nav-link"); // Links de navegação desktop
-    const currentYearEl = document.querySelector("#current-year-placeholder"); // Assumindo que você adicionará este ID
-    const animatedElements = document.querySelectorAll('.fade-in-item');
-    const contactForm = document.querySelector("#contact-form-placeholder"); // Assumindo que você adicionará este ID
-    const formMessageEl = document.querySelector("#form-message-placeholder"); // Assumindo
-    const submitBtn = contactForm ? contactForm.querySelector('button[type="submit"]') : null;
-
-    // --- Atualizar Ano no Footer (se o placeholder existir) ---
-    if (currentYearEl) {
-        currentYearEl.textContent = new Date().getFullYear();
-    }
-
-    // --- Header com Sombra e Padding no Scroll ---
-    if (header) {
-        const handleHeaderScroll = () => {
-            if (window.scrollY > 20) {
-                header.classList.add('scrolled', 'shadow-md', 'py-2.5'); // py-2.5 é menor que py-3 inicial
-                header.classList.remove('py-3', 'border-transparent');
-                header.classList.add('border-border-light');
-            } else {
-                header.classList.remove('scrolled', 'shadow-md', 'py-2.5');
-                header.classList.add('py-3', 'border-transparent');
-                header.classList.remove('border-border-light');
-            }
-        };
-        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-        handleHeaderScroll(); // Estado inicial
-    }
-
-    // --- Menu Mobile Toggle ---
-    if (menuToggle && mobileMenu && menuIcon && closeIcon) {
-        const toggleMenu = () => {
-            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-            menuToggle.setAttribute("aria-expanded", !isExpanded);
-
-            if (mobileMenu.classList.contains('hidden')) { // Se está fechado, vai abrir
-                mobileMenu.classList.remove('hidden');
-                requestAnimationFrame(() => { // Garante que 'hidden' foi removido
-                    mobileMenu.classList.remove('scale-y-0', 'opacity-0');
-                    mobileMenu.classList.add('scale-y-100', 'opacity-100');
-                });
-                document.body.style.overflow = 'hidden';
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-            } else { // Se está aberto, vai fechar
-                mobileMenu.classList.remove('scale-y-100', 'opacity-100');
-                mobileMenu.classList.add('scale-y-0', 'opacity-0');
-                document.body.style.overflow = '';
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-                 setTimeout(() => {
-                    if (menuToggle.getAttribute("aria-expanded") === "false") {
-                         mobileMenu.classList.add('hidden');
-                    }
-                 }, 300); // Duração da transição CSS
-            }
-        };
-        menuToggle.addEventListener("click", toggleMenu);
-
+// Function to handle the mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                if (menuToggle.getAttribute("aria-expanded") === "true") {
-                    toggleMenu();
-                }
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
             });
         });
     }
-
-    // --- Active Navigation (Scrollspy) ---
-    if ('IntersectionObserver' in window && sections.length > 0 && navLinks.length > 0) {
-        // ... (código do scrollspy da versão anterior, pode precisar de ajustes finos no rootMargin) ...
-        // IMPORTANTE: Certifique-se que as seções no HTML tenham IDs correspondentes aos href dos navLinks.
-        // E que os navLinks no HTML desktop tenham a classe 'nav-link'.
-        console.log("Scrollspy JS está presente, mas a lógica detalhada foi omitida aqui para brevidade. Consulte a V3.")
+    
+    // Contact form submission (prevent default and show success message)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // You would typically send the form data to a server here
+            // For now, let's just show a success alert
+            alert('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+            
+            // Reset form
+            contactForm.reset();
+        });
     }
-
-
-    // --- Smooth Scrolling ---
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const hrefAttribute = this.getAttribute('href');
-            if (hrefAttribute && hrefAttribute.startsWith('#') && hrefAttribute.length > 1) {
-                const targetElement = document.getElementById(hrefAttribute.substring(1));
+    
+    // Intersection Observer for fade-in animations
+    const fadeElements = document.querySelectorAll('.fade-in-item');
+    
+    if (fadeElements.length > 0 && 'IntersectionObserver' in window) {
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        fadeElements.forEach(element => {
+            fadeObserver.observe(element);
+        });
+    } else {
+        // Fallback for browsers that don't support IntersectionObserver
+        fadeElements.forEach(element => {
+            element.classList.add('is-visible');
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href !== '#') {
+                e.preventDefault();
+                
+                const targetElement = document.querySelector(href);
+                
                 if (targetElement) {
-                    e.preventDefault();
-                    const headerHeight = header?.offsetHeight || 70; // Ajuste conforme altura real do header
-                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerHeight - 20; // Espaço extra
-
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    const headerOffset = 80; // Adjust based on your header height
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
                 }
             }
         });
     });
-
-    // --- Animações de Entrada ao Rolar ---
-    if ('IntersectionObserver' in window && animatedElements.length > 0) {
-        const animationObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    const delay = entry.target.style.getPropertyValue('animation-delay'); // Pega delay do style inline
-                    if (delay) entry.target.style.animationDelay = delay;
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
-        animatedElements.forEach(item => animationObserver.observe(item));
-    }
-
-    // --- Formulário de Contato (Funcionalidade de Envio DESATIVADA) ---
-     if (contactForm && submitBtn && formMessageEl) {
-         contactForm.addEventListener('submit', (e) => {
-             e.preventDefault();
-             console.log('Envio de formulário DESATIVADO nesta versão.');
-
-             submitBtn.disabled = true;
-             submitBtn.innerHTML = 'Envio Desativado'; // Altera texto do botão
-
-             formMessageEl.textContent = "O envio online está temporariamente desativado.";
-             formMessageEl.className = "p-3 rounded-md bg-yellow-50 text-yellow-700 border border-yellow-200 mt-4 text-sm"; // Estilo de aviso
-             formMessageEl.classList.remove('hidden');
-
-             // Não reseta o botão ou mensagem para manter o feedback de desativado
-         });
-     } else {
-         // console.warn("Elementos do formulário não encontrados para desativação do envio.");
-     }
-
-    console.log("Brasil Sustenta - Script Refinado Inicializado");
+    
+    // Prevent zoom on touch devices
+    window.addEventListener("wheel", (e)=> {
+        const isPinching = e.ctrlKey;
+        if(isPinching) e.preventDefault();
+    }, { passive: false });
 });
