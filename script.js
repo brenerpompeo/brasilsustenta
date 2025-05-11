@@ -1,164 +1,214 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Toggle
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const body = document.body; // Para travar scroll
+document.addEventListener("DOMContentLoaded", function() {
 
-    menuToggle.addEventListener('click', function() {
-        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        menuToggle.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('hidden');
-        // Trava/destrava o scroll do body quando o menu mobile abre/fecha
-        body.style.overflow = mobileMenu.classList.contains('hidden') ? '' : 'hidden';
-    });
+    // --- Seletores Globais ---
+    const header = document.getElementById("main-header");
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const menuIcon = document.getElementById("menu-icon");
+    const closeIcon = document.getElementById("close-icon");
+    const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+    const navLinksContainer = document.getElementById("nav-links");
+    const currentYearEl = document.getElementById("current-year");
+    const sections = document.querySelectorAll("main > section[id]"); // Seções diretas do main com ID
+    const navLinks = navLinksContainer ? Array.from(navLinksContainer.querySelectorAll("a.nav-link")) : [];
+    const contactForm = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message");
+    const submitButton = document.getElementById("submit-button");
+    const animatedItems = document.querySelectorAll('.animate-item');
+    const programItems = document.querySelectorAll('.program-journey-item');
 
-    // Close mobile menu when clicking a nav link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            menuToggle.setAttribute('aria-expanded', 'false');
-            mobileMenu.classList.add('hidden');
-            body.style.overflow = ''; // Libera scroll
-        });
-    });
-
-    // Contact Form Submission
-    const contactForm = document.getElementById('contact-form');
-    const successModal = document.getElementById('success-modal');
-    const closeModal = document.getElementById('close-modal');
-    const modalOverlay = successModal ? successModal.querySelector('.absolute.inset-0') : null;
-
-    if (contactForm && successModal && closeModal && modalOverlay) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Simulação de envio
-            console.log('Form submitted');
-            // Exibir modal de sucesso
-            successModal.classList.remove('hidden');
-            body.style.overflow = 'hidden'; // Trava scroll ao abrir modal
-        });
-
-        closeModal.addEventListener('click', function() {
-            successModal.classList.add('hidden');
-            body.style.overflow = ''; // Libera scroll
-        });
-
-        // Fechar modal clicando fora (no overlay)
-        modalOverlay.addEventListener('click', function() {
-            successModal.classList.add('hidden');
-            body.style.overflow = ''; // Libera scroll
-        });
-
-        // Fechar modal com tecla ESC
-        window.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && !successModal.classList.contains('hidden')) {
-                successModal.classList.add('hidden');
-                body.style.overflow = ''; // Libera scroll
-            }
-        });
-    } else {
-        console.warn('Elementos do formulário ou modal não encontrados.');
+    // --- Atualizar Ano no Footer ---
+    if (currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
     }
 
-
-    // Animated Counters
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            // Quando a seção de estatísticas entra na visão
-            if (entry.isIntersecting) {
-                animateCounters();
-                observer.unobserve(entry.target); // Anima apenas uma vez
-            }
-        });
-    }, { threshold: 0.3 }); // Inicia quando 30% da seção está visível
-
-    const impactStatsSection = document.getElementById('impact-stats');
-    if (impactStatsSection) {
-        counterObserver.observe(impactStatsSection);
-    } else {
-         console.warn('Seção de estatísticas com ID "impact-stats" não encontrada.');
-    }
-
-    function animateCounters() {
-        // *** VALORES DE EXEMPLO - SUBSTITUIR PELOS REAIS OU METAS ***
-        // Certifique-se que os IDs no HTML correspondem aqui
-        animateCounter('counter-jovens', 750, 2000);      // Ex: 750 jovens engajados
-        animateCounter('counter-projetos', 60, 2000);     // Ex: 60 iniciativas lançadas
-        animateCounter('counter-mentoria', 1200, 2500);   // Ex: 1200 horas de mentoria
-        animateCounter('counter-parcerias', 30, 2000);    // Ex: 30 parceiros conectados
-    }
-
-    function animateCounter(id, target, duration) {
-        const element = document.getElementById(id);
-        if (!element) {
-            console.warn(`Elemento contador com ID "${id}" não encontrado.`);
-            return;
-        }
-
-        let start = 0;
-        const startTime = performance.now();
-
-        const updateCounter = (currentTime) => {
-            const elapsedTime = currentTime - startTime;
-            const progress = Math.min(1, elapsedTime / duration); // Garante que não passe de 1
-
-            // Ease-out function (desacelera no final)
-            const easedProgress = 1 - Math.pow(1 - progress, 4); // Expoente 4 para desaceleração mais forte
-            let current = start + (target - start) * easedProgress;
-            const value = Math.floor(current);
-
-            element.textContent = formatNumber(value); // Formata números grandes
-
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
+    // --- Header com Sombra e Padding no Scroll ---
+    if (header) {
+        const handleHeaderScroll = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
             } else {
-                 element.textContent = formatNumber(target); // Garante valor final exato
+                header.classList.remove('scrolled');
             }
         };
-        requestAnimationFrame(updateCounter);
+        window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+        handleHeaderScroll(); // Estado inicial
     }
 
-    // Função para formatar números grandes (com ponto)
-    function formatNumber(num) {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    // --- Menu Mobile Toggle ---
+    if (menuToggle && mobileMenu && menuIcon && closeIcon) {
+        const toggleMenu = () => {
+            const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
+            menuToggle.setAttribute("aria-expanded", !isExpanded);
+
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    mobileMenu.classList.add('opacity-100', 'translate-y-0');
+                    mobileMenu.classList.remove('opacity-0', 'translate-y-[-100%]');
+                });
+                document.body.style.overflow = 'hidden';
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                mobileMenu.classList.add('opacity-0', 'translate-y-[-100%]');
+                document.body.style.overflow = '';
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                 setTimeout(() => {
+                    if (menuToggle.getAttribute("aria-expanded") === "false") {
+                         mobileMenu.classList.add('hidden');
+                    }
+                 }, 300); // Duração da transição CSS
+            }
+        };
+        menuToggle.addEventListener("click", toggleMenu);
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                if (menuToggle.getAttribute("aria-expanded") === "true") toggleMenu();
+            });
+        });
     }
 
-    // Smooth scrolling for anchor links (mantido e ajustado no CSS com scroll-padding-top)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            // Ignora links que são apenas '#'
-            if (href === '#') {
-                 e.preventDefault();
-                 return;
+    // --- Active Navigation (Scrollspy) ---
+    if ('IntersectionObserver' in window && sections.length > 0 && navLinks.length > 0) {
+        let lastActiveLinkId = 'home';
+        const homeLinkForSpy = navLinksContainer?.querySelector('a.nav-link[href="#home"]'); // Link Home para scrollspy
+
+        const observerOptions = {
+            root: null,
+            rootMargin: `-${(header?.offsetHeight || 70) + 20}px 0px -60% 0px`, // Ajuste fino
+            threshold: 0
+        };
+
+        const observerCallback = (entries) => {
+            let currentActiveSectionId = null;
+            let topEntry = null;
+
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (!topEntry || entry.boundingClientRect.top < topEntry.boundingClientRect.top) {
+                        topEntry = entry;
+                    }
+                }
+            });
+
+            if (topEntry) {
+                currentActiveSectionId = topEntry.target.getAttribute('id');
+            } else if (window.scrollY < window.innerHeight * 0.3) { // Se muito perto do topo, é home
+                currentActiveSectionId = 'home';
+            } else { // Senão, mantém o último ativo se nada for detectado
+                currentActiveSectionId = lastActiveLinkId;
             }
 
-            const targetElement = document.querySelector(href);
-            if (targetElement) {
-                e.preventDefault();
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    // block: 'start' // 'start' é o padrão, scroll-padding-top no CSS cuida do offset
+            if (currentActiveSectionId !== lastActiveLinkId) {
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === `#${currentActiveSectionId}`) {
+                        link.classList.add("active");
+                    }
                 });
+                // Caso especial para o link #home no scrollspy
+                if (homeLinkForSpy) {
+                    if (currentActiveSectionId === 'home') {
+                        homeLinkForSpy.classList.add('active');
+                    } else {
+                        homeLinkForSpy.classList.remove('active');
+                    }
+                }
+                lastActiveLinkId = currentActiveSectionId;
+            }
+        };
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        sections.forEach(section => { if(section) observer.observe(section); });
 
-                 // Fecha menu mobile se estiver aberto e for um link de navegação
-                 if (!mobileMenu.classList.contains('hidden') && href !== '#') {
-                    menuToggle.click(); // Simula clique para fechar
-                 }
+        // Ativa 'home' inicialmente se não houver hash
+        if (!window.location.hash && homeLinkForSpy) {
+            homeLinkForSpy.classList.add('active');
+        }
+    }
+
+    // --- Smooth Scrolling ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const hrefAttribute = this.getAttribute('href');
+            if (hrefAttribute && hrefAttribute.startsWith('#') && hrefAttribute.length > 1) {
+                const targetElement = document.getElementById(hrefAttribute.substring(1));
+                if (targetElement) {
+                    e.preventDefault();
+                    const headerHeight = header?.offsetHeight || 70;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerHeight - 20; // Espaço extra
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
             }
         });
     });
 
-    // Pequeno efeito no scroll do header (adiciona sombra)
-    const header = document.querySelector('header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 30) {
-                header.classList.add('shadow-md');
-            } else {
-                header.classList.remove('shadow-md');
-            }
-        });
+    // --- Animações de Entrada ao Rolar ---
+    if ('IntersectionObserver' in window && animatedItems.length > 0) {
+        const animationObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Aplica a classe de animação definida no Tailwind config
+                    entry.target.classList.add('is-visible', 'animate-fade-in-up');
+                    // Pega o delay customizado do style (se existir)
+                    const delay = entry.target.style.getPropertyValue('--animation-delay');
+                    if (delay) entry.target.style.animationDelay = delay;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { root: null, rootMargin: "0px 0px -10% 0px", threshold: 0.1 });
+        animatedItems.forEach(item => animationObserver.observe(item));
     }
 
-});
+    // --- Interatividade Programas (Acordeão/Linha do Tempo) ---
+    if (programItems.length > 0) {
+        programItems.forEach(item => {
+            const title = item.querySelector('.program-journey-title');
+            if (title) {
+                title.addEventListener('click', () => {
+                    // Fecha todos os outros abertos
+                    programItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active-program');
+                        }
+                    });
+                    // Alterna o item clicado
+                    item.classList.toggle('active-program');
+                });
+            }
+        });
+        // Opcional: Abrir o primeiro item por padrão
+        // if (programItems[0]) programItems[0].classList.add('active-program');
+    }
+
+
+    // --- Formulário de Contato (Funcionalidade de Envio DESATIVADA) ---
+    if (contactForm && submitButton && formMessage) {
+         contactForm.addEventListener('submit', (e) => {
+             e.preventDefault(); // Impede o envio real do formulário
+             console.log('Envio de formulário DESATIVADO nesta versão de demonstração.');
+
+             submitButton.disabled = true;
+             submitButton.innerHTML = 'Envio Desativado';
+             formMessage.textContent = "O envio online está temporariamente desativado nesta demonstração.";
+             formMessage.className = "error"; // Usa a classe de erro para feedback visual
+             formMessage.classList.remove('hidden');
+
+             setTimeout(() => {
+                 // Não reseta o botão para 'Enviar mensagem' para deixar claro que está desativado
+                 // submitButton.disabled = false;
+                 // submitButton.innerHTML = 'Enviar mensagem';
+                 // formMessage.classList.add('hidden');
+                 // formMessage.textContent = '';
+             }, 4000);
+         });
+     } else {
+         console.warn("Elementos do formulário de contato (#contact-form, #submit-button, #form-message) não encontrados.");
+     }
+
+    console.log("Brasil Sustenta - Script V4 Inicializado (Formulário Desativado)");
+
+}); // Fim do DOMContentLoaded
