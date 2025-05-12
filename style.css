@@ -9,25 +9,30 @@
     --secondary: #0891b2; /* Cyan-600 */
     --accent-sky: #0ea5e9; /* Sky-500 */
     --accent-amber: #f59e0b; /* Amber-500 */
-    
+    --accent-indigo: #6366f1; /* Indigo-500 */
+
     --text-primary: #111827; /* gray-900 */
     --text-secondary: #374151; /* gray-700 */
     --text-light: #6b7280; /* gray-500 */
 
     --bg-primary: #ffffff;
-    --bg-soft: #f9fafb; /* gray-50 (usado no body como bg-slate-50) */
+    --bg-soft: #f9fafb; /* gray-50 */
     --bg-softer: #f3f4f6; /* gray-100 */
 
     --border-primary: #e5e7eb; /* gray-200 */
     --border-soft: #f3f4f6; /* gray-100 */
+    --border-medium: #d1d5db; /* gray-300 */
 
     --shadow-color-rgb: 5, 150, 105; /* RGB do Emerald-600 */
-    --shadow-soft-color-rgb: 100, 116, 139; /* RGB Slate-500 for softer shadows */
+    --shadow-soft-color-rgb: 100, 116, 139; /* RGB Slate-500 */
+
+    --danger-500: #ef4444; /* Red-500 */
+    --danger-100: #fee2e2; /* Red-100 */
 
     --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
-    --ease-squish: cubic-bezier(0.65, 0, 0.35, 1.25); /* Para botões 3D */
-    --ease-morph: cubic-bezier(0.7, 0, 0.3, 1); /* Para animações de entrada */
+    --ease-squish: cubic-bezier(0.65, 0, 0.35, 1.25);
+    --ease-morph: cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 @layer base {
@@ -36,7 +41,10 @@
         @apply text-base;
     }
     body {
-        @apply overflow-x-hidden; /* Prevenir scroll horizontal */
+        @apply overflow-x-hidden;
+    }
+    body.overflow-hidden { /* Classe para travar scroll (Menu/Modal) */
+        overflow: hidden;
     }
     h1,h2,h3,h4,h5,h6 {
         @apply font-bold text-text-primary;
@@ -45,65 +53,108 @@
     h2 { @apply text-3xl sm:text-4xl leading-tight; }
     h3 { @apply text-xl sm:text-2xl; }
     p { @apply leading-relaxed text-text-secondary; }
-    /* Custom scrollbar (opcional, cuidado com compatibilidade) */
-    /* ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-softer); }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; } */
+    *:focus-visible { /* Estilo de foco global mais sutil */
+        @apply outline-none ring-2 ring-offset-2 ring-emerald-500/70 ring-offset-white;
+    }
+    /* Foco específico para inputs/selects/textareas */
+    .form-input:focus-visible, .form-select:focus-visible, .form-textarea:focus-visible {
+        @apply ring-2 ring-offset-0 ring-emerald-500/80 border-emerald-500;
+    }
+     /* Foco específico para checkboxes */
+    .form-checkbox:focus-visible {
+         @apply ring-2 ring-offset-0 ring-emerald-500/80;
+    }
 }
 
 @layer components {
+    /* Header */
+    #main-header {
+        /* transition-all duration-300 já aplicado */
+    }
+    #main-header.scrolled {
+        @apply shadow-lg border-b border-slate-200/60;
+    }
+
     /* Links de Navegação */
     .nav-link {
-        @apply relative text-sm font-medium text-slate-600 hover:text-emerald-600 
+        @apply relative text-sm font-medium text-slate-600 hover:text-emerald-600
                py-1 transition-colors duration-200
-               after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 
+               after:absolute after:bottom-[-2px] after:left-1/2 after:w-0
                after:h-0.5 after:bg-emerald-500 after:-translate-x-1/2
                hover:after:w-full after:transition-all after:duration-300;
     }
+    .nav-link.active {
+        @apply text-emerald-600 font-semibold;
+    }
+    .nav-link.active::after {
+        @apply w-full bg-emerald-600;
+    }
+
     .nav-link-mobile {
         @apply block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors duration-150;
+    }
+     .nav-link-mobile.active {
+        @apply bg-emerald-50 text-emerald-600 font-semibold;
     }
 
     /* Botões */
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-white bg-emerald-600 rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white transition-all duration-200 ease-in-out;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-white bg-emerald-600 rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none transition-all duration-200 ease-in-out;
+        /* focus-visible aplicado via @layer base */
     }
-     .btn-primary.btn-sm { /* Navbar desktop */
-        @apply px-4 py-2 text-xs sm:text-sm shadow-sm;
-    }
-     .btn-primary.btn-lg { /* Hero e Form */
-        @apply px-8 py-3.5 sm:px-10 sm:py-4 text-base sm:text-lg;
-    }
+     .btn-primary.btn-sm { @apply px-4 py-2 text-xs sm:text-sm shadow-sm; }
+     .btn-primary.btn-lg { @apply px-8 py-3.5 sm:px-10 sm:py-4 text-base sm:text-lg; }
+     .btn-primary:disabled { @apply opacity-70 cursor-not-allowed bg-emerald-500; }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 shadow-sm hover:bg-emerald-100 hover:border-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white transition-all duration-200 ease-in-out;
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 shadow-sm hover:bg-emerald-100 hover:border-emerald-300 focus:outline-none transition-all duration-200 ease-in-out;
+         /* focus-visible aplicado via @layer base */
     }
-     .btn-secondary.btn-md {
-        @apply px-5 py-2.5 text-sm;
-    }
-
+     .btn-secondary.btn-md { @apply px-5 py-2.5 text-sm; }
 
     .btn-3d {
         transition: transform 0.15s var(--ease-squish), box-shadow 0.15s ease-in-out;
         transform-style: preserve-3d;
     }
-    .btn-3d:hover {
-        transform: translateY(-3px) translateZ(4px) rotateX(-2deg); /* Efeito 3D sutil */
+    .btn-3d:hover:not(:disabled) { /* Só aplicar hover se não estiver desabilitado */
+        transform: translateY(-3px) translateZ(4px) rotateX(-2deg);
         box-shadow: 0 5px 12px -3px rgba(var(--shadow-color-rgb), 0.25), 0 3px 6px -3px rgba(var(--shadow-color-rgb), 0.2);
     }
-     .btn-3d:active {
+     .btn-3d:active:not(:disabled) {
         transform: translateY(-1px) translateZ(1px);
         box-shadow: 0 2px 4px -2px rgba(var(--shadow-color-rgb), 0.3);
     }
 
+    /* Estado de Loading do Botão de Submit */
+    .btn-primary.submitting .button-text-wrapper {
+        opacity: 0;
+        transform: translateY(-8px); /* Anima o texto para cima ao sumir */
+    }
+    .btn-primary.submitting .icon-send {
+         opacity: 0;
+         transform: translateX(5px); /* Anima o ícone para o lado */
+    }
+    .btn-primary.submitting .spinner {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .button-text-wrapper, .icon-send { /* Garantir transição suave */
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    }
+     .spinner {
+        transition: opacity 0.2s ease-in;
+     }
+
+
     /* Formulários */
     .form-input, .form-select, .form-textarea {
-        @apply block w-full px-4 py-2.5 text-sm sm:text-base text-slate-800 bg-white border border-slate-300 rounded-lg shadow-sm
-               placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-500 transition duration-200 ease-in-out;
+        @apply block w-full px-4 py-2.5 text-sm sm:text-base text-slate-800 bg-white border border-border-medium rounded-lg shadow-sm
+               placeholder-slate-400 focus:outline-none transition duration-200 ease-in-out;
+         /* focus-visible aplicado via @layer base */
     }
     .form-checkbox {
-        @apply h-4 w-4 text-emerald-600 border-slate-400 rounded focus:ring-emerald-500/80 focus:ring-offset-0;
+        @apply h-4 w-4 text-emerald-600 border-border-medium rounded;
+         /* focus-visible aplicado via @layer base */
     }
     .form-select {
         @apply bg-no-repeat appearance-none;
@@ -112,26 +163,32 @@
         background-size: 1.25em 1.25em;
         padding-right: 2.5rem;
     }
-    /* Estilo para indicar erro no campo */
-    .form-input.error, .form-select.error, .form-textarea.error {
-        @apply border-red-500 ring-1 ring-red-500 focus:border-red-500 focus:ring-red-500/80;
+    .form-input.invalid, .form-select.invalid, .form-textarea.invalid {
+        @apply border-danger-500 ring-1 ring-danger-500;
+        /* focus-visible aplicado via @layer base, o anel vermelho terá precedência no foco */
+    }
+     .form-input.invalid:focus-visible, .form-select.invalid:focus-visible, .form-textarea.invalid:focus-visible {
+         @apply ring-danger-500/80 border-danger-500;
+     }
+    .form-error-message {
+        /* Estilizado diretamente com classes Tailwind no HTML */
     }
 
     /* Cards */
-    .card-impacto { /* Números */
+    .card-impacto {
         @apply p-6 sm:p-8 rounded-xl border shadow-lg text-center flex flex-col items-center transition-all duration-300;
     }
-    .card-programa { /* Nossas Iniciativas */
+    .card-programa {
         @apply bg-slate-50/60 border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center;
     }
-    .card-icon { /* Ícone grande no card de programa */
+    .card-icon {
        @apply w-14 h-14 rounded-full flex items-center justify-center mb-5 ring-4 ring-white/50;
        & > svg { @apply w-7 h-7; }
     }
-     .card-beneficio { /* Benefícios */
+     .card-beneficio {
         @apply bg-white border border-slate-200/70 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow duration-300;
     }
-    .card-icon-sm { /* Ícone pequeno no card de benefício */
+    .card-icon-sm {
        @apply w-10 h-10 rounded-lg flex items-center justify-center mb-4;
         & > svg { @apply w-5 h-5; }
     }
@@ -156,22 +213,10 @@
 }
 
 /* Animações Customizadas */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-.animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in-up { /* Classe alternativa se necessário */
-    opacity: 0; /* Start hidden */
-    animation: fadeInUp 0.6s var(--ease-out-quad) forwards;
-}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* Animação de entrada com base no scroll */
 .animate-on-scroll {
@@ -184,34 +229,43 @@
     opacity: 1;
     transform: translateY(0) scale(1);
 }
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 
-/* Efeito Tilt (Mantido como estava, parece bom) */
+/* Efeito Tilt */
 .hover-tilt {
     transition: transform 0.3s var(--ease-squish), box-shadow 0.3s ease-in-out;
     transform-style: preserve-3d;
 }
 .hover-tilt:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) translateZ(10px) scale(1.02); /* Leve ajuste */
+    transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) translateZ(10px) scale(1.02);
     box-shadow: 0 15px 30px -8px rgba(var(--shadow-soft-color-rgb), 0.15), 0 6px 12px -6px rgba(var(--shadow-soft-color-rgb), 0.1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-tilt:hover {
+    transform: none;
+    box-shadow: none; /* Ou manter a sombra padrão se preferir */
+  }
 }
 
 /* Gradiente Dinâmico Hero */
 .dynamic-gradient {
-    /* Gradiente mais suave e com tons mais esverdeados/azulados */
     background: linear-gradient(
-        135deg, /* Ângulo ajustado */
-        hsl(155deg 65% 40% / 0.85) 0%, 
+        135deg,
+        hsl(155deg 65% 40% / 0.85) 0%,
         hsl(165deg 60% 45% / 0.75) 35%,
         hsl(175deg 68% 50% / 0.6) 70%,
-        hsl(185deg 75% 55% / 0.4) 100% 
+        hsl(185deg 75% 55% / 0.4) 100%
     );
-    /* Blur sutil para suavizar - cuidado com performance */
-    /* backdrop-filter: blur(10px); */
-     /* Efeito de movimento sutil (opcional, pode ser controlado via JS também) */
     background-size: 200% 200%;
     animation: gradient-shift 25s ease infinite;
-    will-change: background-position; 
+    will-change: background-position;
 }
 
 @keyframes gradient-shift {
@@ -220,59 +274,37 @@
 	100% { background-position: 0% 50%; }
 }
 
-/* Parallax (Se for usar JS, o CSS pode ser mínimo aqui) */
+@media (prefers-reduced-motion: reduce) or (max-width: 768px) {
+    .dynamic-gradient {
+        animation: none;
+        background: linear-gradient(135deg, hsl(155deg 65% 40% / 0.9), hsl(175deg 68% 50% / 0.7));
+    }
+}
+
+/* Parallax */
 .parallax-container {
-   /* perspective: 1px; // Causa problemas com sticky header, melhor JS */
+   /* perspective: 1px; // Evitado por problemas com sticky header */
 }
 .parallax-layer {
-    /* Estilos controlados via JS */
     will-change: transform;
 }
 
-/* Ajustes Mobile */
+/* Botão Voltar ao Topo */
+#back-to-top {
+    /* Estilos no HTML via Tailwind */
+}
+#back-to-top.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Ajustes Mobile Gerais */
 @media (max-width: 768px) {
     h1 { font-size: 2.5rem; line-height: 1.2; } /* 40px */
     h2 { font-size: 2rem; line-height: 1.25; } /* 32px */
 
-    .dynamic-gradient {
-         animation: none; /* Desativar animação do gradiente em mobile se pesar */
-         background: linear-gradient(135deg, hsl(155deg 65% 40% / 0.9), hsl(175deg 68% 50% / 0.7));
-    }
-    .parallax-layer {
-        /* Se o parallax JS for pesado, desativar transforms */
-        /* transform: none !important; */
-    }
-     .card-impacto {
+     .card-impacto, .card-programa, .card-beneficio {
         padding: 1.25rem; /* Menor padding */
     }
-    .card-programa {
-        padding: 1.25rem;
-    }
-     .card-beneficio {
-        padding: 1.25rem;
-    }
-}
-
-/* Estilo para o body quando o modal está aberto */
-body.modal-open {
-    overflow: hidden;
-}
-
-/* Estilo para o botão 'Voltar ao Topo' */
-#back-to-top.show {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible; /* Garante que esteja visível */
-}
-
-/* Spinner no botão de submit */
-.btn-primary:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-.btn-primary.submitting .button-text {
-    display: none;
-}
-.btn-primary.submitting .spinner {
-    display: inline-block;
 }
