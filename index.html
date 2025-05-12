@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brasil Sustenta. | Catalisando Impacto Jovem Socioambiental</title> <!-- Título mais descritivo -->
-    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+    <title>Brasil Sustenta. | Catalisando Impacto Jovem Socioambiental</title>
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml"> <!-- Garanta que 'img/favicon.svg' exista -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -13,7 +13,7 @@
 
 <body class="font-poppins bg-slate-50 text-slate-700 antialiased">
     <!-- Header -->
-    <header class="sticky top-0 bg-white/90 backdrop-blur-lg border-b border-emerald-100/60 z-50 transition-all duration-300 shadow-sm">
+    <header id="main-header" class="sticky top-0 bg-white/90 backdrop-blur-lg border-b border-transparent z-50 transition-all duration-300 shadow-sm">
         <div class="container mx-auto px-5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-2 group" aria-label="Página inicial Brasil Sustenta">
                 <!-- Logo SVG -->
@@ -24,25 +24,25 @@
                 </svg>
                 <span class="text-lg sm:text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">BrasilSustenta.</span>
             </a>
-            
-            <nav class="hidden md:flex items-center gap-5 lg:gap-7">
+
+            <nav id="desktop-nav" class="hidden md:flex items-center gap-5 lg:gap-7">
                 <a href="#sobre" class="nav-link">Sobre</a>
                 <a href="#iniciativas" class="nav-link">Iniciativas</a>
-                <a href="#beneficios" class="nav-link">Benefícios</a> <!-- Ajustado ID -->
-                <a href="#contato" class="btn-primary btn-sm btn-3d hover-tilt">Faça Parte</a> <!-- CTA mais direto -->
+                <a href="#beneficios" class="nav-link">Benefícios</a>
+                <a href="#contato" class="btn-primary btn-sm btn-3d hover-tilt">Faça Parte</a>
             </nav>
-            
-            <button id="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" class="md:hidden p-2 -mr-2 rounded-md text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1">
+
+            <button id="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-2 -mr-2 rounded-md text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1">
                 <i data-lucide="menu" class="w-6 h-6"></i>
-                <i data-lucide="x" class="w-6 h-6 hidden"></i> <!-- Ícone X para fechar -->
+                <i data-lucide="x" class="w-6 h-6 hidden"></i>
             </button>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-lg shadow-xl border-t border-slate-200/60">
-             <nav class="flex flex-col p-4 space-y-1">
+             <nav id="mobile-nav" class="flex flex-col p-4 space-y-1">
                  <a href="#sobre" class="nav-link-mobile">Sobre</a>
                  <a href="#iniciativas" class="nav-link-mobile">Iniciativas</a>
-                 <a href="#beneficios" class="nav-link-mobile">Benefícios</a> <!-- Ajustado ID -->
+                 <a href="#beneficios" class="nav-link-mobile">Benefícios</a>
                  <a href="#contato" class="nav-link-mobile text-emerald-600 font-semibold mt-2">Faça Parte</a>
              </nav>
          </div>
@@ -50,28 +50,28 @@
 
     <main>
         <!-- Seção Hero -->
-        <section class="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center text-center overflow-hidden parallax-container py-20 sm:py-24 md:py-32">
-            <!-- Camada de fundo dinâmica - pode ser controlada via JS para parallax sutil -->
-            <div class="absolute inset-0 dynamic-gradient" data-speed="0.1"></div> 
-            
+        <section id="hero" class="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center text-center overflow-hidden parallax-container py-20 sm:py-24 md:py-32">
+            <!-- Camada de fundo dinâmica -->
+            <div class="absolute inset-0 dynamic-gradient" data-speed="0.1"></div>
+
             <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
                 <div class="max-w-3xl mx-auto">
                     <div class="inline-flex items-center gap-2.5 px-4 py-2 bg-white/15 backdrop-blur-md rounded-full border border-emerald-100/30 mb-6 sm:mb-8 animate-fade-in">
-                        <span class="animate-pulse text-lg">🌱</span> <!-- Ícone mais direto -->
+                        <span class="animate-pulse text-lg">🌱</span>
                         <span class="text-xs sm:text-sm font-medium text-emerald-100 tracking-wide">Jovens transformando o futuro sustentável</span>
                     </div>
-                    
+
                     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 font-extrabold bg-gradient-to-r from-white via-emerald-50 to-emerald-100/90 bg-clip-text text-transparent leading-tight animate-fade-in" style="animation-delay: 0.1s;">
                         Catalisando a <span class="text-emerald-300 brightness-110">Juventude</span> para o Impacto Socioambiental
                     </h1>
                     <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-emerald-100/90 mb-10 leading-relaxed animate-fade-in" style="animation-delay: 0.3s;">
                         Somos a plataforma que conecta, capacita e impulsiona jovens (18-35 anos) a criarem soluções inovadoras para os desafios da sustentabilidade no Brasil.
                     </p>
-                    
+
                     <div class="animate-fade-in" style="animation-delay: 0.5s;">
                         <a href="#contato" class="btn-primary btn-lg btn-3d hover-tilt inline-flex items-center gap-2.5">
                             Comece sua Jornada de Impacto
-                            <i data-lucide="rocket" class="w-5 h-5 opacity-80"></i> <!-- Ícone mais dinâmico -->
+                            <i data-lucide="rocket" class="w-5 h-5 opacity-80"></i>
                         </a>
                     </div>
                 </div>
@@ -88,14 +88,14 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- Card Jovem -->
                     <div class="card-impacto hover-tilt bg-emerald-50/50 border-emerald-100">
-                        <i data-lucide="users-2" class="w-10 h-10 text-emerald-500 mb-4"></i> <!-- Ícone mais específico -->
+                        <i data-lucide="users-2" class="w-10 h-10 text-emerald-500 mb-4"></i>
                         <div class="text-4xl sm:text-5xl font-bold text-emerald-600 mb-2" data-counter="53200000" data-format="true">0</div>
                         <h3 class="text-sm sm:text-base font-semibold text-slate-700">Jovens (18-35) no Brasil</h3>
                         <p class="text-xs text-slate-500 mt-1">(Fonte: IBGE)</p>
                     </div>
                     <!-- Card Preferência -->
-                    <div class="card-impacto hover-tilt bg-sky-50/50 border-sky-100 lg:transform lg:translate-y-[-1.5rem]"> <!-- Ajuste no translate -->
-                         <i data-lucide="heart-handshake" class="w-10 h-10 text-sky-500 mb-4"></i> <!-- Ícone representando preferência/escolha -->
+                    <div class="card-impacto hover-tilt bg-sky-50/50 border-sky-100 lg:transform lg:translate-y-[-1.5rem]">
+                         <i data-lucide="heart-handshake" class="w-10 h-10 text-sky-500 mb-4"></i>
                         <div class="text-4xl sm:text-5xl font-bold text-sky-600 mb-2" data-counter="88" data-suffix="%">0%</div>
                         <h3 class="text-sm sm:text-base font-semibold text-slate-700">Preferem Marcas Sustentáveis</h3>
                         <p class="text-xs text-slate-500 mt-1">(Fonte: Accenture)</p>
@@ -104,7 +104,7 @@
                     <div class="card-impacto hover-tilt bg-amber-50/50 border-amber-100">
                          <i data-lucide="trending-up" class="w-10 h-10 text-amber-500 mb-4"></i>
                         <div class="text-4xl sm:text-5xl font-bold text-amber-600 mb-2" data-counter="98" data-suffix="%">0%</div>
-                        <h3 class="text-sm sm:text-base font-semibold text-slate-700">Crescimento Vagas ESG (Global)</h3> <!-- Clareza na informação -->
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-700">Crescimento Vagas ESG (Global)</h3>
                         <p class="text-xs text-slate-500 mt-1">(Fonte: GlobalData)</p>
                     </div>
                 </div>
@@ -124,17 +124,20 @@
                          <p class="text-slate-600 text-base sm:text-lg mb-8 leading-relaxed">
                             Acreditamos no protagonismo jovem como motor da inovação ESG que o mercado busca e o planeta precisa.
                         </p>
-                        <a href="#iniciativas" class="btn-secondary btn-md btn-3d hover-tilt inline-flex items-center gap-2"> <!-- Botão secundário para diferenciar -->
+                        <a href="#iniciativas" class="btn-secondary btn-md btn-3d hover-tilt inline-flex items-center gap-2">
                             Conheça Nossas Iniciativas
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </a>
                     </div>
                     <div class="relative mt-10 lg:mt-0 animate-on-scroll" data-delay="0.2s">
-                        <div class="aspect-w-4 aspect-h-3 sm:aspect-w-16 sm:aspect-h-10 rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-200 to-teal-300 hover-tilt">
-                            <!-- **IMPORTANTE:** Substituir por uma imagem real e otimizada -->
-                            <img src="img/placeholder-sobre.jpg" alt="Jovens colaborando em projetos de sustentabilidade" class="w-full h-full object-cover opacity-80 mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-105">
+                        <div class="aspect-w-4 aspect-h-3 sm:aspect-w-16 sm:aspect-h-10 rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-200 to-teal-300 hover-tilt group">
+                            <!-- ====================================================================== -->
+                            <!-- == IMPORTANTE: Substitua 'img/placeholder-sobre.jpg' pela imagem real == -->
+                            <!-- == Ex: <img src="img/brasil-sustenta-equipe.webp" alt="Jovens da Brasil Sustenta colaborando em projeto socioambiental"> == -->
+                            <!-- ====================================================================== -->
+                            <img src="img/placeholder-sobre.jpg" alt="Jovens colaborando em projetos de sustentabilidade (Imagem placeholder)" class="w-full h-full object-cover opacity-90 mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-105 group-hover:opacity-100">
                         </div>
-                         <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-emerald-500/10 rounded-full -z-10 blur-xl animate-pulse"></div> <!-- Blur maior e pulse -->
+                         <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-emerald-500/10 rounded-full -z-10 blur-xl animate-pulse"></div>
                          <div class="absolute -top-5 -left-5 w-16 h-16 bg-sky-500/5 rounded-full -z-10 blur-lg"></div>
                     </div>
                 </div>
@@ -150,7 +153,7 @@
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Nosso Ecossistema de Desenvolvimento</h2>
                     <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">Programas desenhados para acompanhar sua jornada, da faísca inicial à solução de impacto.</p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     <!-- Card Laboratório de Criação -->
                     <div class="card-programa hover-tilt animate-on-scroll">
@@ -181,7 +184,7 @@
         </section>
 
         <!-- Seção Impacto Detalhado (Benefícios) -->
-         <section id="beneficios" class="py-16 sm:py-20 md:py-24 bg-slate-50/70"> <!-- ID ajustado -->
+         <section id="beneficios" class="py-16 sm:py-20 md:py-24 bg-slate-50/70">
             <div class="container mx-auto px-5 sm:px-6 lg:px-8">
                 <div class="text-center mb-12 sm:mb-16 animate-on-scroll">
                     <span class="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">Valor Gerado</span>
@@ -232,26 +235,28 @@
 
 
         <!-- Formulário de Contato -->
-        <section id="contato" class="bg-gradient-to-br from-emerald-600 to-teal-600 py-16 sm:py-20 md:py-24 text-white"> <!-- Gradiente sutil -->
+        <section id="contato" class="bg-gradient-to-br from-emerald-600 to-teal-600 py-16 sm:py-20 md:py-24 text-white">
             <div class="container mx-auto px-5 sm:px-6 lg:px-8 max-w-3xl">
                 <div class="text-center mb-10 sm:mb-12 animate-on-scroll">
                     <h2 class="text-3xl sm:text-4xl font-bold mb-4">Faça Parte da Transformação</h2>
                     <p class="text-emerald-100/90 text-base sm:text-lg leading-relaxed max-w-xl mx-auto">Seja você um jovem talento, uma organização visionária ou um(a) mentor(a) experiente, sua participação é chave para construirmos um Brasil mais sustentável.</p>
                 </div>
                 <div class="animate-on-scroll bg-white/95 p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl hover-tilt text-slate-800 transition-shadow duration-300">
-                    <form id="contact-form" class="space-y-6">
+                    <form id="contact-form" class="space-y-6" novalidate> <!-- novalidate para usar validação JS -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-slate-700 mb-1.5">Nome Completo*</label>
                                 <input type="text" id="name" name="name" class="form-input w-full" required placeholder="Seu nome">
+                                <p class="form-error-message hidden text-red-500 text-xs mt-1"></p>
                             </div>
                             <div>
                                 <label for="email" class="block text-sm font-medium text-slate-700 mb-1.5">Seu Melhor Email*</label>
                                 <input type="email" id="email" name="email" class="form-input w-full" required placeholder="seu@email.com">
+                                <p class="form-error-message hidden text-red-500 text-xs mt-1"></p>
                             </div>
                         </div>
                         <div>
-                            <label for="interest" class="block text-sm font-medium text-slate-700 mb-1.5">Como você quer se envolver?*</label> <!-- Pergunta mais direta -->
+                            <label for="interest" class="block text-sm font-medium text-slate-700 mb-1.5">Como você quer se envolver?*</label>
                             <select id="interest" name="interest" class="form-select w-full" required>
                                 <option value="" disabled selected>Selecione uma opção...</option>
                                 <option value="jovem_participar">Quero participar de um programa (Jovem 18-35)</option>
@@ -261,32 +266,41 @@
                                 <option value="imprensa">Contato de Imprensa / Mídia</option>
                                 <option value="outro">Outro Assunto</option>
                             </select>
+                             <p class="form-error-message hidden text-red-500 text-xs mt-1"></p>
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium text-slate-700 mb-1.5">Sua Mensagem*</label>
                             <textarea id="message" name="message" rows="5" class="form-textarea w-full" required placeholder="Conte-nos mais sobre seu interesse..."></textarea>
+                             <p class="form-error-message hidden text-red-500 text-xs mt-1"></p>
                         </div>
                          <div class="flex items-start space-x-3">
-                             <input id="lgpd-consent" name="lgpd-consent" type="checkbox" class="form-checkbox mt-0.5 shrink-0" required> <!-- Checkbox obrigatório -->
+                             <input id="lgpd-consent" name="lgpd-consent" type="checkbox" class="form-checkbox mt-0.5 shrink-0" required>
                              <label for="lgpd-consent" class="text-xs text-slate-500">Li e concordo com a <a href="/politica-privacidade.html" target="_blank" class="text-emerald-600 hover:underline font-medium">Política de Privacidade</a> e em receber comunicações da Brasil Sustenta.*</label>
                          </div>
+                         <p class="form-error-message hidden text-red-500 text-xs -mt-3 mb-2" id="lgpd-error-message"></p>
                         <div>
-                            <button type="submit" class="btn-primary btn-lg btn-3d w-full flex items-center justify-center gap-2.5 group">
-                                <span class="button-text">Enviar Mensagem</span>
-                                <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                                <span class="spinner hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span> <!-- Spinner para feedback -->
+                            <button type="submit" class="btn-primary btn-lg btn-3d w-full flex items-center justify-center gap-2.5 group relative overflow-hidden">
+                                <!-- Wrapper para animar texto -->
+                                <span class="button-text-wrapper inline-block transition-all duration-200 ease-out">
+                                    <span class="button-text">Enviar Mensagem</span>
+                                </span>
+                                <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform icon-send"></i>
+                                <!-- Spinner Overlay -->
+                                <span class="spinner absolute inset-0 flex items-center justify-center w-full h-full bg-emerald-700/90 opacity-0 transition-opacity duration-200 pointer-events-none">
+                                    <span class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                                </span>
                             </button>
                         </div>
-                         <p id="form-status" class="text-center text-sm mt-4" aria-live="polite"></p> <!-- Para mensagens de erro/status -->
+                         <p id="form-status" class="text-center text-sm mt-4" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
         </section>
 
-        <!-- Modal de Sucesso (Oculto por padrão) -->
+        <!-- Modal de Sucesso -->
         <div id="success-modal" class="fixed inset-0 flex items-center justify-center p-4 z-[100] hidden bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-out opacity-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="bg-white rounded-xl p-6 sm:p-8 max-w-md w-full relative shadow-xl transform transition-all duration-300 ease-out scale-95 opacity-0" id="success-modal-content">
-                <button id="close-modal-x" type="button" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors" aria-label="Fechar modal">
+                <button id="close-modal-x" type="button" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1" aria-label="Fechar modal">
                      <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
                 <div class="text-center">
@@ -299,7 +313,6 @@
                 </div>
             </div>
         </div>
-
     </main>
 
     <footer class="bg-slate-900 text-slate-300 pt-16 sm:pt-20 pb-10">
@@ -315,7 +328,9 @@
                         Catalisando a juventude brasileira para criar um futuro mais justo, verde e inovador através de negócios de impacto.
                     </p>
                      <div class="flex space-x-4">
-                        <!-- **IMPORTANTE:** Substituir '#' pelos links reais -->
+                        <!-- ============================================================== -->
+                        <!-- == IMPORTANTE: Substitua '#' pelos links reais das redes sociais == -->
+                        <!-- ============================================================== -->
                         <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram Brasil Sustenta" class="social-link"><i data-lucide="instagram" class="w-5 h-5"></i></a>
                         <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Brasil Sustenta" class="social-link"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
                         <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook Brasil Sustenta" class="social-link"><i data-lucide="facebook" class="w-5 h-5"></i></a>
@@ -338,7 +353,6 @@
                  <div>
                      <h3 class="footer-heading">Programas</h3>
                     <ul class="space-y-3">
-                        <!-- Links podem ser adicionados no futuro quando houver páginas dedicadas -->
                         <li><p class="footer-text-static">Laboratório de Criação</p></li>
                         <li><p class="footer-text-static">Brasil Sustenta. Líderes</p></li>
                         <li><p class="footer-text-static">Brasil Sustenta. Campus</p></li>
@@ -356,12 +370,15 @@
                         </li>
                         <li class="flex items-start text-slate-300 text-sm">
                              <i data-lucide="map-pin" class="footer-icon"></i>
-                            <span>Atuação Nacional - Sede Remota</span> <!-- Mais específico -->
+                            <span>Atuação Nacional - Sede Remota</span>
                         </li>
                         <li class="flex items-start text-slate-300 text-sm">
                            <i data-lucide="info" class="footer-icon"></i>
-                           <!-- **IMPORTANTE:** Criar e linkar a página real -->
-                           <a href="/politica-privacidade.html" target="_blank" class="hover:text-white transition-colors">Política de Privacidade</a>
+                           <!-- ======================================================================= -->
+                           <!-- == IMPORTANTE: Substitua pelo link real da Política de Privacidade == -->
+                           <!-- == Ex: <a href="/politica-privacidade.html" target="_blank" ...> == -->
+                           <!-- ======================================================================= -->
+                           <a href="#" target="_blank" class="hover:text-white transition-colors">Política de Privacidade</a>
                        </li>
                     </ul>
                 </div>
@@ -372,17 +389,12 @@
         </div>
     </footer>
 
-    <!-- Botão Voltar ao Topo (Opcional) -->
-    <button id="back-to-top" aria-label="Voltar ao topo" class="fixed bottom-5 right-5 bg-emerald-600/80 hover:bg-emerald-600 text-white p-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-4 hidden z-40">
+    <!-- Botão Voltar ao Topo -->
+    <button id="back-to-top" aria-label="Voltar ao topo" class="fixed bottom-5 right-5 bg-emerald-600/80 hover:bg-emerald-600 text-white p-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-4 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900" style="visibility: hidden;">
          <i data-lucide="arrow-up" class="w-5 h-5"></i>
     </button>
 
-
     <script src="script.js"></script>
-    <script>
-        lucide.createIcons(); // Renderiza ícones Lucide
-        // Atualiza o ano no footer (já no script.js, mas pode ficar aqui como fallback)
-        // document.getElementById('currentYear').textContent = new Date().getFullYear(); 
-    </script>
+    <!-- lucide.createIcons() é chamado dentro de script.js agora -->
 </body>
 </html>
