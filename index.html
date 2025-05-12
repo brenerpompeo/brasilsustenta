@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brasil Sustenta. | Catalisando Impacto Jovem</title> <!-- Título sutilmente ajustado -->
-    <link rel="icon" href="img/favicon.svg" type="image/svg+xml"> <!-- Caminho ajustado para pasta img -->
+    <title>Brasil Sustenta. | Catalisando Impacto Jovem Socioambiental</title> <!-- Título mais descritivo -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
@@ -16,7 +16,7 @@
     <header class="sticky top-0 bg-white/90 backdrop-blur-lg border-b border-emerald-100/60 z-50 transition-all duration-300 shadow-sm">
         <div class="container mx-auto px-5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-2 group" aria-label="Página inicial Brasil Sustenta">
-                <!-- Logo SVG da Brasil Sustenta (Exemplo) -->
+                <!-- Logo SVG -->
                 <svg class="w-7 h-7 sm:w-8 sm:h-8 text-emerald-600 group-hover:text-emerald-700 transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 2L2 7l10 5 10-5-10-5z"/>
                     <path d="M2 17l10 5 10-5"/>
@@ -28,12 +28,13 @@
             <nav class="hidden md:flex items-center gap-5 lg:gap-7">
                 <a href="#sobre" class="nav-link">Sobre</a>
                 <a href="#iniciativas" class="nav-link">Iniciativas</a>
-                <a href="#impacto" class="nav-link">Impacto</a>
-                <a href="#contato" class="btn-primary btn-sm btn-3d hover-tilt">Participar</a>
+                <a href="#beneficios" class="nav-link">Benefícios</a> <!-- Ajustado ID -->
+                <a href="#contato" class="btn-primary btn-sm btn-3d hover-tilt">Faça Parte</a> <!-- CTA mais direto -->
             </nav>
             
             <button id="mobile-menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" class="md:hidden p-2 -mr-2 rounded-md text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1">
                 <i data-lucide="menu" class="w-6 h-6"></i>
+                <i data-lucide="x" class="w-6 h-6 hidden"></i> <!-- Ícone X para fechar -->
             </button>
         </div>
         <!-- Mobile Menu -->
@@ -41,8 +42,8 @@
              <nav class="flex flex-col p-4 space-y-1">
                  <a href="#sobre" class="nav-link-mobile">Sobre</a>
                  <a href="#iniciativas" class="nav-link-mobile">Iniciativas</a>
-                 <a href="#impacto" class="nav-link-mobile">Impacto</a>
-                 <a href="#contato" class="nav-link-mobile text-emerald-600 font-semibold mt-2">Participar</a>
+                 <a href="#beneficios" class="nav-link-mobile">Benefícios</a> <!-- Ajustado ID -->
+                 <a href="#contato" class="nav-link-mobile text-emerald-600 font-semibold mt-2">Faça Parte</a>
              </nav>
          </div>
     </header>
@@ -50,26 +51,27 @@
     <main>
         <!-- Seção Hero -->
         <section class="relative min-h-[85vh] sm:min-h-[90vh] flex items-center justify-center text-center overflow-hidden parallax-container py-20 sm:py-24 md:py-32">
-            <div class="parallax-layer dynamic-gradient" data-speed="0.1"></div>
+            <!-- Camada de fundo dinâmica - pode ser controlada via JS para parallax sutil -->
+            <div class="absolute inset-0 dynamic-gradient" data-speed="0.1"></div> 
             
             <div class="container mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-                <div class="max-w-3xl mx-auto scroll-linked">
+                <div class="max-w-3xl mx-auto">
                     <div class="inline-flex items-center gap-2.5 px-4 py-2 bg-white/15 backdrop-blur-md rounded-full border border-emerald-100/30 mb-6 sm:mb-8 animate-fade-in">
-                        <span class="animate-pulse text-lg">✨</span>
-                        <span class="text-xs sm:text-sm font-medium text-emerald-100 tracking-wide">Jovens transformando realidades</span>
+                        <span class="animate-pulse text-lg">🌱</span> <!-- Ícone mais direto -->
+                        <span class="text-xs sm:text-sm font-medium text-emerald-100 tracking-wide">Jovens transformando o futuro sustentável</span>
                     </div>
                     
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 font-extrabold bg-gradient-to-r from-white via-emerald-50 to-emerald-100/90 bg-clip-text text-transparent leading-tight">
-                        O Ecossistema de Inovação <span class="text-emerald-300 brightness-110">Socioambiental</span> do Brasil
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 font-extrabold bg-gradient-to-r from-white via-emerald-50 to-emerald-100/90 bg-clip-text text-transparent leading-tight animate-fade-in" style="animation-delay: 0.1s;">
+                        Catalisando a <span class="text-emerald-300 brightness-110">Juventude</span> para o Impacto Socioambiental
                     </h1>
                     <p class="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-emerald-100/90 mb-10 leading-relaxed animate-fade-in" style="animation-delay: 0.3s;">
-                        Conectamos, capacitamos e impulsionamos a juventude criativa para construir um futuro mais justo, verde e inovador. Sua jornada de impacto começa aqui.
+                        Somos a plataforma que conecta, capacita e impulsiona jovens (18-35 anos) a criarem soluções inovadoras para os desafios da sustentabilidade no Brasil.
                     </p>
                     
-                    <div class="animate-fade-in" style="animation-delay: 0.6s;">
+                    <div class="animate-fade-in" style="animation-delay: 0.5s;">
                         <a href="#contato" class="btn-primary btn-lg btn-3d hover-tilt inline-flex items-center gap-2.5">
-                            Inicie sua Jornada de Impacto
-                            <i data-lucide="sparkles" class="w-5 h-5 opacity-80"></i>
+                            Comece sua Jornada de Impacto
+                            <i data-lucide="rocket" class="w-5 h-5 opacity-80"></i> <!-- Ícone mais dinâmico -->
                         </a>
                     </div>
                 </div>
@@ -79,25 +81,30 @@
         <!-- Seção de Impacto (Números) -->
         <section id="impacto-numeros" class="py-16 sm:py-20 md:py-24 bg-white">
             <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+                 <div class="text-center mb-10 sm:mb-14">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-3">O Potencial da Geração ESG</h2>
+                    <p class="text-slate-600 max-w-xl mx-auto text-base sm:text-lg leading-relaxed">Dados que mostram a força da juventude e a demanda por sustentabilidade:</p>
+                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    <div class="scroll-linked hover-tilt p-6 sm:p-8 bg-emerald-50/50 rounded-xl border border-emerald-100 shadow-lg text-center flex flex-col items-center">
-                        <i data-lucide="users" class="w-10 h-10 text-emerald-500 mb-4"></i>
+                    <!-- Card Jovem -->
+                    <div class="card-impacto hover-tilt bg-emerald-50/50 border-emerald-100">
+                        <i data-lucide="users-2" class="w-10 h-10 text-emerald-500 mb-4"></i> <!-- Ícone mais específico -->
                         <div class="text-4xl sm:text-5xl font-bold text-emerald-600 mb-2" data-counter="53200000" data-format="true">0</div>
                         <h3 class="text-sm sm:text-base font-semibold text-slate-700">Jovens (18-35) no Brasil</h3>
                         <p class="text-xs text-slate-500 mt-1">(Fonte: IBGE)</p>
                     </div>
-                    
-                    <div class="scroll-linked hover-tilt p-6 sm:p-8 bg-sky-50/50 rounded-xl border border-sky-100 shadow-lg text-center flex flex-col items-center lg:transform lg:translate-y-[-2rem]">
-                         <i data-lucide="briefcase" class="w-10 h-10 text-sky-500 mb-4"></i>
+                    <!-- Card Preferência -->
+                    <div class="card-impacto hover-tilt bg-sky-50/50 border-sky-100 lg:transform lg:translate-y-[-1.5rem]"> <!-- Ajuste no translate -->
+                         <i data-lucide="heart-handshake" class="w-10 h-10 text-sky-500 mb-4"></i> <!-- Ícone representando preferência/escolha -->
                         <div class="text-4xl sm:text-5xl font-bold text-sky-600 mb-2" data-counter="88" data-suffix="%">0%</div>
-                        <h3 class="text-sm sm:text-base font-semibold text-slate-700">Preferem Empresas Sustentáveis</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-700">Preferem Marcas Sustentáveis</h3>
                         <p class="text-xs text-slate-500 mt-1">(Fonte: Accenture)</p>
                     </div>
-
-                    <div class="scroll-linked hover-tilt p-6 sm:p-8 bg-amber-50/50 rounded-xl border border-amber-100 shadow-lg text-center flex flex-col items-center">
+                    <!-- Card Vagas -->
+                    <div class="card-impacto hover-tilt bg-amber-50/50 border-amber-100">
                          <i data-lucide="trending-up" class="w-10 h-10 text-amber-500 mb-4"></i>
                         <div class="text-4xl sm:text-5xl font-bold text-amber-600 mb-2" data-counter="98" data-suffix="%">0%</div>
-                        <h3 class="text-sm sm:text-base font-semibold text-slate-700">Aumento de Vagas em ESG</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-slate-700">Crescimento Vagas ESG (Global)</h3> <!-- Clareza na informação -->
                         <p class="text-xs text-slate-500 mt-1">(Fonte: GlobalData)</p>
                     </div>
                 </div>
@@ -108,26 +115,27 @@
         <section id="sobre" class="py-16 sm:py-20 md:py-24 bg-slate-50/70">
             <div class="container mx-auto px-5 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-                    <div class="scroll-linked">
+                    <div class="animate-on-scroll">
                         <span class="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">Quem Somos</span>
-                        <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-slate-900 leading-tight">Catalisando a Juventude para um Futuro Sustentável</h2>
+                        <h2 class="text-3xl sm:text-4xl font-bold mb-6 text-slate-900 leading-tight">Sua Plataforma de Lançamento para o Impacto Socioambiental</h2>
                         <p class="text-slate-600 text-base sm:text-lg mb-5 leading-relaxed">
-                            A Brasil Sustenta. é uma <strong>Impact Venture Builder</strong> com a missão de engajar, capacitar e apoiar a juventude criativa brasileira (18-35 anos). Atuamos na fase pré-ideia e pré-equipe, fornecendo conhecimento, metodologia, mentoria e uma rede poderosa para transformar visões em negócios de impacto socioambiental positivo, alinhados aos ODS da ONU.
+                            A Brasil Sustenta. é uma <strong>Impact Venture Builder</strong>. Atuamos antes mesmo da ideia ou da equipe existir, fornecendo à juventude (18-35 anos) as ferramentas, mentorias e conexões para transformar paixão por sustentabilidade em ação concreta e negócios inovadores alinhados aos ODS da ONU.
                         </p>
                          <p class="text-slate-600 text-base sm:text-lg mb-8 leading-relaxed">
-                            Acreditamos que o protagonismo jovem é a chave para inovação e para suprir a crescente demanda do mercado por soluções e talentos ESG.
+                            Acreditamos no protagonismo jovem como motor da inovação ESG que o mercado busca e o planeta precisa.
                         </p>
-                        <a href="#nossas-iniciativas" class="btn-primary btn-md btn-3d hover-tilt inline-flex items-center gap-2">
-                            Nossas Iniciativas
+                        <a href="#iniciativas" class="btn-secondary btn-md btn-3d hover-tilt inline-flex items-center gap-2"> <!-- Botão secundário para diferenciar -->
+                            Conheça Nossas Iniciativas
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </a>
                     </div>
-                    <div class="relative scroll-linked hover-tilt mt-10 lg:mt-0">
-                        <!-- Substitua por uma imagem relevante -->
-                        <div class="aspect-w-4 aspect-h-3 sm:aspect-w-16 sm:aspect-h-10 rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-200 to-teal-300">
-                            <img src="img/placeholder-sobre.jpg" alt="Equipe Brasil Sustenta em colaboração" class="w-full h-full object-cover opacity-80 mix-blend-multiply">
+                    <div class="relative mt-10 lg:mt-0 animate-on-scroll" data-delay="0.2s">
+                        <div class="aspect-w-4 aspect-h-3 sm:aspect-w-16 sm:aspect-h-10 rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-emerald-200 to-teal-300 hover-tilt">
+                            <!-- **IMPORTANTE:** Substituir por uma imagem real e otimizada -->
+                            <img src="img/placeholder-sobre.jpg" alt="Jovens colaborando em projetos de sustentabilidade" class="w-full h-full object-cover opacity-80 mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-105">
                         </div>
-                         <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-emerald-500/10 rounded-full -z-10 blur-md"></div>
+                         <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-emerald-500/10 rounded-full -z-10 blur-xl animate-pulse"></div> <!-- Blur maior e pulse -->
+                         <div class="absolute -top-5 -left-5 w-16 h-16 bg-sky-500/5 rounded-full -z-10 blur-lg"></div>
                     </div>
                 </div>
             </div>
@@ -137,36 +145,100 @@
         <!-- Seção Nossas Iniciativas -->
         <section id="iniciativas" class="py-16 sm:py-20 md:py-24 bg-white">
             <div class="container mx-auto px-5 sm:px-6 lg:px-8">
-                <div class="text-center mb-12 sm:mb-16 scroll-linked">
-                    <span class="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">Nossos Programas</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Da Ideia à Ação de Impacto</h2>
-                    <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">Oferecemos um ecossistema de apoio completo para jovens transformarem suas ideias em soluções sustentáveis.</p>
+                <div class="text-center mb-12 sm:mb-16 animate-on-scroll">
+                    <span class="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">Como Funciona</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Nosso Ecossistema de Desenvolvimento</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">Programas desenhados para acompanhar sua jornada, da faísca inicial à solução de impacto.</p>
                 </div>
-                <!-- Cards das iniciativas aqui... (adaptar do código anterior) -->
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    <!-- Card Laboratório de Criação -->
+                    <div class="card-programa hover-tilt animate-on-scroll">
+                        <div class="card-icon bg-emerald-100 text-emerald-600"> <i data-lucide="flask-conical"></i> </div>
+                        <h3 class="text-lg font-semibold mb-2 text-slate-800">Laboratório de Criação</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Imersão prática em Squads de Impacto para idear, validar e prototipar soluções socioambientais.</p>
+                    </div>
+                    <!-- Card Líderes -->
+                     <div class="card-programa hover-tilt animate-on-scroll" data-delay="0.15s">
+                        <div class="card-icon bg-sky-100 text-sky-600"> <i data-lucide="graduation-cap"></i> </div>
+                        <h3 class="text-lg font-semibold mb-2 text-slate-800">Brasil Sustenta. Líderes</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Trilha de desenvolvimento em competências ESG, liderança de impacto e gestão de projetos sustentáveis.</p>
+                    </div>
+                     <!-- Card Campus -->
+                     <div class="card-programa hover-tilt animate-on-scroll" data-delay="0.3s">
+                        <div class="card-icon bg-amber-100 text-amber-600"> <i data-lucide="university"></i> </div>
+                        <h3 class="text-lg font-semibold mb-2 text-slate-800">Brasil Sustenta. Campus</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Eventos, workshops e painéis conectando jovens, universidades e o mercado para aprendizado e networking.</p>
+                    </div>
+                     <!-- Card Play -->
+                     <div class="card-programa hover-tilt animate-on-scroll" data-delay="0.45s">
+                         <div class="card-icon bg-indigo-100 text-indigo-600"> <i data-lucide="play-circle"></i> </div>
+                        <h3 class="text-lg font-semibold mb-2 text-slate-800">Brasil Sustenta. Play</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">Plataforma de conteúdo curado com artigos, vídeos e ferramentas sobre sustentabilidade e inovação.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Seção Impacto Detalhado (Benefícios) -->
-         <section id="impacto" class="py-16 sm:py-20 md:py-24 bg-slate-50/70">
+         <section id="beneficios" class="py-16 sm:py-20 md:py-24 bg-slate-50/70"> <!-- ID ajustado -->
             <div class="container mx-auto px-5 sm:px-6 lg:px-8">
-                <div class="text-center mb-12 sm:mb-16 scroll-linked">
-                    <span class="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">Resultados e Vantagens</span>
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Valor Gerado para Todos</h2>
-                    <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">Entenda como a Brasil Sustenta. impulsiona carreiras, fortalece negócios e contribui para os ODS.</p>
+                <div class="text-center mb-12 sm:mb-16 animate-on-scroll">
+                    <span class="inline-block bg-emerald-100 text-emerald-700 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider mb-4">Valor Gerado</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Benefícios Para Todo o Ecossistema</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">Veja como a Brasil Sustenta. cria valor compartilhado para jovens, empresas e mentores.</p>
                 </div>
-                <!-- Conteúdo de benefícios para Jovens, Empresas, Mentores (adaptar do código anterior) -->
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
+                    <!-- Benefícios Jovens -->
+                    <div class="card-beneficio animate-on-scroll">
+                         <div class="card-icon-sm bg-emerald-100 text-emerald-600"> <i data-lucide="user-check"></i> </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-800">Para Jovens (18-35)</h3>
+                        <ul class="space-y-2.5 text-sm text-slate-600">
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i><span>Desenvolvimento de skills ESG e de liderança.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i><span>Experiência prática em projetos reais de impacto.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i><span>Networking qualificado com mentores e empresas.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i><span>Visibilidade e acesso a oportunidades de carreira.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"></i><span>Suporte para transformar ideias em ação.</span></li>
+                        </ul>
+                    </div>
+                    <!-- Benefícios Empresas -->
+                    <div class="card-beneficio animate-on-scroll" data-delay="0.2s">
+                         <div class="card-icon-sm bg-sky-100 text-sky-600"> <i data-lucide="building-2"></i> </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-800">Para Empresas Parceiras</h3>
+                         <ul class="space-y-2.5 text-sm text-slate-600">
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-sky-500 mt-0.5 shrink-0"></i><span>Acesso a pipeline de talentos ESG qualificados.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-sky-500 mt-0.5 shrink-0"></i><span>Fonte de inovação sustentável via Squads de Impacto.</span></li>
+                             <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-sky-500 mt-0.5 shrink-0"></i><span>Engajamento e desenvolvimento de equipes internas.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-sky-500 mt-0.5 shrink-0"></i><span>Fortalecimento da marca empregadora e reputação ESG.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-sky-500 mt-0.5 shrink-0"></i><span>Contribuição mensurável para metas de sustentabilidade.</span></li>
+                        </ul>
+                    </div>
+                    <!-- Benefícios Mentores -->
+                    <div class="card-beneficio animate-on-scroll" data-delay="0.4s">
+                        <div class="card-icon-sm bg-amber-100 text-amber-600"> <i data-lucide="award"></i> </div>
+                        <h3 class="text-xl font-semibold mb-3 text-slate-800">Para Mentores e Especialistas</h3>
+                         <ul class="space-y-2.5 text-sm text-slate-600">
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i><span>Oportunidade de compartilhar conhecimento e gerar impacto.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i><span>Conexão com a nova geração de líderes sustentáveis.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i><span>Ampliação da rede de contatos no ecossistema de impacto.</span></li>
+                             <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i><span>Visibilidade como referência em sua área de atuação.</span></li>
+                            <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-amber-500 mt-0.5 shrink-0"></i><span>Satisfação pessoal em contribuir para um futuro melhor.</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
 
         <!-- Formulário de Contato -->
-        <section id="contato" class="bg-emerald-600 py-16 sm:py-20 md:py-24 text-white">
+        <section id="contato" class="bg-gradient-to-br from-emerald-600 to-teal-600 py-16 sm:py-20 md:py-24 text-white"> <!-- Gradiente sutil -->
             <div class="container mx-auto px-5 sm:px-6 lg:px-8 max-w-3xl">
-                <div class="text-center mb-10 sm:mb-12 scroll-linked">
-                    <h2 class="text-3xl sm:text-4xl font-bold mb-4">Vamos Construir Juntos?</h2>
-                    <p class="text-emerald-100/90 text-base sm:text-lg leading-relaxed">Seja um jovem talento, uma organização parceira ou um mentor. Sua participação é fundamental.</p>
+                <div class="text-center mb-10 sm:mb-12 animate-on-scroll">
+                    <h2 class="text-3xl sm:text-4xl font-bold mb-4">Faça Parte da Transformação</h2>
+                    <p class="text-emerald-100/90 text-base sm:text-lg leading-relaxed max-w-xl mx-auto">Seja você um jovem talento, uma organização visionária ou um(a) mentor(a) experiente, sua participação é chave para construirmos um Brasil mais sustentável.</p>
                 </div>
-                <div class="scroll-linked bg-white/95 p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl hover-tilt text-slate-800">
+                <div class="animate-on-scroll bg-white/95 p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl hover-tilt text-slate-800 transition-shadow duration-300">
                     <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div>
@@ -179,31 +251,33 @@
                             </div>
                         </div>
                         <div>
-                            <label for="interest" class="block text-sm font-medium text-slate-700 mb-1.5">Principal Interesse*</label>
+                            <label for="interest" class="block text-sm font-medium text-slate-700 mb-1.5">Como você quer se envolver?*</label> <!-- Pergunta mais direta -->
                             <select id="interest" name="interest" class="form-select w-full" required>
                                 <option value="" disabled selected>Selecione uma opção...</option>
-                                <option value="jovem_participar">Participar de Programa (Jovem 18-35)</option>
-                                <option value="organizacao_parceria">Ser Parceiro (Organização)</option>
-                                <option value="mentor_voluntario">Ser Mentor(a)</option>
-                                <option value="informacao_geral">Gostaria de mais informações</option>
-                                <option value="imprensa">Imprensa / Mídia</option>
+                                <option value="jovem_participar">Quero participar de um programa (Jovem 18-35)</option>
+                                <option value="organizacao_parceria">Quero ser uma organização parceira</option>
+                                <option value="mentor_voluntario">Quero ser mentor(a) / especialista</option>
+                                <option value="informacao_geral">Gostaria de mais informações gerais</option>
+                                <option value="imprensa">Contato de Imprensa / Mídia</option>
                                 <option value="outro">Outro Assunto</option>
                             </select>
                         </div>
                         <div>
                             <label for="message" class="block text-sm font-medium text-slate-700 mb-1.5">Sua Mensagem*</label>
-                            <textarea id="message" name="message" rows="5" class="form-textarea w-full" required placeholder="Conte-nos como podemos ajudar..."></textarea>
+                            <textarea id="message" name="message" rows="5" class="form-textarea w-full" required placeholder="Conte-nos mais sobre seu interesse..."></textarea>
                         </div>
                          <div class="flex items-start space-x-3">
-                             <input id="lgpd-consent" name="lgpd-consent" type="checkbox" class="form-checkbox mt-1">
-                             <label for="lgpd-consent" class="text-xs text-slate-500">Concordo em receber comunicações da Brasil Sustenta. e entendo a <a href="/politica-privacidade.html" target="_blank" class="text-emerald-600 hover:underline">Política de Privacidade</a>.</label>
+                             <input id="lgpd-consent" name="lgpd-consent" type="checkbox" class="form-checkbox mt-0.5 shrink-0" required> <!-- Checkbox obrigatório -->
+                             <label for="lgpd-consent" class="text-xs text-slate-500">Li e concordo com a <a href="/politica-privacidade.html" target="_blank" class="text-emerald-600 hover:underline font-medium">Política de Privacidade</a> e em receber comunicações da Brasil Sustenta.*</label>
                          </div>
                         <div>
-                            <button type="submit" class="btn-primary btn-lg btn-3d w-full flex items-center justify-center gap-2.5">
-                                Enviar Mensagem
-                                <i data-lucide="send" class="w-5 h-5"></i>
+                            <button type="submit" class="btn-primary btn-lg btn-3d w-full flex items-center justify-center gap-2.5 group">
+                                <span class="button-text">Enviar Mensagem</span>
+                                <i data-lucide="send" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                                <span class="spinner hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span> <!-- Spinner para feedback -->
                             </button>
                         </div>
+                         <p id="form-status" class="text-center text-sm mt-4" aria-live="polite"></p> <!-- Para mensagens de erro/status -->
                     </form>
                 </div>
             </div>
@@ -212,13 +286,16 @@
         <!-- Modal de Sucesso (Oculto por padrão) -->
         <div id="success-modal" class="fixed inset-0 flex items-center justify-center p-4 z-[100] hidden bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-out opacity-0" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="bg-white rounded-xl p-6 sm:p-8 max-w-md w-full relative shadow-xl transform transition-all duration-300 ease-out scale-95 opacity-0" id="success-modal-content">
+                <button id="close-modal-x" type="button" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition-colors" aria-label="Fechar modal">
+                     <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
                 <div class="text-center">
                     <div class="w-16 h-16 bg-emerald-100 mx-auto rounded-full flex items-center justify-center mb-5 ring-4 ring-emerald-200/50">
                         <i data-lucide="check-circle-2" class="w-10 h-10 text-emerald-600"></i>
                     </div>
-                    <h3 id="modal-title" class="text-xl font-bold mb-2 text-slate-900">Mensagem Enviada!</h3>
-                    <p class="text-slate-600 text-sm sm:text-base mb-6">Agradecemos seu contato. Nossa equipe da Brasil Sustenta. retornará em breve.</p>
-                    <button id="close-modal" type="button" class="btn-primary btn-md px-8">Entendido</button>
+                    <h3 id="modal-title" class="text-xl font-bold mb-2 text-slate-900">Mensagem Enviada com Sucesso!</h3>
+                    <p class="text-slate-600 text-sm sm:text-base mb-6">Agradecemos seu contato. A equipe Brasil Sustenta. retornará o mais breve possível.</p>
+                    <button id="close-modal-button" type="button" class="btn-primary btn-md px-8">Entendido</button>
                 </div>
             </div>
         </div>
@@ -228,70 +305,84 @@
     <footer class="bg-slate-900 text-slate-300 pt-16 sm:pt-20 pb-10">
         <div class="container mx-auto px-5 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 mb-12 sm:mb-16">
+                <!-- Coluna Logo e Descrição -->
                 <div>
                     <a href="#" class="inline-flex items-center gap-2 mb-5 group">
                          <svg class="w-7 h-7 text-emerald-500 group-hover:text-emerald-400 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                         <span class="text-xl font-bold text-white group-hover:text-emerald-300 transition-colors">BrasilSustenta.</span>
                     </a>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        Engajando a juventude criativa para gerar impacto positivo e construir um futuro sustentável para todos.
+                        Catalisando a juventude brasileira para criar um futuro mais justo, verde e inovador através de negócios de impacto.
                     </p>
                      <div class="flex space-x-4">
-                        <a href="#" aria-label="Instagram Brasil Sustenta" class="text-slate-400 hover:text-emerald-400 transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                        <a href="#" aria-label="LinkedIn Brasil Sustenta" class="text-slate-400 hover:text-emerald-400 transition-colors"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                        <a href="#" aria-label="Facebook Brasil Sustenta" class="text-slate-400 hover:text-emerald-400 transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                        <a href="#" aria-label="Youtube Brasil Sustenta" class="text-slate-400 hover:text-emerald-400 transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                        <!-- **IMPORTANTE:** Substituir '#' pelos links reais -->
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram Brasil Sustenta" class="social-link"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Brasil Sustenta" class="social-link"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook Brasil Sustenta" class="social-link"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Youtube Brasil Sustenta" class="social-link"><i data-lucide="youtube" class="w-5 h-5"></i></a>
                     </div>
                 </div>
 
+                 <!-- Coluna Navegação -->
                  <div>
-                    <h3 class="text-sm font-semibold mb-5 uppercase text-slate-400 tracking-wider">Navegue</h3>
+                    <h3 class="footer-heading">Navegue</h3>
                     <ul class="space-y-3">
                          <li><a href="#sobre" class="footer-link">Sobre Nós</a></li>
-                        <li><a href="#iniciativas" class="footer-link">Iniciativas</a></li>
-                        <li><a href="#impacto" class="footer-link">Impacto & Benefícios</a></li>
+                        <li><a href="#iniciativas" class="footer-link">Nossas Iniciativas</a></li>
+                        <li><a href="#beneficios" class="footer-link">Benefícios</a></li>
                         <li><a href="#contato" class="footer-link">Faça Parte</a></li>
                     </ul>
                 </div>
 
+                 <!-- Coluna Programas -->
                  <div>
-                    <h3 class="text-sm font-semibold mb-5 uppercase text-slate-400 tracking-wider">Programas</h3>
+                     <h3 class="footer-heading">Programas</h3>
                     <ul class="space-y-3">
-                        <li><p class="text-slate-300 text-sm">Squads de Impacto</p></li>
-                        <li><p class="text-slate-300 text-sm">Brasil Sustenta. Líderes</p></li>
-                        <li><p class="text-slate-300 text-sm">Brasil Sustenta. Campus</p></li>
-                         <li><p class="text-slate-300 text-sm">Brasil Sustenta. Play</p></li>
+                        <!-- Links podem ser adicionados no futuro quando houver páginas dedicadas -->
+                        <li><p class="footer-text-static">Laboratório de Criação</p></li>
+                        <li><p class="footer-text-static">Brasil Sustenta. Líderes</p></li>
+                        <li><p class="footer-text-static">Brasil Sustenta. Campus</p></li>
+                         <li><p class="footer-text-static">Brasil Sustenta. Play</p></li>
                     </ul>
                 </div>
 
+                <!-- Coluna Contato -->
                 <div>
-                    <h3 class="text-sm font-semibold mb-5 uppercase text-slate-400 tracking-wider">Contato</h3>
+                     <h3 class="footer-heading">Contato</h3>
                      <ul class="space-y-3.5">
                         <li class="flex items-start text-slate-300 text-sm">
-                            <i data-lucide="mail" class="w-4 h-4 mr-2.5 mt-0.5 flex-shrink-0 text-emerald-400"></i>
-                            <a href="mailto:contato@brasilsustenta.org" class="hover:text-white transition-colors">contato@brasilsustenta.org</a>
+                            <i data-lucide="mail" class="footer-icon"></i>
+                            <a href="mailto:contato@brasilsustenta.org" class="hover:text-white transition-colors break-all">contato@brasilsustenta.org</a>
                         </li>
                         <li class="flex items-start text-slate-300 text-sm">
-                             <i data-lucide="map-pin" class="w-4 h-4 mr-2.5 mt-0.5 flex-shrink-0 text-emerald-400"></i>
-                            <span>Atuação Nacional - Brasil</span>
+                             <i data-lucide="map-pin" class="footer-icon"></i>
+                            <span>Atuação Nacional - Sede Remota</span> <!-- Mais específico -->
                         </li>
                         <li class="flex items-start text-slate-300 text-sm">
-                           <i data-lucide="info" class="w-4 h-4 mr-2.5 mt-0.5 flex-shrink-0 text-emerald-400"></i>
+                           <i data-lucide="info" class="footer-icon"></i>
+                           <!-- **IMPORTANTE:** Criar e linkar a página real -->
                            <a href="/politica-privacidade.html" target="_blank" class="hover:text-white transition-colors">Política de Privacidade</a>
                        </li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-slate-700/50 pt-8 mt-10 sm:mt-12 text-center">
-                <p class="text-slate-500 text-xs">© <span id="currentYear"></span> Brasil Sustenta. Todos os direitos reservados.</p>
+                <p class="text-slate-500 text-xs">© <span id="currentYear"></span> Brasil Sustenta. Todos os direitos reservados. CNPJ: XX.XXX.XXX/XXXX-XX</p> <!-- Adicionar CNPJ real -->
             </div>
         </div>
     </footer>
 
+    <!-- Botão Voltar ao Topo (Opcional) -->
+    <button id="back-to-top" aria-label="Voltar ao topo" class="fixed bottom-5 right-5 bg-emerald-600/80 hover:bg-emerald-600 text-white p-2.5 rounded-full shadow-lg transition-all duration-300 opacity-0 translate-y-4 hidden z-40">
+         <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+
     <script src="script.js"></script>
     <script>
         lucide.createIcons(); // Renderiza ícones Lucide
-        document.getElementById('currentYear').textContent = new Date().getFullYear(); // Atualiza o ano no footer
+        // Atualiza o ano no footer (já no script.js, mas pode ficar aqui como fallback)
+        // document.getElementById('currentYear').textContent = new Date().getFullYear(); 
     </script>
 </body>
 </html>
