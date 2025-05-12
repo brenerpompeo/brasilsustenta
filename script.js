@@ -1,278 +1,484 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+document.addEventListener('DOMContentLoaded', () => {
+    // Cria ícones Lucide após o DOM carregar
+    lucide.createIcons(); 
 
-:root {
-    --primary: #059669; /* Emerald-600 */
-    --primary-dark: #047857; /* Emerald-700 */
-    --primary-light: #d1fae5; /* Emerald-100 */
-    --secondary: #0891b2; /* Cyan-600 */
-    --accent-sky: #0ea5e9; /* Sky-500 */
-    --accent-amber: #f59e0b; /* Amber-500 */
-    
-    --text-primary: #111827; /* gray-900 */
-    --text-secondary: #374151; /* gray-700 */
-    --text-light: #6b7280; /* gray-500 */
+    // --- Constantes Globais do Módulo ---
+    const mainHeader = document.getElementById('main-header');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const desktopNav = document.getElementById('desktop-nav');
+    const mobileNav = document.getElementById('mobile-nav');
+    const contactForm = document.getElementById('contact-form');
+    const successModal = document.getElementById('success-modal');
+    const backToTopButton = document.getElementById('back-to-top');
+    const body = document.body;
 
-    --bg-primary: #ffffff;
-    --bg-soft: #f9fafb; /* gray-50 (usado no body como bg-slate-50) */
-    --bg-softer: #f3f4f6; /* gray-100 */
+    // --- Mobile Menu Toggle ---
+    if (mobileMenuToggle && mobileMenu) {
+        const menuIcon = mobileMenuToggle.querySelector('[data-lucide="menu"]');
+        const closeIcon = mobileMenuToggle.querySelector('[data-lucide="x"]');
 
-    --border-primary: #e5e7eb; /* gray-200 */
-    --border-soft: #f3f4f6; /* gray-100 */
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+            body.classList.toggle('overflow-hidden', !isExpanded); // Trava/Destrava scroll
+        });
 
-    --shadow-color-rgb: 5, 150, 105; /* RGB do Emerald-600 */
-    --shadow-soft-color-rgb: 100, 116, 139; /* RGB Slate-500 for softer shadows */
-
-    --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
-    --ease-squish: cubic-bezier(0.65, 0, 0.35, 1.25); /* Para botões 3D */
-    --ease-morph: cubic-bezier(0.7, 0, 0.3, 1); /* Para animações de entrada */
-}
-
-@layer base {
-    html {
-        font-family: 'Poppins', sans-serif;
-        @apply text-base;
-    }
-    body {
-        @apply overflow-x-hidden; /* Prevenir scroll horizontal */
-    }
-    h1,h2,h3,h4,h5,h6 {
-        @apply font-bold text-text-primary;
-    }
-    h1 { @apply text-4xl sm:text-5xl md:text-6xl leading-tight; }
-    h2 { @apply text-3xl sm:text-4xl leading-tight; }
-    h3 { @apply text-xl sm:text-2xl; }
-    p { @apply leading-relaxed text-text-secondary; }
-    /* Custom scrollbar (opcional, cuidado com compatibilidade) */
-    /* ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-softer); }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; } */
-}
-
-@layer components {
-    /* Links de Navegação */
-    .nav-link {
-        @apply relative text-sm font-medium text-slate-600 hover:text-emerald-600 
-               py-1 transition-colors duration-200
-               after:absolute after:bottom-[-2px] after:left-1/2 after:w-0 
-               after:h-0.5 after:bg-emerald-500 after:-translate-x-1/2
-               hover:after:w-full after:transition-all after:duration-300;
-    }
-    .nav-link-mobile {
-        @apply block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-emerald-50 hover:text-emerald-600 transition-colors duration-150;
+        // Fecha menu ao clicar em um link interno do menu
+        mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenuToggle.click(); // Simula clique para fechar e resetar estado
+                }
+            });
+        });
     }
 
-    /* Botões */
-    .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-white bg-emerald-600 rounded-lg shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white transition-all duration-200 ease-in-out;
-    }
-     .btn-primary.btn-sm { /* Navbar desktop */
-        @apply px-4 py-2 text-xs sm:text-sm shadow-sm;
-    }
-     .btn-primary.btn-lg { /* Hero e Form */
-        @apply px-8 py-3.5 sm:px-10 sm:py-4 text-base sm:text-lg;
+    // --- Smooth Scrolling & Deep Linking ---
+    function smoothScrollTo(targetId) {
+        const targetElement = document.getElementById(targetId?.substring(1)); // Remove #
+        if (targetElement) {
+            const headerOffset = mainHeader?.offsetHeight || 70; // Altura do header
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+            // Opcional: Atualiza o hash na URL sem saltar (pode causar loop se mal implementado com nav active)
+            // history.pushState(null, null, targetId);
+            return true;
+        }
+        return false;
     }
 
-    .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 px-6 py-3 sm:px-7 sm:py-3 text-sm sm:text-base font-semibold text-emerald-700 bg-emerald-50 rounded-lg border border-emerald-200 shadow-sm hover:bg-emerald-100 hover:border-emerald-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:ring-offset-white transition-all duration-200 ease-in-out;
+    // Adiciona listener para cliques em links internos
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return; // Ignora links vazios
+
+            e.preventDefault(); // Previne salto padrão
+            if (smoothScrollTo(href)) {
+                // Fecha o menu mobile se estiver aberto e foi um clique nele
+                if (mobileMenu && !mobileMenu.classList.contains('hidden') && e.currentTarget.closest('#mobile-menu')) {
+                    // A lógica de fechar ao clicar já está no listener do menu mobile
+                }
+            }
+        });
+    });
+
+    // Scroll suave para deep links na carga da página
+    if (window.location.hash && window.location.hash.length > 1) {
+        // Espera um pouco para garantir que tudo (especialmente imagens) esteja carregado e o layout estável
+        window.addEventListener('load', () => {
+            setTimeout(() => smoothScrollTo(window.location.hash), 150);
+        }, { once: true });
     }
-     .btn-secondary.btn-md {
-        @apply px-5 py-2.5 text-sm;
+
+    // --- Header Shadow on Scroll ---
+    if (mainHeader) {
+        const handleHeaderShadow = () => {
+            if (window.scrollY > 30) { // Mostra sombra após rolar 30px
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        };
+        // Otimização: Usar Intersection Observer na section logo abaixo do header seria mais performático
+        // Mas para simplicidade, o scroll listener é aceitável aqui
+        window.addEventListener('scroll', handleHeaderShadow, { passive: true });
+        handleHeaderShadow(); // Checa no load inicial
+    }
+
+    // --- Active Nav Link Highlighting ---
+    const navLinksDesktop = desktopNav ? Array.from(desktopNav.querySelectorAll('.nav-link')) : [];
+    const navLinksMobile = mobileNav ? Array.from(mobileNav.querySelectorAll('.nav-link-mobile')) : [];
+    const allNavLinks = [...navLinksDesktop, ...navLinksMobile];
+    // Mapeia links para IDs de seção
+    const sectionsMap = new Map();
+    allNavLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#') && href.length > 1) {
+            sectionsMap.set(href.substring(1), link);
+        }
+    });
+    const sections = Array.from(sectionsMap.keys()).map(id => document.getElementById(id)).filter(Boolean);
+
+    if (sections.length > 0) {
+        const observerOptions = {
+            root: null, // Observa em relação ao viewport
+            rootMargin: `-${mainHeader?.offsetHeight || 70}px 0px -50% 0px`, // Ativa quando a seção está ~ no topo até meio da tela
+            threshold: 0 // Ativa assim que entra na margem
+        };
+
+        const handleIntersection = (entries) => {
+            let activeSectionId = null;
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Pega a última seção que está intersectando no topo
+                    activeSectionId = entry.target.id;
+                }
+            });
+            
+            // Atualiza classes apenas se houver uma seção ativa detectada
+            if (activeSectionId) {
+                 allNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${activeSectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            } else {
+                 // Opcional: remover 'active' se nenhuma seção estiver visível (ex: no topo ou fim da página)
+                 // No topo, talvez manter o link da primeira seção ativo
+                 const firstSectionTop = sections[0]?.getBoundingClientRect().top - (mainHeader?.offsetHeight || 70);
+                 if (window.scrollY < sections[0]?.offsetTop - (mainHeader?.offsetHeight || 70) - 50) {
+                      allNavLinks.forEach(link => link.classList.remove('active'));
+                      const firstLink = sectionsMap.get(sections[0]?.id);
+                      // firstLink?.classList.add('active'); // Opcional: ativar o primeiro link se estiver acima dele
+                 }
+            }
+        };
+
+        const observer = new IntersectionObserver(handleIntersection, observerOptions);
+        sections.forEach(section => observer.observe(section));
     }
 
 
-    .btn-3d {
-        transition: transform 0.15s var(--ease-squish), box-shadow 0.15s ease-in-out;
-        transform-style: preserve-3d;
-    }
-    .btn-3d:hover {
-        transform: translateY(-3px) translateZ(4px) rotateX(-2deg); /* Efeito 3D sutil */
-        box-shadow: 0 5px 12px -3px rgba(var(--shadow-color-rgb), 0.25), 0 3px 6px -3px rgba(var(--shadow-color-rgb), 0.2);
-    }
-     .btn-3d:active {
-        transform: translateY(-1px) translateZ(1px);
-        box-shadow: 0 2px 4px -2px rgba(var(--shadow-color-rgb), 0.3);
+    // --- Animação de Contagem (Intersection Observer) ---
+    const counters = document.querySelectorAll('[data-counter]');
+    if (counters.length > 0) {
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counterElement = entry.target;
+                    const targetValue = parseInt(counterElement.getAttribute('data-counter'), 10);
+                    const suffix = counterElement.getAttribute('data-suffix') || '';
+                    const format = counterElement.getAttribute('data-format') === 'true';
+
+                    animateCounter(counterElement, targetValue, suffix, format);
+                    observer.unobserve(counterElement); // Anima só uma vez
+                }
+            });
+        }, { threshold: 0.5 }); // Inicia quando 50% do elemento está visível
+
+        counters.forEach(counter => counterObserver.observe(counter));
     }
 
-    /* Formulários */
-    .form-input, .form-select, .form-textarea {
-        @apply block w-full px-4 py-2.5 text-sm sm:text-base text-slate-800 bg-white border border-slate-300 rounded-lg shadow-sm
-               placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/80 focus:border-emerald-500 transition duration-200 ease-in-out;
-    }
-    .form-checkbox {
-        @apply h-4 w-4 text-emerald-600 border-slate-400 rounded focus:ring-emerald-500/80 focus:ring-offset-0;
-    }
-    .form-select {
-        @apply bg-no-repeat appearance-none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
-        background-position: right 0.75rem center;
-        background-size: 1.25em 1.25em;
-        padding-right: 2.5rem;
-    }
-    /* Estilo para indicar erro no campo */
-    .form-input.error, .form-select.error, .form-textarea.error {
-        @apply border-red-500 ring-1 ring-red-500 focus:border-red-500 focus:ring-red-500/80;
-    }
+    function animateCounter(element, target, suffix = '', format = false) {
+        let current = 0;
+        const duration = 1800; // Duração um pouco maior para suavidade
+        const stepTime = Math.max(Math.abs(Math.floor(duration / target)), 10) || 50; // Mínimo 10ms por passo
+        const increment = Math.max(Math.ceil(target / (duration / stepTime)), 1); // Incremento mínimo de 1
 
-    /* Cards */
-    .card-impacto { /* Números */
-        @apply p-6 sm:p-8 rounded-xl border shadow-lg text-center flex flex-col items-center transition-all duration-300;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            // Atualiza o texto formatado
+            element.textContent = format ? formatNumber(current) + suffix : current + suffix;
+        }, stepTime);
     }
-    .card-programa { /* Nossas Iniciativas */
-        @apply bg-slate-50/60 border border-slate-100 rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center;
-    }
-    .card-icon { /* Ícone grande no card de programa */
-       @apply w-14 h-14 rounded-full flex items-center justify-center mb-5 ring-4 ring-white/50;
-       & > svg { @apply w-7 h-7; }
-    }
-     .card-beneficio { /* Benefícios */
-        @apply bg-white border border-slate-200/70 rounded-xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow duration-300;
-    }
-    .card-icon-sm { /* Ícone pequeno no card de benefício */
-       @apply w-10 h-10 rounded-lg flex items-center justify-center mb-4;
-        & > svg { @apply w-5 h-5; }
+    // Função auxiliar para formatar números grandes
+    function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
 
-    /* Footer */
-     .footer-heading {
-         @apply text-sm font-semibold mb-5 uppercase text-slate-400 tracking-wider;
-     }
-     .footer-link {
-        @apply text-slate-300 hover:text-white hover:underline text-sm transition-colors decoration-emerald-500 underline-offset-4;
+    // --- Animação ao Scroll (Intersection Observer) ---
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    if (animatedElements.length > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const delay = parseFloat(entry.target.getAttribute('data-delay') || '0') * 1000;
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, delay);
+                    observer.unobserve(entry.target); // Anima só uma vez
+                }
+            });
+        }, { threshold: 0.15 }); // Inicia quando 15% do elemento está visível
+
+        animatedElements.forEach(el => scrollObserver.observe(el));
+    } else {
+        // Se preferir não ter animação, adiciona a classe is-visible diretamente
+        animatedElements.forEach(el => el.classList.add('is-visible'));
     }
-    .footer-text-static {
-        @apply text-slate-300 text-sm;
+
+
+    // --- Parallax Effect (usando requestAnimationFrame) ---
+    const parallaxLayer = document.querySelector('.dynamic-gradient[data-speed]');
+    if (parallaxLayer && window.matchMedia('(min-width: 769px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const speed = parseFloat(parallaxLayer.getAttribute('data-speed'));
+        let frameId = null;
+        let lastScrollY = window.scrollY;
+
+        const updateParallax = () => {
+             if (window.scrollY !== lastScrollY) { // Otimização: só atualiza se houve scroll
+                const yOffset = window.scrollY;
+                parallaxLayer.style.transform = `translateY(${yOffset * speed}px)`;
+                lastScrollY = yOffset;
+             }
+             frameId = requestAnimationFrame(updateParallax); // Continua o loop
+        };
+        frameId = requestAnimationFrame(updateParallax); // Inicia o loop
+        // Considerar parar o rAF se o elemento sair da viewport usando Intersection Observer
     }
-    .social-link {
-        @apply text-slate-400 hover:text-emerald-400 transition-colors duration-200;
+
+    // --- Formulário de Contato ---
+    if (contactForm && successModal) {
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const formStatus = document.getElementById('form-status');
+        let focusedElementBeforeModal; // Para restaurar foco
+
+        // Definição dos campos e suas regras de validação
+        const fieldsToValidate = [
+            { id: 'name', validation: (val) => val.trim() !== '', message: 'Nome completo é obrigatório.' },
+            { id: 'email', validation: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim()), message: 'Por favor, insira um endereço de email válido.' },
+            { id: 'interest', validation: (val) => val !== '', message: 'Por favor, selecione um interesse.' },
+            { id: 'message', validation: (val) => val.trim() !== '', message: 'A mensagem não pode estar vazia.' },
+            { id: 'lgpd-consent', validation: (el) => el.checked, message: 'Você deve concordar com a política de privacidade.', errorMsgId: 'lgpd-error-message' }
+        ];
+
+        // Função para validar um campo individualmente
+        function validateField(fieldElement, validator) {
+            // Se o elemento não for encontrado, retorna true (não impede validação)
+            if (!fieldElement) return true; 
+            
+            const value = fieldElement.type === 'checkbox' ? fieldElement : fieldElement.value;
+            const isValid = validator.validation(value);
+            const errorContainer = document.getElementById(validator.errorMsgId) || fieldElement.parentElement?.querySelector('.form-error-message');
+
+            if (errorContainer) {
+                 errorContainer.textContent = isValid ? '' : validator.message;
+                 errorContainer.classList.toggle('hidden', isValid);
+            }
+            fieldElement.classList.toggle('invalid', !isValid);
+            // Adiciona/Remove aria-invalid para acessibilidade
+            fieldElement.setAttribute('aria-invalid', !isValid); 
+            return isValid;
+        }
+
+        // Função para validar o formulário inteiro
+        function validateForm() {
+            let isFormValid = true;
+            fieldsToValidate.forEach(fieldConfig => {
+                const element = document.getElementById(fieldConfig.id);
+                // Valida o campo e acumula o resultado (se um for inválido, o form é inválido)
+                if (element && !validateField(element, fieldConfig)) { 
+                    isFormValid = false;
+                }
+            });
+            return isFormValid;
+        }
+
+        // Adiciona validação on-blur (ao perder foco) para feedback imediato
+        fieldsToValidate.forEach(fieldConfig => {
+            const element = document.getElementById(fieldConfig.id);
+            if (element && element.type !== 'checkbox') { // Não valida checkbox no blur
+                 element.addEventListener('blur', () => validateField(element, fieldConfig));
+            }
+             if (element && element.type === 'checkbox') { // Valida checkbox na mudança
+                  element.addEventListener('change', () => validateField(element, fieldConfig));
+             }
+        });
+
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Previne envio padrão
+            formStatus.textContent = ''; // Limpa status anterior
+            formStatus.style.color = 'inherit';
+
+            // Valida todos os campos antes de enviar
+            if (!validateForm()) {
+                formStatus.textContent = 'Por favor, corrija os erros destacados no formulário.';
+                formStatus.style.color = 'var(--danger-500)';
+                // Foca no primeiro campo inválido encontrado
+                const firstInvalidField = contactForm.querySelector('[aria-invalid="true"]');
+                firstInvalidField?.focus();
+                return; // Impede o envio
+            }
+
+            // Desabilita botão e mostra loading
+            submitButton.disabled = true;
+            submitButton.classList.add('submitting');
+            focusedElementBeforeModal = document.activeElement || body; // Guarda elemento focado
+
+            // ============================================================
+            // == INÍCIO: SUBSTITUIR PELA CHAMADA FETCH REAL DO BACKEND ==
+            // ============================================================
+            try {
+                // Exemplo: Usando Formspree (requer configuração no Formspree)
+                // const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID"; // Substitua pelo seu ID
+                // const formData = new FormData(contactForm);
+                // const response = await fetch(FORMSPREE_ENDPOINT, {
+                //     method: 'POST',
+                //     body: formData,
+                //     headers: { 'Accept': 'application/json' }
+                // });
+
+                // Simulação de sucesso/erro (Remover ao usar fetch real)
+                 await new Promise(resolve => setTimeout(resolve, 1500));
+                 const simulateError = false; // Mude para true para testar erro
+                 if (simulateError) throw new Error("Erro simulado no servidor.");
+                // Fim da Simulação
+
+                // if (!response.ok && !simulateError) { // Ajustar condição se usar fetch real
+                //     const errorData = await response.json().catch(() => ({}));
+                //     throw new Error(errorData.message || `Erro HTTP: ${response.status}`);
+                // }
+
+                // Sucesso!
+                showSuccessModal();
+                contactForm.reset(); // Limpa formulário
+                // Resetar classes de erro visualmente
+                contactForm.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+                contactForm.querySelectorAll('[aria-invalid]').forEach(el => el.setAttribute('aria-invalid', 'false'));
+                contactForm.querySelectorAll('.form-error-message').forEach(el => {el.classList.add('hidden'); el.textContent='';});
+
+            } catch (error) {
+                console.error('Erro no envio do formulário:', error);
+                formStatus.textContent = `Erro ao enviar: ${error.message || 'Tente novamente mais tarde.'}`;
+                formStatus.style.color = 'var(--danger-500)';
+            } finally {
+                // Reabilita botão e esconde loading
+                submitButton.disabled = false;
+                submitButton.classList.remove('submitting');
+            }
+            // ==========================================================
+            // == FIM: SUBSTITUIR PELA CHAMADA FETCH REAL DO BACKEND ==
+            // ==========================================================
+        });
+
+        // --- Lógica do Modal de Sucesso ---
+        const successModalContent = document.getElementById('success-modal-content');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const closeModalX = document.getElementById('close-modal-x');
+        // Seletor para elementos focáveis dentro do modal
+        const focusableElementsString = 'button, [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+        let focusableElements = [];
+
+        // Função para prender o foco dentro do modal
+        function trapFocus(e) {
+            if (e.key !== 'Tab' || focusableElements.length === 0) return;
+
+            const firstFocusableElement = focusableElements[0];
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) { // Shift + Tab
+                if (document.activeElement === firstFocusableElement) {
+                    lastFocusableElement.focus(); // Vai para o último
+                    e.preventDefault();
+                }
+            } else { // Tab
+                if (document.activeElement === lastFocusableElement) {
+                    firstFocusableElement.focus(); // Vai para o primeiro
+                    e.preventDefault();
+                }
+            }
+        }
+
+        function showSuccessModal() {
+            body.classList.add('modal-open'); // Trava scroll do body
+            successModal.classList.remove('hidden');
+            void successModal.offsetWidth; // Força reflow para transição
+            successModal.style.opacity = '1';
+            successModalContent.style.opacity = '1';
+            successModalContent.style.transform = 'scale(1)';
+
+            // Prepara elementos focáveis e foca o primeiro ou botão principal
+            focusableElements = Array.from(successModalContent.querySelectorAll(focusableElementsString));
+            (focusableElements.find(el => el.id === 'close-modal-button') || focusableElements[0])?.focus();
+
+            document.addEventListener('keydown', trapFocus); // Ativa a trava de foco
+        }
+
+        function closeModal() {
+            body.classList.remove('modal-open'); // Destrava scroll
+            successModal.style.opacity = '0';
+            successModalContent.style.opacity = '0';
+            successModalContent.style.transform = 'scale(0.95)';
+            // Esconde o modal após a transição
+            setTimeout(() => {
+                 successModal.classList.add('hidden');
+            }, 300); // Duração da transition-opacity/transform
+
+            document.removeEventListener('keydown', trapFocus); // Desativa a trava de foco
+             // Restaura foco ao elemento que abriu o modal (se existir)
+            if (focusedElementBeforeModal && typeof focusedElementBeforeModal.focus === 'function') {
+                 focusedElementBeforeModal.focus();
+            }
+        }
+
+        // Listeners para fechar o modal
+        closeModalButton?.addEventListener('click', closeModal);
+        closeModalX?.addEventListener('click', closeModal);
+        // Fechar ao clicar no fundo (overlay)
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                closeModal();
+            }
+        });
+         // Fechar com a tecla Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !successModal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    } // Fim do if (contactForm && successModal)
+
+
+    // --- Botão Voltar ao Topo ---
+    if (backToTopButton) {
+        const handleBackToTopVisibility = () => {
+            // Mostra se scroll for maior que meio viewport, por exemplo
+            if (window.scrollY > window.innerHeight * 0.5) { 
+                if (backToTopButton.style.visibility !== 'visible') {
+                    backToTopButton.style.visibility = 'visible';
+                    backToTopButton.classList.add('show');
+                }
+            } else {
+                 if (backToTopButton.classList.contains('show')) {
+                     backToTopButton.classList.remove('show');
+                     // Esconde após a transição para evitar clique fantasma
+                     const handleTransitionEnd = (e) => {
+                         if (e.propertyName === 'opacity' && !backToTopButton.classList.contains('show')) {
+                             backToTopButton.style.visibility = 'hidden';
+                             backToTopButton.removeEventListener('transitionend', handleTransitionEnd);
+                         }
+                     };
+                     backToTopButton.addEventListener('transitionend', handleTransitionEnd);
+                 }
+            }
+        };
+
+        // Listener otimizado com debounce (opcional, mas bom para muitos eventos de scroll)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+             clearTimeout(scrollTimeout);
+             scrollTimeout = setTimeout(handleBackToTopVisibility, 100); // Verifica a cada 100ms de inatividade no scroll
+        }, { passive: true });
+        handleBackToTopVisibility(); // Checa no load
+
+        // Ação de clique para rolar suavemente ao topo
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
-     .footer-icon {
-        @apply w-4 h-4 mr-2.5 mt-0.5 flex-shrink-0 text-emerald-400;
+
+
+    // --- Atualiza Ano no Footer ---
+    const currentYearSpan = document.getElementById('currentYear');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
     }
-}
 
-/* Animações Customizadas */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-.animate-fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-.animate-fade-in-up { /* Classe alternativa se necessário */
-    opacity: 0; /* Start hidden */
-    animation: fadeInUp 0.6s var(--ease-out-quad) forwards;
-}
-
-/* Animação de entrada com base no scroll */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px) scale(0.98);
-    transition: opacity 0.6s var(--ease-out-quad), transform 0.6s var(--ease-out-quad);
-    will-change: opacity, transform;
-}
-.animate-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-}
-
-
-/* Efeito Tilt (Mantido como estava, parece bom) */
-.hover-tilt {
-    transition: transform 0.3s var(--ease-squish), box-shadow 0.3s ease-in-out;
-    transform-style: preserve-3d;
-}
-.hover-tilt:hover {
-    transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) translateZ(10px) scale(1.02); /* Leve ajuste */
-    box-shadow: 0 15px 30px -8px rgba(var(--shadow-soft-color-rgb), 0.15), 0 6px 12px -6px rgba(var(--shadow-soft-color-rgb), 0.1);
-}
-
-/* Gradiente Dinâmico Hero */
-.dynamic-gradient {
-    /* Gradiente mais suave e com tons mais esverdeados/azulados */
-    background: linear-gradient(
-        135deg, /* Ângulo ajustado */
-        hsl(155deg 65% 40% / 0.85) 0%, 
-        hsl(165deg 60% 45% / 0.75) 35%,
-        hsl(175deg 68% 50% / 0.6) 70%,
-        hsl(185deg 75% 55% / 0.4) 100% 
-    );
-    /* Blur sutil para suavizar - cuidado com performance */
-    /* backdrop-filter: blur(10px); */
-     /* Efeito de movimento sutil (opcional, pode ser controlado via JS também) */
-    background-size: 200% 200%;
-    animation: gradient-shift 25s ease infinite;
-    will-change: background-position; 
-}
-
-@keyframes gradient-shift {
-	0% { background-position: 0% 50%; }
-	50% { background-position: 100% 50%; }
-	100% { background-position: 0% 50%; }
-}
-
-/* Parallax (Se for usar JS, o CSS pode ser mínimo aqui) */
-.parallax-container {
-   /* perspective: 1px; // Causa problemas com sticky header, melhor JS */
-}
-.parallax-layer {
-    /* Estilos controlados via JS */
-    will-change: transform;
-}
-
-/* Ajustes Mobile */
-@media (max-width: 768px) {
-    h1 { font-size: 2.5rem; line-height: 1.2; } /* 40px */
-    h2 { font-size: 2rem; line-height: 1.25; } /* 32px */
-
-    .dynamic-gradient {
-         animation: none; /* Desativar animação do gradiente em mobile se pesar */
-         background: linear-gradient(135deg, hsl(155deg 65% 40% / 0.9), hsl(175deg 68% 50% / 0.7));
-    }
-    .parallax-layer {
-        /* Se o parallax JS for pesado, desativar transforms */
-        /* transform: none !important; */
-    }
-     .card-impacto {
-        padding: 1.25rem; /* Menor padding */
-    }
-    .card-programa {
-        padding: 1.25rem;
-    }
-     .card-beneficio {
-        padding: 1.25rem;
-    }
-}
-
-/* Estilo para o body quando o modal está aberto */
-body.modal-open {
-    overflow: hidden;
-}
-
-/* Estilo para o botão 'Voltar ao Topo' */
-#back-to-top.show {
-    opacity: 1;
-    transform: translateY(0);
-    visibility: visible; /* Garante que esteja visível */
-}
-
-/* Spinner no botão de submit */
-.btn-primary:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-.btn-primary.submitting .button-text {
-    display: none;
-}
-.btn-primary.submitting .spinner {
-    display: inline-block;
-}
+}); // Fim do DOMContentLoaded
