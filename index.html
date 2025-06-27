@@ -1,290 +1,133 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Brasil Sustenta: Engajamos a juventude criativa para gerar impacto positivo alinhado aos ODS. Junte-se a nós!">
-    <title>Brasil Sustenta - Crie Impacto Sustentável</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Adicione Favicon aqui -->
-    <!-- <link rel="icon" href="images/favicon.ico"> -->
+    <meta name="description" content="Brasil Sustenta - Capacite-se, seja líder e crie soluções regenerativas.">
+    <meta name="author" content="Brasil Sustenta">
+    <title>Brasil Sustenta</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts/app.js" defer></script>
 </head>
 <body>
 
-    <header id="main-header">
-        <div class="container">
-            <div class="logo">Brasil Sustenta</div>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">Sobre Nós</a></li>
-                    <li><a href="#programs">Programas</a></li>
-                    <li><a href="#projects">Projetos</a></li>
-                    <li><a href="#events">Eventos</a></li>
-                    <li><a href="#join-us">Faça Parte</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
-            </nav>
-            <!-- Ícone de Menu Mobile (será controlado via JS/CSS) -->
-            <button id="mobile-menu-toggle" aria-label="Abrir menu">☰</button>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="Brasil Sustenta Logo">
         </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#programas">Programas</a></li>
+                <li><a href="#impacto">Impacto</a></li>
+                <li><a href="#participe">Participe</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+            <a href="#participe" class="cta-btn">Faça a Diferença</a>
+        </nav>
     </header>
 
-    <main>
+    <!-- HOME -->
+    <section class="home">
+        <div class="home-content">
+            <h1>Transforme o Futuro</h1>
+            <p>Junte-se à Brasil Sustenta e seja um agente de transformação com soluções regenerativas e sustentáveis.</p>
+            <a href="#programas" class="cta-btn">Saiba Mais</a>
+        </div>
+    </section>
 
-        <!-- 1. Hero Section -->
-        <section id="hero" class="hero-section full-height">
-            <div class="container fade-in">
-                <h1>Sua Criatividade Transformando o Futuro.</h1>
-                <p class="subtitle">Junte-se à geração que constrói um Brasil Sustentável. Somos a plataforma que conecta jovens a oportunidades de impacto alinhadas aos ODS.</p>
-                <a href="#join-us" class="cta-button primary-cta">Quero Fazer Parte</a>
+    <!-- SOBRE -->
+    <section id="sobre" class="section">
+        <h2>Sobre a Brasil Sustenta</h2>
+        <p>A Brasil Sustenta é a **Impact Venture Builder** que conecta jovens criativos com soluções inovadoras para os desafios socioambientais do Brasil.</p>
+        <p>Somos a **ponte** entre o **potencial** da juventude brasileira e o futuro sustentável que queremos construir juntos.</p>
+        <a href="#programas" class="cta-btn">Conheça Nossos Programas</a>
+    </section>
+
+    <!-- PROGRAMAS -->
+    <section id="programas" class="section">
+        <h2>Programas Brasil Sustenta</h2>
+        <div class="programs">
+            <div class="program">
+                <h3>Laboratório de Criação</h3>
+                <p>Capacitação prática com mentorias e prototipagem de soluções de impacto.</p>
+                <p><strong>Benefício:</strong> Desenvolva suas ideias com apoio de especialistas e crie soluções reais.</p>
             </div>
-            <!-- Pode adicionar um background-image/video via CSS -->
-        </section>
-
-        <!-- 2. Problema/Oportunidade -->
-        <section id="opportunity" class="content-section">
-            <div class="container fade-in">
-                <h2>O Potencial da Juventude Brasileira</h2>
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <span class="stat-number">53,2 M</span>
-                        <span class="stat-desc">Jovens (18-35 anos)</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">+88%</span>
-                        <span class="stat-desc">Preferem empresas sustentáveis</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">+98%</span>
-                        <span class="stat-desc">Aumento de vagas ESG</span>
-                    </div>
-                </div>
-                <p>Este imenso potencial criativo e engajado é a chave para as soluções que nosso planeta precisa. <strong>E se a próxima grande ideia viesse de você?</strong></p>
+            <div class="program">
+                <h3>Brasil Sustenta Líderes</h3>
+                <p>Formação de líderes com trilhas de aprendizagem em ESG, regeneração e justiça social.</p>
+                <p><strong>Urgência:</strong> Inscrições abertas para a próxima turma – Vagas limitadas!</p>
             </div>
-        </section>
-
-        <!-- 3. Solução (Sobre Nós) -->
-        <section id="about" class="content-section bg-light">
-            <div class="container fade-in">
-                <h2>Nossa Solução: Brasil Sustenta</h2>
-                <p>Somos uma <strong>Impact Venture Builder</strong>. Diferente de aceleradoras tradicionais, investimos em talentos na fase pré-ideia e pré-equipe. Oferecemos conhecimento, metodologia, networking e infraestrutura para que jovens como você possam desenvolver e liderar iniciativas que geram impacto real, alinhadas aos Objetivos de Desenvolvimento Sustentável (ODS) da ONU.</p>
-                <p>Nossa missão é <strong>engajar a juventude criativa para gerar impacto positivo</strong> na sociedade e no mercado.</p>
-                <!-- Pode adicionar ícones para valores: Colaboração, Inovação, Sustentabilidade, Protagonismo -->
+            <div class="program">
+                <h3>Brasil Sustenta Play</h3>
+                <p>Plataforma digital com conteúdos exclusivos para jovens empreendedores sociais.</p>
+                <p><strong>Benefício:</strong> Aprenda com cursos, webinars e materiais exclusivos sobre inovação e sustentabilidade.</p>
             </div>
-        </section>
+        </div>
+        <a href="#participe" class="cta-btn">Participe Agora</a>
+    </section>
 
-        <!-- 4. Como Funciona (Programas) -->
-        <section id="programs" class="content-section">
-            <div class="container fade-in">
-                <h2>Nossas Frentes de Atuação</h2>
-                <div class="cards-container">
-                    <div class="card">
-                        <div class="card-icon">🌱</div> <!-- Placeholder Icon -->
-                        <h3>Laboratório de Criação</h3>
-                        <p>Crie e desenvolva seus projetos de impacto com acompanhamento especializado.</p>
-                        <!-- <a href="#learn-more-lab" class="learn-more">Saiba Mais</a> -->
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🎓</div> <!-- Placeholder Icon -->
-                        <h3>Brasil Sustenta Lideres</h3>
-                        <p>Capacite-se com habilidades técnicas e comportamentais para o mercado de impacto.</p>
-                        <!-- <a href="#learn-more-lideres" class="learn-more">Saiba Mais</a> -->
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">🗓️</div> <!-- Placeholder Icon -->
-                        <h3>Brasil Sustenta Campus</h3>
-                        <p>Participe de eventos, workshops e encontros em universidades e empresas.</p>
-                        <!-- <a href="#learn-more-campus" class="learn-more">Saiba Mais</a> -->
-                    </div>
-                    <div class="card">
-                        <div class="card-icon">▶️</div> <!-- Placeholder Icon -->
-                        <h3>Brasil Sustenta Play</h3>
-                        <p>Acesse conteúdos exclusivos: masterclasses, documentários e podcasts.</p>
-                        <!-- <a href="#learn-more-play" class="learn-more">Saiba Mais</a> -->
-                    </div>
-                     <div class="card">
-                        <div class="card-icon">🤝</div> <!-- Placeholder Icon -->
-                        <h3>Rede de Contatos</h3>
-                        <p>Conecte-se a profissionais, empresas e universidades para impulsionar sua jornada.</p>
-                         <!-- <a href="#learn-more-network" class="learn-more">Saiba Mais</a> -->
-                    </div>
-                </div>
+    <!-- IMPACTO -->
+    <section id="impacto" class="section">
+        <h2>Impacto</h2>
+        <p>Veja como estamos transformando a vida de jovens e comunidades ao redor do Brasil.</p>
+        <div class="impact-stats">
+            <div class="stat">
+                <h3>1.000+</h3>
+                <p>Jovens Capacitados</p>
             </div>
-        </section>
-
-        <!-- 5. Benefícios -->
-        <section id="benefits" class="content-section bg-light">
-            <div class="container fade-in">
-                <h2>Vantagens de Ser Membro</h2>
-                <ul>
-                    <li>✓ Desenvolva suas habilidades e seu potencial de liderança.</li>
-                    <li>✓ Construa um networking qualificado e duradouro.</li>
-                    <li>✓ Ganhe experiência prática em projetos com propósito real.</li>
-                    <li>✓ Acesse oportunidades exclusivas de crescimento pessoal e profissional.</li>
-                    <li>✓ Faça parte de uma comunidade engajada em criar um futuro sustentável.</li>
-                    <li>✓ Seja um(a) cofundador(a) de iniciativas de impacto com nosso suporte.</li>
-                </ul>
+            <div class="stat">
+                <h3>50+</h3>
+                <p>Startups Criadas</p>
             </div>
-        </section>
-
-        <!-- 6. Projetos e Iniciativas -->
-        <section id="projects" class="content-section">
-            <div class="container fade-in">
-                <h2>Projetos que Nascem Aqui</h2>
-                <p>Veja exemplos do tipo de impacto que nossos jovens estão criando (ou podem criar):</p>
-                <div class="cards-container">
-                    <!-- Exemplo de Card de Projeto (Repetir conforme necessário) -->
-                    <div class="card project-card">
-                         <!-- Imagem do Projeto aqui -->
-                        <img src="images/placeholder-project.jpg" alt="Projeto Exemplo 1" class="project-image">
-                        <h3>Iniciativa de Reciclagem Comunitária</h3>
-                        <p>Desenvolvimento de um app para conectar catadores a residências, otimizando a coleta seletiva e gerando renda.</p>
-                        <span class="ods-tag">ODS 11</span> <span class="ods-tag">ODS 12</span>
-                    </div>
-                    <div class="card project-card">
-                        <!-- Imagem do Projeto aqui -->
-                       <img src="images/placeholder-project-2.jpg" alt="Projeto Exemplo 2" class="project-image">
-                        <h3>Plataforma de Educação Ambiental</h3>
-                        <p>Criação de conteúdo gamificado para escolas sobre conservação da biodiversidade local.</p>
-                        <span class="ods-tag">ODS 4</span> <span class="ods-tag">ODS 15</span>
-                    </div>
-                     <!-- Adicionar mais cards de projetos -->
-                </div>
+            <div class="stat">
+                <h3>10+</h3>
+                <p>Parceiros Corporativos</p>
             </div>
-        </section>
+        </div>
+        <a href="#participe" class="cta-btn">Junte-se a Nós</a>
+    </section>
 
-        <!-- 7. Eventos -->
-        <section id="events" class="content-section bg-light">
-            <div class="container fade-in">
-                <h2>Próximos Eventos e Encontros</h2>
-                <p>Conecte-se, aprenda e inspire-se nos eventos do Brasil Sustenta Campus e workshops online.</p>
-                <!-- Listar próximos eventos ou uma descrição geral -->
-                <div class="event-list">
-                    <div class="event-item">
-                        <strong>Workshop Online: Design Thinking para Impacto</strong> - 25 de Julho, 19h. <a href="#">Inscreva-se</a>
-                    </div>
-                     <div class="event-item">
-                        <strong>Encontro Campus @ Universidade XPTO</strong> - 10 de Agosto, 14h. (Em breve)
-                    </div>
-                    <!-- Adicionar mais eventos -->
-                </div>
-                 <a href="#contact" class="cta-button">Veja a Agenda Completa</a> <!-- Ou link para página/seção específica -->
+    <!-- PARTICIPE -->
+    <section id="participe" class="section">
+        <h2>Como Participar</h2>
+        <p>Inscreva-se para participar dos nossos programas ou se tornar mentor, ajudando a transformar o futuro das próximas gerações.</p>
+        <div class="cta-buttons">
+            <a href="#inscricao" class="cta-btn">Inscreva-se</a>
+            <a href="#mentoria" class="cta-btn">Seja um Mentor</a>
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" class="section">
+        <h2>Blog e Conteúdo</h2>
+        <div class="blog-posts">
+            <div class="blog-post">
+                <h3>O Impacto do Empreendedorismo Social no Brasil</h3>
+                <p>Saiba como jovens empreendedores estão moldando um futuro mais justo e sustentável no Brasil.</p>
+                <a href="#">Leia Mais</a>
             </div>
-        </section>
-
-        <!-- 8. Faça Parte (CTA Principal) -->
-        <section id="join-us" class="cta-section">
-            <div class="container fade-in">
-                <h2>Faça a Diferença. Faça Parte.</h2>
-                <p>Está pronto(a) para transformar suas ideias em ações de impacto? Inscreva-se e comece sua jornada conosco.</p>
-
-                <div class="join-options">
-                    <div class="join-form-wrapper">
-                        <h3>Sou Jovem Criador(a)</h3>
-                        <form id="join-form-young">
-                            <div class="form-group">
-                                <label for="name-young">Nome:</label>
-                                <input type="text" id="name-young" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email-young">Email:</label>
-                                <input type="email" id="email-young" name="email" required>
-                            </div>
-                             <div class="form-group">
-                                <label for="interest-young">Principal Interesse:</label>
-                                <select id="interest-young" name="interest">
-                                    <option value="ambiental">Ambiental</option>
-                                    <option value="social">Social</option>
-                                    <option value="economico">Econômico/Negócios de Impacto</option>
-                                    <option value="educacao">Educação</option>
-                                     <option value="outro">Outro</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="cta-button">Quero Ser um Criador de Impacto</button>
-                        </form>
-                    </div>
-
-                    <div class="partner-mentor-options">
-                        <div class="option-box">
-                             <h3>Sou uma Organização</h3>
-                             <p>Quer patrocinar, propor desafios ou contratar talentos?</p>
-                             <a href="#contact" class="cta-button secondary-cta">Seja um Parceiro</a>
-                        </div>
-                         <div class="option-box">
-                             <h3>Quero ser Mentor(a)/Voluntário(a)</h3>
-                             <p>Compartilhe sua experiência e apoie a nova geração.</p>
-                             <a href="#contact" class="cta-button secondary-cta">Quero Contribuir</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="blog-post">
+                <h3>Como Criar Soluções Regenerativas para o Meio Ambiente</h3>
+                <p>Aprenda as melhores práticas para criar negócios que regeneram ecossistemas e transformam comunidades.</p>
+                <a href="#">Leia Mais</a>
             </div>
-        </section>
+        </div>
+        <a href="#inscricao" class="cta-btn">Acesse Mais Conteúdo</a>
+    </section>
 
-         <!-- 9. Nossa Rede / Parceiros (Opcional, se houver logos) -->
-         <section id="partners" class="content-section bg-light">
-            <div class="container fade-in">
-                <h2>Nossa Rede de Parceiros</h2>
-                <p>Construímos pontes com empresas, universidades e ONGs comprometidas com o futuro sustentável.</p>
-                <div class="partner-logos">
-                    <!-- Adicionar logos dos parceiros aqui -->
-                    <span>Logo Empresa A</span> |
-                    <span>Logo Universidade B</span> |
-                    <span>Logo ONG C</span>
-                    <!-- Use <img> tags para logos reais -->
-                </div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Brasil Sustenta | Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">LinkedIn</a>
             </div>
-        </section>
+        </div>
+    </footer>
 
-         <!-- 10. Contato e Footer -->
-        <footer id="contact" class="main-footer">
-            <div class="container">
-                 <div class="footer-content">
-                     <div class="footer-col">
-                         <h4>Brasil Sustenta</h4>
-                         <p>Engajando a juventude criativa para gerar impacto positivo.</p>
-                         <!-- Links Redes Sociais -->
-                         <div class="social-links">
-                             <a href="#" aria-label="LinkedIn">L</a>
-                             <a href="#" aria-label="Instagram">I</a>
-                             <!-- Adicionar ícones reais -->
-                         </div>
-                     </div>
-                      <div class="footer-col">
-                         <h4>Navegação</h4>
-                         <ul>
-                            <li><a href="#about">Sobre Nós</a></li>
-                            <li><a href="#programs">Programas</a></li>
-                            <li><a href="#projects">Projetos</a></li>
-                             <li><a href="#events">Eventos</a></li>
-                            <li><a href="#join-us">Faça Parte</a></li>
-                         </ul>
-                     </div>
-                      <div class="footer-col">
-                         <h4>Informações</h4>
-                         <ul>
-                             <li><a href="#">Para Você (Detalhes)</a></li>
-                             <li><a href="#">Para Stakeholders</a></li>
-                             <li><a href="#">Carreiras e Voluntariado</a></li>
-                             <li><a href="#">Central de Notícias (Blog)</a></li>
-                             <li><a href="#">Política de Privacidade</a></li>
-                         </ul>
-                     </div>
-                     <div class="footer-col">
-                         <h4>Contato</h4>
-                         <p>Email: <a href="mailto:contato@brasilsustenta.org">contato@brasilsustenta.org</a></p>
-                         <p>Telefone: (XX) XXXX-XXXX</p>
-                         <!-- Endereço se aplicável -->
-                     </div>
-                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; <span id="current-year"></span> Brasil Sustenta. Todos os direitos reservados.</p>
-                </div>
-            </div>
-        </footer>
-
-    </main>
-
-    <script src="script.js"></script>
 </body>
 </html>
